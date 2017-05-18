@@ -63,12 +63,12 @@ export class HomeComponent implements OnInit {
     values: ['Nature', 'Buildings', 'People', 'Object', 'Food & Drink', 'Technology'],
     labels: ['طبيعة', 'بنايات', 'أشخاص', 'أشياء', 'طعام وشراب', 'تكنولوجيا'],
     filters: {
-      'Nature': true,
-      'Buildings': true,
-      'People': true,
-      'Object': true,
-      'Food & Drink': true,
-      'Technology': true,
+      'Nature': false,
+      'Buildings': false,
+      'People': false,
+      'Object': false,
+      'Food & Drink': false,
+      'Technology': false,
     },
   };
   /**
