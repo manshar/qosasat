@@ -6,14 +6,24 @@ import {
 import { AppState } from '../app.service';
 import { Title } from './title';
 import { XLargeDirective } from './x-large';
-import {Http, Headers} from '@angular/http';
+import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 
 const PER_PAGE = 20;
+const CARBON_SRCSRC_ENDPOINT = 'https://srcsrc.carbon.tools/api/v1/photo/';
 
-const CLIENT_ID = '6fd951087812fbbd4e481bc071fc90d899244fc6fd15b352bb456e097ed1d8d1';
-// const CLIENT_ID = '276797ea4589bda49451745906cefa5c0d99cff31e83525e267f588daac32a17';
+function generateWebsafeColors() {
+  let colors = [];
+  for (let r = 0; r < 16; r += 3) {
+    for (let g = 0; g < 16; g += 3) {
+      for (let b = 0; b < 16; b += 3) {
+        colors.push(r.toString(16) + r.toString(16) + g.toString(16) + g.toString(16) + b.toString(16) + b.toString(16));
+      }
+    }
+  }
+  return colors;
+}
 
 @Component({
   /**
@@ -43,10 +53,24 @@ export class HomeComponent implements OnInit {
    */
   public localState = { value: '' };
   public photos:Array<Object> = [];
-  page = 2;
+  colors:string[];
+  availableColors:string[] = generateWebsafeColors();
+  next_url:string;
 
-  headers = new Headers();
+  categoriesList = ['Nature', 'Buildings', 'People', 'Object', 'Food & Drink', 'Technology'];
 
+  categories = {
+    values: ['Nature', 'Buildings', 'People', 'Object', 'Food & Drink', 'Technology'],
+    labels: ['طبيعة', 'بنايات', 'أشخاص', 'أشياء', 'طعام وشراب', 'تكنولوجيا'],
+    filters: {
+      'Nature': true,
+      'Buildings': true,
+      'People': true,
+      'Object': true,
+      'Food & Drink': true,
+      'Technology': true,
+    },
+  };
   /**
    * TypeScript public modifiers
    */
@@ -56,26 +80,24 @@ export class HomeComponent implements OnInit {
     public http: Http,
   ) { }
 
-  public ngOnInit() {
-    console.log('hello `Home` component');
-
-    this.headers.append('Content-Type', 'application/json');
-    this.headers.append('Authorization', `Client-ID ${CLIENT_ID}`);
-    this.headers.append('Accept-Version', 'v1');
-
-
-    this.http.get('https://api.unsplash.com/photos', {
+  listPhotos() {
+    this.http.get(CARBON_SRCSRC_ENDPOINT, {
       params: {
-        'order_by': 'latest',
-        'per_page': PER_PAGE,
-        page: this.page++,
+        'order': '-source_created_at',
+        'limit': PER_PAGE,
+        'categories': this.getSelectedCategories(),
+        'colors': this.getSelectedColors(),
       },
-      headers: this.headers,
     }).map(res => res.json())
-      .subscribe(photos => {
-        console.log(photos);
-        this.photos = photos;
+      .subscribe(response => {
+        console.log(response.result);
+        this.photos = response.result;
+        this.next_url = response.next_url;
       });
+  }
+
+  public ngOnInit() {
+    this.listPhotos();
   }
 
   public submitState(value: string) {
@@ -84,20 +106,39 @@ export class HomeComponent implements OnInit {
     this.localState.value = '';
   }
   public onScroll() {
+    if (!this.next_url) {
+      return;
+    }
     console.log('scroll');
-
-    this.http.get('https://api.unsplash.com/photos', {
-      params: {
-        'order_by': 'latest',
-        'per_page': PER_PAGE,
-        page: this.page++,
-      },
-      headers: this.headers,
-    }).map(res => res.json())
-      .subscribe(photos => {
-        console.log(photos);
-        this.photos = this.photos.concat(photos);
+    this.http.get(this.next_url).map(res => res.json())
+      .subscribe(response => {
+        this.photos = this.photos.concat(response.result);
+        this.next_url = response.next_url;
       });
+  }
 
+  public filtersUpdated() {
+    this.next_url = null;
+    this.listPhotos();
+  }
+
+
+  filter(map) {
+    if (!map) {
+      return [];
+    }
+    var keys = Object.keys(map);
+    var filtered = keys.filter(function(key) {
+      return map[key];
+    });
+    return filtered;
+  }
+
+  public getSelectedColors() {
+    return this.filter(this.colors);
+  }
+
+  public getSelectedCategories() {
+    return this.filter(this.categories.filters);
   }
 }

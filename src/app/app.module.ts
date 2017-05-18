@@ -34,6 +34,8 @@ import { XLargeDirective } from './home/x-large';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
+import { ColorPickerModule } from './color-picker/color-picker.module';
+
 import '../styles/styles.scss';
 import '../styles/headings.css';
 
@@ -72,6 +74,7 @@ type StoreType = {
     FormsModule,
     HttpModule,
     InfiniteScrollModule,
+    ColorPickerModule,
     RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules })
   ],
   /**

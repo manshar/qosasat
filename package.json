@@ -92,7 +92,6 @@
     "ngx-infinite-scroll": "^0.5.1",
     "reflect-metadata": "^0.1.10",
     "rxjs": "5.0.2",
-    "unsplash-js": "github:unsplash/unsplash-js",
     "webfontloader": "^1.6.27",
     "zone.js": "~0.8.5"
   },

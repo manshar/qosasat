@@ -1,1 +1,42 @@
 /*styles for home content only*/
+
+.filter-controls {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-controls .categories-filters {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 1em;
+}
+
+.filter-controls .categories-filters label {
+  padding: .5em;
+}
+
+color-picker {
+  padding: 1em;
+}
+
+.image-preview {
+  width: 400px;
+  height: 400px;
+  background: rgba(0,0,0,.3)
+}
+
+@media (max-width: 600px) {
+  .filter-controls {
+    flex-direction: column;
+  }
+
+  .filter-controls .categories-filters label {
+    width: 33%;
+    flex-grow: 1;
+    text-align: right;
+    padding: 0.5em 0;
+  }
+
+}

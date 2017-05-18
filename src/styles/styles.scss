@@ -28,6 +28,11 @@ html, body{
   margin: 0;
 }
 
+app {
+  min-height: 200vh;
+  display: block;
+}
+
 input, button {
   font-family: barabics, Arial, Helvetica, sans-serif;
 }

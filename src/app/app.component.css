@@ -1,12 +1,21 @@
 .page {
   margin: 1em;
+  min-height: 200vh;
 }
 
-clip,
+clip {
+  margin: 1em;
+  display: inline-block;
+}
+
 .image-preview {
   margin: 1em;
   display: inline-block;
 }
+.image-preview clip {
+  margin: 0;
+}
+
 
 .clip-preview-card {
   position: relative;
@@ -79,4 +88,26 @@ clip,
 .credits a {
   text-decoration: none;
   color: #aaa;
+}
+
+@media (max-width: 500px) {
+  .clip-controls {
+    flex-direction: column;
+  }
+
+  .clip-controls input {
+    border: 1px solid #666;
+    padding: .2em;
+  }
+
+  .clip-controls button {
+    font-size: 1.4em;
+    padding: .5em 0;
+  }
+
+  .clip-controls button,
+  .clip-controls .checkbox {
+    width: auto;
+  }
+
 }

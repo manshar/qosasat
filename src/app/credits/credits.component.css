@@ -3,6 +3,7 @@
   text-align: right;
   max-width: 700px;
   margin: 0 auto;
+  padding: 0 1em;
 }
 
 .about-page p,
@@ -25,14 +26,14 @@
 }
 
 .credits .credit-logo {
-  padding: 2em;
+  padding: 1em;
   text-align: center;
-  margin: 1em 0;
+  margin: 0;
 }
 .credits .credit-logo img {
   width: 200px;
 }
-.credits .unsplash h1 {
+.credits .unsplash h3 {
   padding: 0;
   margin: 0;
   color: #fff;
