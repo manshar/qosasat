@@ -128,3 +128,10 @@ interface ErrorConstructor extends ErrorStackTraceLimit {}
 interface NodeRequireFunction extends Es6PromiseLoader  {}
 interface NodeModule extends WebpackModule {}
 interface Global extends GlobalEnvironment  {}
+
+// interface JSONFontConfigDef {
+//   fonts: string[],
+//   urlPrefix: string
+// }
+
+// type JSONFontConfig = () => JSONFontConfigDef;

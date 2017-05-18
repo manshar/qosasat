@@ -1,0 +1,20 @@
+<div class="export-page page">
+  <h1>
+    الخطوة الأخيرة: معاينة وتحميل
+  </h1>
+  <div class="clip-controls">
+    <input [(ngModel)]="text">
+    <button (click)="download()">
+      تحميل جميع أحجام الصور
+    </button>
+    <label class="checkbox">
+      <input type="checkbox" [(ngModel)]="preview">
+      صغر حجم الصور للمعاينة
+    </label>
+  </div>
+
+  <div class="clip-exports" #clips>
+    <clip [photo]="selectedPhoto" [font]="selectedFont" [text]="text" [config]="config" *ngFor="let config of configs" [previewRatio]="1" [preview]="preview"></clip>
+  </div>
+
+</div>

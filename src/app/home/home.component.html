@@ -1,37 +1,23 @@
-<div>
-  <h1 x-large class="sample-content">Your Content Here</h1>
+<div class="choose-image-page page"
+    infiniteScroll
+    [infiniteScrollDistance]="1"
+    [infiniteScrollThrottle]="800"
+    (scrolled)="onScroll()">
+  <h1>
+    الخطوة الأولى: اختر الصورة
+  </h1>
 
-  <hr>
-
-  <div>
-    For hot module reloading run
-    <pre>npm run start:hmr</pre>
-  </div>
-
-  <hr>
-
-  <div>
-    <h4>Local State</h4>
-
-    <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
-
-      <input
-        [value]="localState.value"
-        (input)="localState.value = $event.target.value"
-        placeholder="Submit Local State to App State"
-        autofocus>
-
-      <button>Submit Value</button>
-    </form>
-    <!--
-        <input type="text" [value]="localState.value" (input)="localState.value = $event.target.value" autofocus>
-        Rather than wiring up two-way data-binding ourselves with [value] and (input)
-        we can use Angular's [(ngModel)] syntax
-        <input type="text" name="textInput" [(ngModel)]="localState.value" autofocus>
-      -->
-
-    <pre>this.localState = {{ localState | json }}</pre>
-
+  <div class="image-preview" *ngFor="let photo of photos">
+    <a [href]="'/select-font?url=' + photo.urls.raw">
+      <img crossorigin [src]="photo.urls.raw + '?w=800&h=800&fit=crop'" preload sizing="cover" width="400" height="400">
+    </a>
+    <div class="credits">
+      <span> &lt; </span>
+      <a [href]="photo.user.links.html + '?utm_source=manshar-clips&utm_medium=referral&utm_campaign=api-credit'" target="_blank">{{photo.user.name}}</a>
+      <span> / </span>
+      <a href="https://unsplash.com?utm_source=manshar-clips&utm_medium=referral&utm_campaign=api-credit" target="_blank">Unsplash</a>
+      <span> &gt; </span>
+    </div>
   </div>
 
 </div>

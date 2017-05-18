@@ -1,0 +1,43 @@
+.about-page {
+  font-size: 1.8em;
+  text-align: right;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.about-page p,
+.about-page ul,
+.about-page li {
+  color: #888;
+}
+
+.about-page h1 {
+  padding: 1em 0;
+}
+
+.credits .fontface {
+  background: #428bca;
+}
+
+.credits .unsplash {
+  background: #000;
+  color: #fff;
+}
+
+.credits .credit-logo {
+  padding: 2em;
+  text-align: center;
+  margin: 1em 0;
+}
+.credits .credit-logo img {
+  width: 200px;
+}
+.credits .unsplash h1 {
+  padding: 0;
+  margin: 0;
+  color: #fff;
+}
+
+ul {
+  direction: rtl;
+}

@@ -1,0 +1,1816 @@
+@font-face {
+  font-family: '471btehran';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/471btehran.eot#iefix');
+  src: url('https://fonts.carbon.tools/471btehran.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/471btehran.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/471btehran.woff') format('woff'),
+        url('https://fonts.carbon.tools/471btehran.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ah-moharram-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/ah-moharram-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/ah-moharram-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/ah-moharram-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/ah-moharram-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/ah-moharram-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'al-gemah-alhoda';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/al-gemah-alhoda.eot#iefix');
+  src: url('https://fonts.carbon.tools/al-gemah-alhoda.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/al-gemah-alhoda.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/al-gemah-alhoda.woff') format('woff'),
+        url('https://fonts.carbon.tools/al-gemah-alhoda.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'al-majd';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/al-majd.eot#iefix');
+  src: url('https://fonts.carbon.tools/al-majd.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/al-majd.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/al-majd.woff') format('woff'),
+        url('https://fonts.carbon.tools/al-majd.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'algeria';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/algeria.eot#iefix');
+  src: url('https://fonts.carbon.tools/algeria.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/algeria.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/algeria.woff') format('woff'),
+        url('https://fonts.carbon.tools/algeria.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'alhorr';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/alhorr.eot#iefix');
+  src: url('https://fonts.carbon.tools/alhorr.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/alhorr.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/alhorr.woff') format('woff'),
+        url('https://fonts.carbon.tools/alhorr.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'alhurra';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/alhurra.eot#iefix');
+  src: url('https://fonts.carbon.tools/alhurra.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/alhurra.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/alhurra.woff') format('woff'),
+        url('https://fonts.carbon.tools/alhurra.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'almawadah';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/almawadah.eot#iefix');
+  src: url('https://fonts.carbon.tools/almawadah.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/almawadah.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/almawadah.woff') format('woff'),
+        url('https://fonts.carbon.tools/almawadah.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'almushaf';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/almushaf.eot#iefix');
+  src: url('https://fonts.carbon.tools/almushaf.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/almushaf.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/almushaf.woff') format('woff'),
+        url('https://fonts.carbon.tools/almushaf.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'alnaqaa';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/alnaqaa.eot#iefix');
+  src: url('https://fonts.carbon.tools/alnaqaa.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/alnaqaa.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/alnaqaa.woff') format('woff'),
+        url('https://fonts.carbon.tools/alnaqaa.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'alqusair';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/alqusair.eot#iefix');
+  src: url('https://fonts.carbon.tools/alqusair.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/alqusair.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/alqusair.woff') format('woff'),
+        url('https://fonts.carbon.tools/alqusair.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'alshohadaa';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/alshohadaa.eot#iefix');
+  src: url('https://fonts.carbon.tools/alshohadaa.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/alshohadaa.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/alshohadaa.woff') format('woff'),
+        url('https://fonts.carbon.tools/alshohadaa.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'amiri-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/amiri-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/amiri-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/amiri-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/amiri-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/amiri-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'amiri-quran';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/amiri-quran.eot#iefix');
+  src: url('https://fonts.carbon.tools/amiri-quran.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/amiri-quran.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/amiri-quran.woff') format('woff'),
+        url('https://fonts.carbon.tools/amiri-quran.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'amiri-regular';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/amiri-regular.eot#iefix');
+  src: url('https://fonts.carbon.tools/amiri-regular.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/amiri-regular.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/amiri-regular.woff') format('woff'),
+        url('https://fonts.carbon.tools/amiri-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'amiri-slanted';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/amiri-slanted.eot#iefix');
+  src: url('https://fonts.carbon.tools/amiri-slanted.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/amiri-slanted.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/amiri-slanted.woff') format('woff'),
+        url('https://fonts.carbon.tools/amiri-slanted.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'aqeeq';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/aqeeq.eot#iefix');
+  src: url('https://fonts.carbon.tools/aqeeq.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/aqeeq.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/aqeeq.woff') format('woff'),
+        url('https://fonts.carbon.tools/aqeeq.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'arabswell-1';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/arabswell-1.eot#iefix');
+  src: url('https://fonts.carbon.tools/arabswell-1.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/arabswell-1.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/arabswell-1.woff') format('woff'),
+        url('https://fonts.carbon.tools/arabswell-1.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'aref-ruqaa';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/aref-ruqaa.eot#iefix');
+  src: url('https://fonts.carbon.tools/aref-ruqaa.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/aref-ruqaa.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/aref-ruqaa.woff') format('woff'),
+        url('https://fonts.carbon.tools/aref-ruqaa.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'arwa';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/arwa.eot#iefix');
+  src: url('https://fonts.carbon.tools/arwa.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/arwa.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/arwa.woff') format('woff'),
+        url('https://fonts.carbon.tools/arwa.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'asmaa';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/asmaa.eot#iefix');
+  src: url('https://fonts.carbon.tools/asmaa.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/asmaa.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/asmaa.woff') format('woff'),
+        url('https://fonts.carbon.tools/asmaa.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'assaf';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/assaf.eot#iefix');
+  src: url('https://fonts.carbon.tools/assaf.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/assaf.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/assaf.woff') format('woff'),
+        url('https://fonts.carbon.tools/assaf.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'aures';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/aures.eot#iefix');
+  src: url('https://fonts.carbon.tools/aures.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/aures.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/aures.woff') format('woff'),
+        url('https://fonts.carbon.tools/aures.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'b-compset';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/b-compset.eot#iefix');
+  src: url('https://fonts.carbon.tools/b-compset.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/b-compset.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/b-compset.woff') format('woff'),
+        url('https://fonts.carbon.tools/b-compset.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'b-hamid';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/b-hamid.eot#iefix');
+  src: url('https://fonts.carbon.tools/b-hamid.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/b-hamid.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/b-hamid.woff') format('woff'),
+        url('https://fonts.carbon.tools/b-hamid.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'b-sepideh';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/b-sepideh.eot#iefix');
+  src: url('https://fonts.carbon.tools/b-sepideh.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/b-sepideh.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/b-sepideh.woff') format('woff'),
+        url('https://fonts.carbon.tools/b-sepideh.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'bahij';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/bahij.eot#iefix');
+  src: url('https://fonts.carbon.tools/bahij.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/bahij.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/bahij.woff') format('woff'),
+        url('https://fonts.carbon.tools/bahij.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'barabics';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/barabics.eot#iefix');
+  src: url('https://fonts.carbon.tools/barabics.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/barabics.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/barabics.woff') format('woff'),
+        url('https://fonts.carbon.tools/barabics.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'baran';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/baran.eot#iefix');
+  src: url('https://fonts.carbon.tools/baran.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/baran.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/baran.woff') format('woff'),
+        url('https://fonts.carbon.tools/baran.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'basim-marah-beh-light';
+  font-weight: 200;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/basim-marah-beh-light.eot#iefix');
+  src: url('https://fonts.carbon.tools/basim-marah-beh-light.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/basim-marah-beh-light.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/basim-marah-beh-light.woff') format('woff'),
+        url('https://fonts.carbon.tools/basim-marah-beh-light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'bedayah';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/bedayah.eot#iefix');
+  src: url('https://fonts.carbon.tools/bedayah.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/bedayah.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/bedayah.woff') format('woff'),
+        url('https://fonts.carbon.tools/bedayah.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'bein';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/bein.eot#iefix');
+  src: url('https://fonts.carbon.tools/bein.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/bein.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/bein.woff') format('woff'),
+        url('https://fonts.carbon.tools/bein.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'bein-normal';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/bein-normal.eot#iefix');
+  src: url('https://fonts.carbon.tools/bein-normal.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/bein-normal.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/bein-normal.woff') format('woff'),
+        url('https://fonts.carbon.tools/bein-normal.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'bokra';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/bokra.eot#iefix');
+  src: url('https://fonts.carbon.tools/bokra.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/bokra.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/bokra.woff') format('woff'),
+        url('https://fonts.carbon.tools/bokra.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'bon';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/bon.eot#iefix');
+  src: url('https://fonts.carbon.tools/bon.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/bon.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/bon.woff') format('woff'),
+        url('https://fonts.carbon.tools/bon.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'boutros-ads';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/boutros-ads.eot#iefix');
+  src: url('https://fonts.carbon.tools/boutros-ads.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/boutros-ads.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/boutros-ads.woff') format('woff'),
+        url('https://fonts.carbon.tools/boutros-ads.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'cairo';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/cairo.eot#iefix');
+  src: url('https://fonts.carbon.tools/cairo.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/cairo.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/cairo.woff') format('woff'),
+        url('https://fonts.carbon.tools/cairo.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'cairo-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/cairo-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/cairo-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/cairo-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/cairo-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/cairo-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'cairo-extra-light';
+  font-weight: 100;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/cairo-extra-light.eot#iefix');
+  src: url('https://fonts.carbon.tools/cairo-extra-light.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/cairo-extra-light.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/cairo-extra-light.woff') format('woff'),
+        url('https://fonts.carbon.tools/cairo-extra-light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'cairo-light';
+  font-weight: 200;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/cairo-light.eot#iefix');
+  src: url('https://fonts.carbon.tools/cairo-light.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/cairo-light.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/cairo-light.woff') format('woff'),
+        url('https://fonts.carbon.tools/cairo-light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'decotype-thuluth';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/decotype-thuluth.eot#iefix');
+  src: url('https://fonts.carbon.tools/decotype-thuluth.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/decotype-thuluth.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/decotype-thuluth.woff') format('woff'),
+        url('https://fonts.carbon.tools/decotype-thuluth.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'diana-light';
+  font-weight: 200;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/diana-light.eot#iefix');
+  src: url('https://fonts.carbon.tools/diana-light.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/diana-light.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/diana-light.woff') format('woff'),
+        url('https://fonts.carbon.tools/diana-light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'diana-regular';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/diana-regular.eot#iefix');
+  src: url('https://fonts.carbon.tools/diana-regular.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/diana-regular.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/diana-regular.woff') format('woff'),
+        url('https://fonts.carbon.tools/diana-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'diwani-bent';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/diwani-bent.eot#iefix');
+  src: url('https://fonts.carbon.tools/diwani-bent.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/diwani-bent.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/diwani-bent.woff') format('woff'),
+        url('https://fonts.carbon.tools/diwani-bent.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'diwanltr';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/diwanltr.eot#iefix');
+  src: url('https://fonts.carbon.tools/diwanltr.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/diwanltr.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/diwanltr.woff') format('woff'),
+        url('https://fonts.carbon.tools/diwanltr.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'droid-sans';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/droid-sans.eot#iefix');
+  src: url('https://fonts.carbon.tools/droid-sans.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/droid-sans.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/droid-sans.woff') format('woff'),
+        url('https://fonts.carbon.tools/droid-sans.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'droidkufi-regular';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/droidkufi-regular.eot#iefix');
+  src: url('https://fonts.carbon.tools/droidkufi-regular.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/droidkufi-regular.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/droidkufi-regular.woff') format('woff'),
+        url('https://fonts.carbon.tools/droidkufi-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'droidnaskh-regular';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/droidnaskh-regular.eot#iefix');
+  src: url('https://fonts.carbon.tools/droidnaskh-regular.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/droidnaskh-regular.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/droidnaskh-regular.woff') format('woff'),
+        url('https://fonts.carbon.tools/droidnaskh-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'dubai';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/dubai.eot#iefix');
+  src: url('https://fonts.carbon.tools/dubai.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/dubai.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/dubai.woff') format('woff'),
+        url('https://fonts.carbon.tools/dubai.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'dubai-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/dubai-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/dubai-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/dubai-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/dubai-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/dubai-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'dubai-light';
+  font-weight: 200;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/dubai-light.eot#iefix');
+  src: url('https://fonts.carbon.tools/dubai-light.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/dubai-light.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/dubai-light.woff') format('woff'),
+        url('https://fonts.carbon.tools/dubai-light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'dubai-medium';
+  font-weight: 300;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/dubai-medium.eot#iefix');
+  src: url('https://fonts.carbon.tools/dubai-medium.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/dubai-medium.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/dubai-medium.woff') format('woff'),
+        url('https://fonts.carbon.tools/dubai-medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'elmessiri';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/elmessiri.eot#iefix');
+  src: url('https://fonts.carbon.tools/elmessiri.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/elmessiri.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/elmessiri.woff') format('woff'),
+        url('https://fonts.carbon.tools/elmessiri.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'elmessiri-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/elmessiri-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/elmessiri-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/elmessiri-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/elmessiri-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/elmessiri-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'elmessiri-light';
+  font-weight: 200;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/elmessiri-light.eot#iefix');
+  src: url('https://fonts.carbon.tools/elmessiri-light.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/elmessiri-light.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/elmessiri-light.woff') format('woff'),
+        url('https://fonts.carbon.tools/elmessiri-light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'esfahan';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/esfahan.eot#iefix');
+  src: url('https://fonts.carbon.tools/esfahan.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/esfahan.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/esfahan.woff') format('woff'),
+        url('https://fonts.carbon.tools/esfahan.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'fanni';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/fanni.eot#iefix');
+  src: url('https://fonts.carbon.tools/fanni.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/fanni.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/fanni.woff') format('woff'),
+        url('https://fonts.carbon.tools/fanni.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'fantezy';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/fantezy.eot#iefix');
+  src: url('https://fonts.carbon.tools/fantezy.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/fantezy.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/fantezy.woff') format('woff'),
+        url('https://fonts.carbon.tools/fantezy.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'farsi-simple-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/farsi-simple-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/farsi-simple-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/farsi-simple-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/farsi-simple-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/farsi-simple-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'fixed-kufi';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/fixed-kufi.eot#iefix');
+  src: url('https://fonts.carbon.tools/fixed-kufi.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/fixed-kufi.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/fixed-kufi.woff') format('woff'),
+        url('https://fonts.carbon.tools/fixed-kufi.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'flat-jooza-regular';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/flat-jooza-regular.eot#iefix');
+  src: url('https://fonts.carbon.tools/flat-jooza-regular.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/flat-jooza-regular.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/flat-jooza-regular.woff') format('woff'),
+        url('https://fonts.carbon.tools/flat-jooza-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ghala';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/ghala.eot#iefix');
+  src: url('https://fonts.carbon.tools/ghala.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/ghala.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/ghala.woff') format('woff'),
+        url('https://fonts.carbon.tools/ghala.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ghala-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/ghala-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/ghala-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/ghala-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/ghala-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/ghala-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'hala';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/hala.eot#iefix');
+  src: url('https://fonts.carbon.tools/hala.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/hala.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/hala.woff') format('woff'),
+        url('https://fonts.carbon.tools/hala.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'hama-regular';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/hama-regular.eot#iefix');
+  src: url('https://fonts.carbon.tools/hama-regular.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/hama-regular.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/hama-regular.woff') format('woff'),
+        url('https://fonts.carbon.tools/hama-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'hamada_light_font';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/hamada_light_font.eot#iefix');
+  src: url('https://fonts.carbon.tools/hamada_light_font.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/hamada_light_font.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/hamada_light_font.woff') format('woff'),
+        url('https://fonts.carbon.tools/hamada_light_font.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'harmattan';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/harmattan.eot#iefix');
+  src: url('https://fonts.carbon.tools/harmattan.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/harmattan.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/harmattan.woff') format('woff'),
+        url('https://fonts.carbon.tools/harmattan.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'hayah';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/hayah.eot#iefix');
+  src: url('https://fonts.carbon.tools/hayah.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/hayah.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/hayah.woff') format('woff'),
+        url('https://fonts.carbon.tools/hayah.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'helal';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/helal.eot#iefix');
+  src: url('https://fonts.carbon.tools/helal.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/helal.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/helal.woff') format('woff'),
+        url('https://fonts.carbon.tools/helal.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'homa';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/homa.eot#iefix');
+  src: url('https://fonts.carbon.tools/homa.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/homa.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/homa.woff') format('woff'),
+        url('https://fonts.carbon.tools/homa.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ibtisam';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/ibtisam.eot#iefix');
+  src: url('https://fonts.carbon.tools/ibtisam.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/ibtisam.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/ibtisam.woff') format('woff'),
+        url('https://fonts.carbon.tools/ibtisam.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'insan';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/insan.eot#iefix');
+  src: url('https://fonts.carbon.tools/insan.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/insan.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/insan.woff') format('woff'),
+        url('https://fonts.carbon.tools/insan.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ishraq';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/ishraq.eot#iefix');
+  src: url('https://fonts.carbon.tools/ishraq.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/ishraq.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/ishraq.woff') format('woff'),
+        url('https://fonts.carbon.tools/ishraq.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'israr-syria';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/israr-syria.eot#iefix');
+  src: url('https://fonts.carbon.tools/israr-syria.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/israr-syria.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/israr-syria.woff') format('woff'),
+        url('https://fonts.carbon.tools/israr-syria.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'jannat';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/jannat.eot#iefix');
+  src: url('https://fonts.carbon.tools/jannat.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/jannat.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/jannat.woff') format('woff'),
+        url('https://fonts.carbon.tools/jannat.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'jazeera';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/jazeera.eot#iefix');
+  src: url('https://fonts.carbon.tools/jazeera.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/jazeera.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/jazeera.woff') format('woff'),
+        url('https://fonts.carbon.tools/jazeera.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'jazeera-light';
+  font-weight: 200;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/jazeera-light.eot#iefix');
+  src: url('https://fonts.carbon.tools/jazeera-light.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/jazeera-light.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/jazeera-light.woff') format('woff'),
+        url('https://fonts.carbon.tools/jazeera-light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'jomhuria';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/jomhuria.eot#iefix');
+  src: url('https://fonts.carbon.tools/jomhuria.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/jomhuria.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/jomhuria.woff') format('woff'),
+        url('https://fonts.carbon.tools/jomhuria.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'jooza-regular';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/jooza-regular.eot#iefix');
+  src: url('https://fonts.carbon.tools/jooza-regular.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/jooza-regular.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/jooza-regular.woff') format('woff'),
+        url('https://fonts.carbon.tools/jooza-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'jordan';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/jordan.eot#iefix');
+  src: url('https://fonts.carbon.tools/jordan.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/jordan.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/jordan.woff') format('woff'),
+        url('https://fonts.carbon.tools/jordan.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'kacst-farsi';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/kacst-farsi.eot#iefix');
+  src: url('https://fonts.carbon.tools/kacst-farsi.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/kacst-farsi.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/kacst-farsi.woff') format('woff'),
+        url('https://fonts.carbon.tools/kacst-farsi.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'kamran';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/kamran.eot#iefix');
+  src: url('https://fonts.carbon.tools/kamran.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/kamran.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/kamran.woff') format('woff'),
+        url('https://fonts.carbon.tools/kamran.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'katibeh';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/katibeh.eot#iefix');
+  src: url('https://fonts.carbon.tools/katibeh.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/katibeh.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/katibeh.woff') format('woff'),
+        url('https://fonts.carbon.tools/katibeh.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'kawkabmono-regular';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/kawkabmono-regular.eot#iefix');
+  src: url('https://fonts.carbon.tools/kawkabmono-regular.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/kawkabmono-regular.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/kawkabmono-regular.woff') format('woff'),
+        url('https://fonts.carbon.tools/kawkabmono-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'kufi';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/kufi.eot#iefix');
+  src: url('https://fonts.carbon.tools/kufi.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/kufi.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/kufi.woff') format('woff'),
+        url('https://fonts.carbon.tools/kufi.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'lamar';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/lamar.eot#iefix');
+  src: url('https://fonts.carbon.tools/lamar.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/lamar.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/lamar.woff') format('woff'),
+        url('https://fonts.carbon.tools/lamar.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'lateef';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/lateef.eot#iefix');
+  src: url('https://fonts.carbon.tools/lateef.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/lateef.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/lateef.woff') format('woff'),
+        url('https://fonts.carbon.tools/lateef.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'lemonada';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/lemonada.eot#iefix');
+  src: url('https://fonts.carbon.tools/lemonada.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/lemonada.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/lemonada.woff') format('woff'),
+        url('https://fonts.carbon.tools/lemonada.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'lemonada-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/lemonada-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/lemonada-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/lemonada-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/lemonada-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/lemonada-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'lemonada-light';
+  font-weight: 200;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/lemonada-light.eot#iefix');
+  src: url('https://fonts.carbon.tools/lemonada-light.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/lemonada-light.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/lemonada-light.woff') format('woff'),
+        url('https://fonts.carbon.tools/lemonada-light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'mada';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/mada.eot#iefix');
+  src: url('https://fonts.carbon.tools/mada.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/mada.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/mada.woff') format('woff'),
+        url('https://fonts.carbon.tools/mada.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'mada-bold';
+  font-weight: boldal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/mada-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/mada-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/mada-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/mada-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/mada-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'mada-light';
+  font-weight: 200;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/mada-light.eot#iefix');
+  src: url('https://fonts.carbon.tools/mada-light.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/mada-light.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/mada-light.woff') format('woff'),
+        url('https://fonts.carbon.tools/mada-light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'maghrebi';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/maghrebi.eot#iefix');
+  src: url('https://fonts.carbon.tools/maghrebi.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/maghrebi.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/maghrebi.woff') format('woff'),
+        url('https://fonts.carbon.tools/maghrebi.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'maidan';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/maidan.eot#iefix');
+  src: url('https://fonts.carbon.tools/maidan.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/maidan.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/maidan.woff') format('woff'),
+        url('https://fonts.carbon.tools/maidan.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'mbc';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/mbc.eot#iefix');
+  src: url('https://fonts.carbon.tools/mbc.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/mbc.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/mbc.woff') format('woff'),
+        url('https://fonts.carbon.tools/mbc.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'milano';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/milano.eot#iefix');
+  src: url('https://fonts.carbon.tools/milano.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/milano.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/milano.woff') format('woff'),
+        url('https://fonts.carbon.tools/milano.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'mirza';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/mirza.eot#iefix');
+  src: url('https://fonts.carbon.tools/mirza.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/mirza.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/mirza.woff') format('woff'),
+        url('https://fonts.carbon.tools/mirza.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'mirza-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/mirza-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/mirza-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/mirza-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/mirza-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/mirza-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'mirza-medium';
+  font-weight: 200;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/mirza-medium.eot#iefix');
+  src: url('https://fonts.carbon.tools/mirza-medium.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/mirza-medium.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/mirza-medium.woff') format('woff'),
+        url('https://fonts.carbon.tools/mirza-medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'motairah';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/motairah.eot#iefix');
+  src: url('https://fonts.carbon.tools/motairah.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/motairah.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/motairah.woff') format('woff'),
+        url('https://fonts.carbon.tools/motairah.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'motairah-light';
+  font-weight: 200;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/motairah-light.eot#iefix');
+  src: url('https://fonts.carbon.tools/motairah-light.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/motairah-light.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/motairah-light.woff') format('woff'),
+        url('https://fonts.carbon.tools/motairah-light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'motken';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/motken.eot#iefix');
+  src: url('https://fonts.carbon.tools/motken.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/motken.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/motken.woff') format('woff'),
+        url('https://fonts.carbon.tools/motken.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'muslimah';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/muslimah.eot#iefix');
+  src: url('https://fonts.carbon.tools/muslimah.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/muslimah.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/muslimah.woff') format('woff'),
+        url('https://fonts.carbon.tools/muslimah.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'nawar';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/nawar.eot#iefix');
+  src: url('https://fonts.carbon.tools/nawar.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/nawar.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/nawar.woff') format('woff'),
+        url('https://fonts.carbon.tools/nawar.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'neckar';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/neckar.eot#iefix');
+  src: url('https://fonts.carbon.tools/neckar.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/neckar.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/neckar.woff') format('woff'),
+        url('https://fonts.carbon.tools/neckar.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'neckar-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/neckar-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/neckar-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/neckar-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/neckar-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/neckar-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'noorehuda';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/noorehuda.eot#iefix');
+  src: url('https://fonts.carbon.tools/noorehuda.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/noorehuda.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/noorehuda.woff') format('woff'),
+        url('https://fonts.carbon.tools/noorehuda.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'noto-urdu';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/noto-urdu.eot#iefix');
+  src: url('https://fonts.carbon.tools/noto-urdu.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/noto-urdu.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/noto-urdu.woff') format('woff'),
+        url('https://fonts.carbon.tools/noto-urdu.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'old-antic-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/old-antic-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/old-antic-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/old-antic-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/old-antic-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/old-antic-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'old-antic-decorative';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/old-antic-decorative.eot#iefix');
+  src: url('https://fonts.carbon.tools/old-antic-decorative.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/old-antic-decorative.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/old-antic-decorative.woff') format('woff'),
+        url('https://fonts.carbon.tools/old-antic-decorative.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'omar';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/omar.eot#iefix');
+  src: url('https://fonts.carbon.tools/omar.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/omar.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/omar.woff') format('woff'),
+        url('https://fonts.carbon.tools/omar.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'osama';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/osama.eot#iefix');
+  src: url('https://fonts.carbon.tools/osama.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/osama.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/osama.woff') format('woff'),
+        url('https://fonts.carbon.tools/osama.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'rabat';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/rabat.eot#iefix');
+  src: url('https://fonts.carbon.tools/rabat.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/rabat.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/rabat.woff') format('woff'),
+        url('https://fonts.carbon.tools/rabat.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'rakkas';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/rakkas.eot#iefix');
+  src: url('https://fonts.carbon.tools/rakkas.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/rakkas.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/rakkas.woff') format('woff'),
+        url('https://fonts.carbon.tools/rakkas.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'rawi';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/rawi.eot#iefix');
+  src: url('https://fonts.carbon.tools/rawi.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/rawi.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/rawi.woff') format('woff'),
+        url('https://fonts.carbon.tools/rawi.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'rawy-bold';
+  font-weight: boldal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/rawy-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/rawy-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/rawy-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/rawy-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/rawy-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'rawy-thin';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/rawy-thin.eot#iefix');
+  src: url('https://fonts.carbon.tools/rawy-thin.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/rawy-thin.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/rawy-thin.woff') format('woff'),
+        url('https://fonts.carbon.tools/rawy-thin.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'reem-kufi';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/reem-kufi.eot#iefix');
+  src: url('https://fonts.carbon.tools/reem-kufi.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/reem-kufi.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/reem-kufi.woff') format('woff'),
+        url('https://fonts.carbon.tools/reem-kufi.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'rsail';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/rsail.eot#iefix');
+  src: url('https://fonts.carbon.tools/rsail.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/rsail.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/rsail.woff') format('woff'),
+        url('https://fonts.carbon.tools/rsail.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'rsail-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/rsail-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/rsail-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/rsail-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/rsail-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/rsail-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'rsail-light';
+  font-weight: 200;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/rsail-light.eot#iefix');
+  src: url('https://fonts.carbon.tools/rsail-light.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/rsail-light.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/rsail-light.woff') format('woff'),
+        url('https://fonts.carbon.tools/rsail-light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'sabgha';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/sabgha.eot#iefix');
+  src: url('https://fonts.carbon.tools/sabgha.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/sabgha.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/sabgha.woff') format('woff'),
+        url('https://fonts.carbon.tools/sabgha.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'sadiyah';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/sadiyah.eot#iefix');
+  src: url('https://fonts.carbon.tools/sadiyah.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/sadiyah.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/sadiyah.woff') format('woff'),
+        url('https://fonts.carbon.tools/sadiyah.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'sara';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/sara.eot#iefix');
+  src: url('https://fonts.carbon.tools/sara.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/sara.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/sara.woff') format('woff'),
+        url('https://fonts.carbon.tools/sara.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'saudi';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/saudi.eot#iefix');
+  src: url('https://fonts.carbon.tools/saudi.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/saudi.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/saudi.woff') format('woff'),
+        url('https://fonts.carbon.tools/saudi.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'setareh';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/setareh.eot#iefix');
+  src: url('https://fonts.carbon.tools/setareh.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/setareh.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/setareh.woff') format('woff'),
+        url('https://fonts.carbon.tools/setareh.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'shahd';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/shahd.eot#iefix');
+  src: url('https://fonts.carbon.tools/shahd.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/shahd.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/shahd.woff') format('woff'),
+        url('https://fonts.carbon.tools/shahd.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'shahd-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/shahd-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/shahd-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/shahd-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/shahd-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/shahd-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'shams';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/shams.eot#iefix');
+  src: url('https://fonts.carbon.tools/shams.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/shams.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/shams.woff') format('woff'),
+        url('https://fonts.carbon.tools/shams.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'sheba';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/sheba.eot#iefix');
+  src: url('https://fonts.carbon.tools/sheba.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/sheba.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/sheba.woff') format('woff'),
+        url('https://fonts.carbon.tools/sheba.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'shekari';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/shekari.eot#iefix');
+  src: url('https://fonts.carbon.tools/shekari.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/shekari.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/shekari.woff') format('woff'),
+        url('https://fonts.carbon.tools/shekari.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'shiraz';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/shiraz.eot#iefix');
+  src: url('https://fonts.carbon.tools/shiraz.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/shiraz.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/shiraz.woff') format('woff'),
+        url('https://fonts.carbon.tools/shiraz.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'shorooq';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/shorooq.eot#iefix');
+  src: url('https://fonts.carbon.tools/shorooq.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/shorooq.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/shorooq.woff') format('woff'),
+        url('https://fonts.carbon.tools/shorooq.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'sky';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/sky.eot#iefix');
+  src: url('https://fonts.carbon.tools/sky.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/sky.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/sky.woff') format('woff'),
+        url('https://fonts.carbon.tools/sky.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'sky-bold';
+  font-weight: boldmal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/sky-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/sky-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/sky-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/sky-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/sky-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'smartman';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/smartman.eot#iefix');
+  src: url('https://fonts.carbon.tools/smartman.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/smartman.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/smartman.woff') format('woff'),
+        url('https://fonts.carbon.tools/smartman.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'spirit-of-doha';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/spirit-of-doha.eot#iefix');
+  src: url('https://fonts.carbon.tools/spirit-of-doha.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/spirit-of-doha.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/spirit-of-doha.woff') format('woff'),
+        url('https://fonts.carbon.tools/spirit-of-doha.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'stc';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/stc.eot#iefix');
+  src: url('https://fonts.carbon.tools/stc.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/stc.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/stc.woff') format('woff'),
+        url('https://fonts.carbon.tools/stc.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'stoor';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/stoor.eot#iefix');
+  src: url('https://fonts.carbon.tools/stoor.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/stoor.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/stoor.woff') format('woff'),
+        url('https://fonts.carbon.tools/stoor.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'strick';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/strick.eot#iefix');
+  src: url('https://fonts.carbon.tools/strick.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/strick.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/strick.woff') format('woff'),
+        url('https://fonts.carbon.tools/strick.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'sukar-black';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/sukar-black.eot#iefix');
+  src: url('https://fonts.carbon.tools/sukar-black.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/sukar-black.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/sukar-black.woff') format('woff'),
+        url('https://fonts.carbon.tools/sukar-black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'sukar-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/sukar-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/sukar-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/sukar-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/sukar-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/sukar-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'sukar-regular';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/sukar-regular.eot#iefix');
+  src: url('https://fonts.carbon.tools/sukar-regular.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/sukar-regular.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/sukar-regular.woff') format('woff'),
+        url('https://fonts.carbon.tools/sukar-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'tachkili';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/tachkili.eot#iefix');
+  src: url('https://fonts.carbon.tools/tachkili.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/tachkili.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/tachkili.woff') format('woff'),
+        url('https://fonts.carbon.tools/tachkili.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'taha-naskh';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/taha-naskh.eot#iefix');
+  src: url('https://fonts.carbon.tools/taha-naskh.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/taha-naskh.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/taha-naskh.woff') format('woff'),
+        url('https://fonts.carbon.tools/taha-naskh.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'tanseek';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/tanseek.eot#iefix');
+  src: url('https://fonts.carbon.tools/tanseek.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/tanseek.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/tanseek.woff') format('woff'),
+        url('https://fonts.carbon.tools/tanseek.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'taqniya';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/taqniya.eot#iefix');
+  src: url('https://fonts.carbon.tools/taqniya.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/taqniya.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/taqniya.woff') format('woff'),
+        url('https://fonts.carbon.tools/taqniya.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'tasmeem-med';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/tasmeem-med.eot#iefix');
+  src: url('https://fonts.carbon.tools/tasmeem-med.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/tasmeem-med.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/tasmeem-med.woff') format('woff'),
+        url('https://fonts.carbon.tools/tasmeem-med.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'thameen';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/thameen.eot#iefix');
+  src: url('https://fonts.carbon.tools/thameen.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/thameen.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/thameen.woff') format('woff'),
+        url('https://fonts.carbon.tools/thameen.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'themixarab';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/themixarab.eot#iefix');
+  src: url('https://fonts.carbon.tools/themixarab.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/themixarab.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/themixarab.woff') format('woff'),
+        url('https://fonts.carbon.tools/themixarab.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'thuluth-decorated';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/thuluth-decorated.eot#iefix');
+  src: url('https://fonts.carbon.tools/thuluth-decorated.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/thuluth-decorated.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/thuluth-decorated.woff') format('woff'),
+        url('https://fonts.carbon.tools/thuluth-decorated.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'toyor-aljanah';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/toyor-aljanah.eot#iefix');
+  src: url('https://fonts.carbon.tools/toyor-aljanah.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/toyor-aljanah.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/toyor-aljanah.woff') format('woff'),
+        url('https://fonts.carbon.tools/toyor-aljanah.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'vip-hakm';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/vip-hakm.eot#iefix');
+  src: url('https://fonts.carbon.tools/vip-hakm.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/vip-hakm.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/vip-hakm.woff') format('woff'),
+        url('https://fonts.carbon.tools/vip-hakm.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'vip-hakm-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/vip-hakm-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/vip-hakm-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/vip-hakm-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/vip-hakm-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/vip-hakm-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'vip-hakm-thin';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/vip-hakm-thin.eot#iefix');
+  src: url('https://fonts.carbon.tools/vip-hakm-thin.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/vip-hakm-thin.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/vip-hakm-thin.woff') format('woff'),
+        url('https://fonts.carbon.tools/vip-hakm-thin.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'vip-tim';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/vip-tim.eot#iefix');
+  src: url('https://fonts.carbon.tools/vip-tim.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/vip-tim.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/vip-tim.woff') format('woff'),
+        url('https://fonts.carbon.tools/vip-tim.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'vip-tim-black';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/vip-tim-black.eot#iefix');
+  src: url('https://fonts.carbon.tools/vip-tim-black.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/vip-tim-black.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/vip-tim-black.woff') format('woff'),
+        url('https://fonts.carbon.tools/vip-tim-black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'vip-tim-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/vip-tim-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/vip-tim-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/vip-tim-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/vip-tim-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/vip-tim-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'vip-tim-light';
+  font-weight: 200;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/vip-tim-light.eot#iefix');
+  src: url('https://fonts.carbon.tools/vip-tim-light.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/vip-tim-light.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/vip-tim-light.woff') format('woff'),
+        url('https://fonts.carbon.tools/vip-tim-light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'yaraa';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/yaraa.eot#iefix');
+  src: url('https://fonts.carbon.tools/yaraa.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/yaraa.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/yaraa.woff') format('woff'),
+        url('https://fonts.carbon.tools/yaraa.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'yaraa-regular';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/yaraa-regular.eot#iefix');
+  src: url('https://fonts.carbon.tools/yaraa-regular.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/yaraa-regular.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/yaraa-regular.woff') format('woff'),
+        url('https://fonts.carbon.tools/yaraa-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'yassin';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/yassin.eot#iefix');
+  src: url('https://fonts.carbon.tools/yassin.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/yassin.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/yassin.woff') format('woff'),
+        url('https://fonts.carbon.tools/yassin.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'zahra';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/zahra.eot#iefix');
+  src: url('https://fonts.carbon.tools/zahra.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/zahra.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/zahra.woff') format('woff'),
+        url('https://fonts.carbon.tools/zahra.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'zahra-bold';
+  font-weight: bold;
+  font-style: normal;
+  src: url('https://fonts.carbon.tools/zahra-bold.eot#iefix');
+  src: url('https://fonts.carbon.tools/zahra-bold.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/zahra-bold.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/zahra-bold.woff') format('woff'),
+        url('https://fonts.carbon.tools/zahra-bold.ttf') format('truetype');
+}
+
+

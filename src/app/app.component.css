@@ -1,8 +1,82 @@
-html, body{
-  height: 100%;
-  font-family: Arial, Helvetica, sans-serif
+.page {
+  margin: 1em;
 }
 
-a.active {
-  background-color: gray;
+clip,
+.image-preview {
+  margin: 1em;
+  display: inline-block;
+}
+
+.clip-preview-card {
+  position: relative;
+  display: inline-block;
+}
+
+.clip-preview-card.offscreen {
+  position: absolute;
+  top: -999999px;
+  left: -999999px;
+}
+
+.clip-preview-card img {
+  display: block;
+}
+
+.clip-preview-card .text {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+  background: rgba(0,0,0,.2);
+  padding: 1em;
+}
+
+.clip-controls {
+  display: flex;
+}
+
+.clip-controls input {
+  color: #333;
+  flex-grow: 1;
+}
+
+.clip-controls button {
+  color: #fff;
+  background: #33848e;
+  width: 30vw;
+  cursor: pointer;
+  border: none;
+}
+.clip-controls button:hover {
+  background: #33848e;
+}
+
+.clip-controls input,
+.clip-controls button {
+  font-size: 2em;
+  padding: .2em 1em;
+}
+
+
+.clip-controls .checkbox {
+  width: 60px;
+}
+
+.credits {
+  direction: ltr;
+}
+
+.credits a {
+  text-decoration: none;
+  color: #aaa;
 }

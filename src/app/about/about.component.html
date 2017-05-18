@@ -1,0 +1,15 @@
+<div class="font-page page">
+  <h1>
+    الخطوة الثانية: اختر الخط
+  </h1>
+  <div class="clip-controls">
+    <input [(ngModel)]="text">
+  </div>
+
+  <div class="clips-preview-fonts">
+    <a [href]="'/export?url=' + selectedPhoto + '&font=' + font + '&text=' + text" *ngFor="let font of fonts">
+      <clip [photo]="selectedPhoto" [font]="font" [text]="text" [config]="{width: 800, height: 800}" [previewRatio]="0.5"></clip>
+    </a>
+  </div>
+
+</div>

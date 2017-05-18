@@ -7,7 +7,6 @@ nav {
 }
 
 nav a {
-  background-color: $nav-button-color;
   color: white;
   padding: 8px 16px;
   margin: 8px;
@@ -16,4 +15,79 @@ nav a {
   text-align: center;
   text-decoration: none;
   border-radius: 4px;
+}
+
+nav a:hover {
+  background-color: #00BCD4;
+}
+
+html, body{
+  height: 100%;
+  font-family: barabics, Arial, Helvetica, sans-serif;
+  direction: rtl;
+  margin: 0;
+}
+
+input, button {
+  font-family: barabics, Arial, Helvetica, sans-serif;
+}
+
+.site-header,
+footer {
+  font-size: 3.5em;
+  padding: 1em;
+  background: #33848e;
+  color: #fff;
+  font-family: barabics;
+  text-align: center;
+  position: relative;
+}
+
+.site-header nav {
+  font-size: 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+footer {
+  font-size: 2em;
+  margin-top: 2em;
+}
+footer a {
+  color: #fff;
+}
+
+.logo i {
+  background: url(/assets/img/manshar-clips-logo-2x.png) no-repeat;
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  background-size: cover;
+  position: absolute;
+  right: 0;
+}
+.logo {
+  position: relative;
+  display: inline-block;
+  padding-right: 80px;
+}
+
+.logo a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.logo a:hover {
+  color: #00BCD4;
+}
+
+.logo .tagline {
+  font-size: .4em;
+  display: block;
+}
+
+.page {
+  text-align: center;
+  overflow-x: hidden;
 }
