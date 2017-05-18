@@ -21,12 +21,6 @@ color-picker {
   padding: 1em;
 }
 
-.image-preview {
-  width: 400px;
-  height: 400px;
-  background: rgba(0,0,0,.3)
-}
-
 @media (max-width: 600px) {
   .filter-controls {
     flex-direction: column;
