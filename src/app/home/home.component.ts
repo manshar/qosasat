@@ -60,13 +60,13 @@ export class HomeComponent implements OnInit {
   categoriesList = ['Nature', 'Buildings', 'People', 'Object', 'Food & Drink', 'Technology'];
 
   categories = {
-    values: ['Nature', 'Buildings', 'People', 'Object', 'Food & Drink', 'Technology'],
+    values: ['Nature', 'Buildings', 'People', 'Objects', 'Food & Drink', 'Technology'],
     labels: ['طبيعة', 'بنايات', 'أشخاص', 'أشياء', 'طعام وشراب', 'تكنولوجيا'],
     filters: {
       'Nature': false,
       'Buildings': false,
       'People': false,
-      'Object': false,
+      'Objects': false,
       'Food & Drink': false,
       'Technology': false,
     },
