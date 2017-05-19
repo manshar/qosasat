@@ -296,14 +296,14 @@
 }
 
 @font-face {
-  font-family: 'barabics';
+  font-family: 'barabics2';
   font-weight: normal;
   font-style: normal;
-  src: url('https://fonts.carbon.tools/barabics.eot#iefix');
-  src: url('https://fonts.carbon.tools/barabics.eot#iefix') format('embedded-opentype'),
-        url('https://fonts.carbon.tools/barabics.woff2') format('woff2'),
-        url('https://fonts.carbon.tools/barabics.woff') format('woff'),
-        url('https://fonts.carbon.tools/barabics.ttf') format('truetype');
+  src: url('https://fonts.carbon.tools/barabics2.eot#iefix');
+  src: url('https://fonts.carbon.tools/barabics2.eot#iefix') format('embedded-opentype'),
+        url('https://fonts.carbon.tools/barabics2.woff2') format('woff2'),
+        url('https://fonts.carbon.tools/barabics2.woff') format('woff'),
+        url('https://fonts.carbon.tools/barabics2.ttf') format('truetype');
 }
 
 @font-face {

@@ -7,6 +7,8 @@
   </div>
 
   <div class="clips-preview-fonts">
+    <!-- Refresh the page for export - because otherwise it'll try to download all the fonts that is loaded in the page. -->
+    <!--[routerLink]=" ['/export'] " [queryParams]="{font: font, text: text, url: selectedPhoto}"-->
     <a [href]="'/export?url=' + selectedPhoto + '&font=' + font + '&text=' + text" *ngFor="let font of fonts">
       <clip [photo]="selectedPhoto" [font]="font" [text]="text" [config]="{width: 800, height: 800}" [previewRatio]="0.5"></clip>
     </a>

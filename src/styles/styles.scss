@@ -49,7 +49,7 @@ footer {
 }
 
 .site-header nav {
-  font-size: 24px;
+  font-size: .5em;
   position: absolute;
   top: 0;
   left: 0;
@@ -95,4 +95,24 @@ footer a {
 .page {
   text-align: center;
   overflow-x: hidden;
+}
+
+
+@media (max-width: 500px) {
+  .site-header {
+    font-size: 2em;
+  }
+
+  .logo {
+    padding-right: 50px;
+  }
+
+  .logo i {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.clips-preview-fonts a {
+  text-decoration: none;
 }

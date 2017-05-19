@@ -4,7 +4,8 @@
 import {
   Component,
   OnInit,
-  ViewEncapsulation
+  ViewEncapsulation,
+  Renderer,
 } from '@angular/core';
 import { AppState } from './app.service';
 
@@ -20,7 +21,7 @@ import { AppState } from './app.service';
   ],
   template: `
     <main>
-      <router-outlet></router-outlet>
+      <router-outlet (deactivate)="onDeactivate()"></router-outlet>
     </main>
   `
 })
@@ -30,8 +31,13 @@ export class AppComponent implements OnInit {
   public url = 'https://twitter.com/AngularClass';
 
   constructor(
-    public appState: AppState
+    public appState: AppState,
+    private renderer:Renderer,
   ) {}
+
+  onDeactivate() {
+    this.renderer.setElementProperty(document.body, "scrollTop", 0);
+  }
 
   public ngOnInit() {
     console.log('Initial App State', this.appState.state);

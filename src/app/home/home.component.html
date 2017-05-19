@@ -28,16 +28,26 @@
     </div>
   </div>
 
-  <div class="image-preview" *ngFor="let photo of photos">
-    <a [href]="'/select-font?url=' + photo.original_serve_url">
-      <clip [photo]="photo.original_serve_url" [config]="{width: 800, height: 800}" [previewRatio]="0.5"></clip>
-    </a>
-    <div class="credits">
-      <span> &lt; </span>
-      <a [href]="photo.source_photographer_link + '?utm_source=manshar-clips&utm_medium=referral&utm_campaign=api-credit'" target="_blank">{{photo.source_photographer_name}}</a>
-      <span> / </span>
-      <a [href]="photo.source_link + '?utm_source=manshar-clips&utm_medium=referral&utm_campaign=api-credit'" target="_blank">{{photo.source_name}}</a>
-      <span> &gt; </span>
+  <div class="image-list">
+    <div class="upload-your-pic">
+      <carbon-upup
+          label="اختر صورة من جهازك"
+          dragLabel="أو اسحبها إلى هنا من سطح المكتب"
+          uploadingLabel="يتم رفع الصورة..."
+          dropLabel="اترك الصورة هنا لتقوم برفعها..."
+          (success)="handleUploadPhoto($event)"></carbon-upup>
+    </div>
+    <div class="image-preview" *ngFor="let photo of photos">
+      <a [routerLink]=" ['/select-font'] " [queryParams]="{url: photo.original_serve_url}">
+        <clip [photo]="photo.original_serve_url" [config]="{width: 800, height: 800}" [previewRatio]="0.5"></clip>
+      </a>
+      <div class="credits">
+        <span> &lt; </span>
+        <a [href]="photo.source_photographer_link + '?utm_source=manshar-clips&utm_medium=referral&utm_campaign=api-credit'" target="_blank">{{photo.source_photographer_name}}</a>
+        <span> / </span>
+        <a [href]="photo.source_link + '?utm_source=manshar-clips&utm_medium=referral&utm_campaign=api-credit'" target="_blank">{{photo.source_name}}</a>
+        <span> &gt; </span>
+      </div>
     </div>
   </div>
 

@@ -1,0 +1,32 @@
+<div class="carbon-upup" [class.preview]="preview" [class.preview]="uploaded">
+  <!--capture=true multiple-->
+  <label #uploadButton class="upload-step"
+    (dragenter)="handleDragEnter_($event)"
+    (dragover)="handleDragOver_($event)"
+    (dragleave)="handleDragLeave_($event)"
+    (drop)="handleDrop_($event)"
+    [class.dragging]="dragging">
+
+    <input type="file" accept="image/*" style="visibility: hidden;" (change)="handleFileChange($event)">
+    <div class="label default">
+      <div>
+        {{label}}
+      </div>
+      <div class="desktop">
+        {{dragLabel}}
+      </div>
+    </div>
+    <div class="label drop-label">
+      {{dropLabel}}
+    </div>
+  </label>
+
+  <div #previewAndProgress class="preview-step">
+    <img #previewImage>
+    <div #progressBar class="progress-bar" [ngStyle]="{'width.%': progressValue}"></div>
+    <div class="label">
+      {{uploadingLabel}}
+    </div>
+  </div>
+
+</div>

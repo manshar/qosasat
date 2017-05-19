@@ -3,11 +3,11 @@ import {
   OnInit
 } from '@angular/core';
 
-import { AppState } from '../app.service';
 import { Title } from './title';
 import { XLargeDirective } from './x-large';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
+import {Router} from '@angular/router';
 
 
 const PER_PAGE = 20;
@@ -52,7 +52,25 @@ export class HomeComponent implements OnInit {
    * Set our default values
    */
   public localState = { value: '' };
-  public photos:Array<Object> = [];
+  public photos:Array<Object> = [{
+    source_photographer_name: 'Loading...',
+    source_name: 'Loading...',
+  }, {
+    source_photographer_name: 'Loading...',
+    source_name: 'Loading...',
+  }, {
+    source_photographer_name: 'Loading...',
+    source_name: 'Loading...',
+  }, {
+    source_photographer_name: 'Loading...',
+    source_name: 'Loading...',
+  }, {
+    source_photographer_name: 'Loading...',
+    source_name: 'Loading...',
+  }, {
+    source_photographer_name: 'Loading...',
+    source_name: 'Loading...',
+  },];
   colors:string[];
   availableColors:string[] = generateWebsafeColors();
   next_url:string;
@@ -75,9 +93,9 @@ export class HomeComponent implements OnInit {
    * TypeScript public modifiers
    */
   constructor(
-    public appState: AppState,
     public title: Title,
     public http: Http,
+    public router: Router,
   ) { }
 
   listPhotos() {
@@ -100,11 +118,6 @@ export class HomeComponent implements OnInit {
     this.listPhotos();
   }
 
-  public submitState(value: string) {
-    console.log('submitState', value);
-    this.appState.set('value', value);
-    this.localState.value = '';
-  }
   public onScroll() {
     if (!this.next_url) {
       return;
@@ -122,6 +135,10 @@ export class HomeComponent implements OnInit {
     this.listPhotos();
   }
 
+  handleUploadPhoto(data) {
+    console.log('uploaded photo', data);
+    this.router.navigateByUrl('/select-font?url=' + data.result['image_url']);
+  }
 
   filter(map) {
     if (!map) {

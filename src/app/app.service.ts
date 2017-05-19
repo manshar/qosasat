@@ -47,7 +47,12 @@ export class AppState {
 }
 
 
+// WebFont.load({timeout: 0, custom: {families: [], url: '/'}});
+
 export class FontLoader {
+  static fontsStatus = {
+    'barabics': 'active',
+  };
   static loadedFonts:Array<String> = [];
   static failedFonts:Array<String> = [];
   static loadingFonts:Array<String> = [];
@@ -77,29 +82,36 @@ export class FontLoader {
   }
 
   static load(fonts, urlPrefix) {
+    const fontsToLoad = fonts.filter(font => {
+      return (this.fontsStatus[font] !== 'loading' &&
+        this.fontsStatus[font] !== 'active');
+    })
     var WebFontConfig = {
       fontloading: (name) => {
         console.log('font loading: ', name);
         this.loadingFonts.push(name);
+        this.fontsStatus[name] = 'loading';
       },
       fontactive: (name) => {
         console.log('font active: ', name);
         this.loadingFonts.splice(this.loadingFonts.indexOf(name), 1);
         this.loadedFonts.push(name);
+        this.fontsStatus[name] = 'active';
       },
       fontinactive: (name) => {
         console.log('font inactive: ', name);
         this.loadingFonts.splice(this.loadingFonts.indexOf(name), 1);
         this.failedFonts.push(name);
+        this.fontsStatus[name] = 'inactive';
       },
       custom: {
-        families: fonts,
+        families: fontsToLoad,
         urls: [urlPrefix + fonts.join(',')]
-      }
+      },
     };
 
     // WebFont
-    if (fonts.length > 0) {
+    if (fontsToLoad.length > 0) {
       WebFont.load(WebFontConfig);
     }
   }
