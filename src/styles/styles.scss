@@ -29,11 +29,11 @@ html, body{
 }
 
 app {
-  min-height: 200vh;
+  min-height: 100vh;
   display: block;
 }
 
-input, button {
+input, button, textarea {
   font-family: barabics, Arial, Helvetica, sans-serif;
 }
 
@@ -115,4 +115,18 @@ footer a {
 
 .clips-preview-fonts a {
   text-decoration: none;
+  display: inline-block;
+  outline: none;
+}
+
+.clips-preview-fonts a:focus clip {
+  border: 5px solid #00bcd4;
+}
+
+.clips-preview-fonts clip {
+  display: block;
+}
+
+.meta-info {
+  color: #999;
 }

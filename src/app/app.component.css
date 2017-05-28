@@ -1,6 +1,5 @@
 .page {
   margin: 0 1em;
-  min-height: 200vh;
 }
 
 clip {
@@ -32,48 +31,58 @@ clip {
   display: block;
 }
 
-.clip-preview-card .text {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  font-size: 2em;
-  color: #fff;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  direction: rtl;
-  background: rgba(0,0,0,.2);
-  padding: 1em;
-}
-
 .clip-controls {
   display: flex;
 }
 
-.clip-controls input {
+.clip-controls input,
+.clip-controls textarea {
   color: #333;
   flex-grow: 1;
 }
 
 .clip-controls button {
+  width: 30vw;
+}
+
+button {
   color: #fff;
   background: #33848e;
-  width: 30vw;
   cursor: pointer;
   border: none;
 }
-.clip-controls button:hover {
-  background: #33848e;
+button:hover {
+  background: #00bcd4;
+}
+
+.clip-controls textarea {
+  font-size: 1.5em;
+  padding: .2em 1em;
+  text-align: center;
+  direction: rtl;
 }
 
 .clip-controls input,
-.clip-controls button {
+.clip-controls button,
+.clip-actions button {
   font-size: 2em;
   padding: .2em 1em;
+}
+
+.clip-actions {
+  /*padding: 0 1em;*/
+}
+
+.clip-export-item clip {
+  margin: 0;
+}
+
+.clip-export-item {
+  margin: 1em;
+}
+
+.clip-actions button {
+  width: 100%;
 }
 
 
@@ -95,12 +104,14 @@ clip {
     flex-direction: column;
   }
 
-  .clip-controls input {
+  .clip-controls input,
+  .clip-controls textarea   {
     border: 1px solid #666;
     padding: .2em;
   }
 
-  .clip-controls button {
+  .clip-controls button,
+  .clip-actions button {
     font-size: 1.4em;
     padding: .5em 0;
   }

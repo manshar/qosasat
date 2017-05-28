@@ -15,7 +15,7 @@ carbon-upup:hover {
 .image-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .image-preview clip {
@@ -70,6 +70,7 @@ color-picker {
     display: block;
     margin: 0;
     margin-top: .5em;
+    width: 100%;
   }
 
   carbon-upup {

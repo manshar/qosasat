@@ -9,7 +9,7 @@ import { IColorPickerConfiguration } from './color-picker-config.interface';
     template: `
         <div class="color-picker-container" [class.showDropdown]="showDropdown">
             <span class="clear-selection"
-                *ngIf="selectedColorsItems?.length > 0"
+                *ngIf="selectedColorsItems?.length > 0 && multiple"
                 [style.width]="config.width + 'px'"
                 [style.height]="config.height + 'px'"
                 (click)="clearSelectedColors()">
@@ -36,7 +36,7 @@ import { IColorPickerConfiguration } from './color-picker-config.interface';
                     [style.height]="config.height + 'px'"
                     [style.border-radius]="config.borderRadius + 'px'"
                     [style.background-color]="'#' + color"
-                    (click)="updateColors()"
+                    (click)="updateColors($event.target.title)"
                     [title]="color">
                     <input type="checkbox" [(ngModel)]="selectedColors[color]">
                 </label>
@@ -47,6 +47,7 @@ import { IColorPickerConfiguration } from './color-picker-config.interface';
         `.color-picker-container {
             display: flex;
             position: relative;
+            justify-content: center;
           }
 
           .selected-color {
@@ -63,7 +64,6 @@ import { IColorPickerConfiguration } from './color-picker-config.interface';
           display: none;
           position: absolute;
           width: 300px;
-          right: -130px;
           top: 30px;
           z-index: 9999;
         }
@@ -93,7 +93,6 @@ import { IColorPickerConfiguration } from './color-picker-config.interface';
 
         `.current-color {
             display: inline-block;
-            background-color: #ff0000;
             cursor: pointer; }`,
 
         `.color-picker-color {
@@ -132,6 +131,7 @@ export class ColorPickerComponent implements ControlValueAccessor, OnInit {
     @Input() pickerConfig: IColorPickerConfiguration;
 
     @Input() availableColors: string[];
+    @Input() multiple:boolean = true;
 
     @Output() onChangeModel = new EventEmitter();
     change() {
@@ -179,7 +179,13 @@ export class ColorPickerComponent implements ControlValueAccessor, OnInit {
      *
      * @memberOf ColorPickerComponent
       */
-    public updateColors() {
+    public updateColors(color = null) {
+      if (!this.multiple && color) {
+        this.selectedColors = {};
+        console.log('update color: ', color);
+        this.selectedColors[color] = true;
+      }
+
       this.cd.viewToModelUpdate(this.selectedColors);
 
       setTimeout(() => {

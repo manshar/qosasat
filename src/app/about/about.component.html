@@ -1,16 +1,23 @@
-<div class="font-page page">
+<div class="font-page page"
+    infiniteScroll
+    [infiniteScrollDistance]="1"
+    [infiniteScrollThrottle]="800"
+    (scrolled)="onScroll()">
   <h1>
     الخطوة الثانية: اختر الخط
   </h1>
   <div class="clip-controls">
-    <input [(ngModel)]="text">
+    <textarea autosize [(ngModel)]="text" (input)="text$.next($event.target.value)"></textarea>
   </div>
 
   <div class="clips-preview-fonts">
     <!-- Refresh the page for export - because otherwise it'll try to download all the fonts that is loaded in the page. -->
     <!--[routerLink]=" ['/export'] " [queryParams]="{font: font, text: text, url: selectedPhoto}"-->
-    <a [href]="'/export?url=' + selectedPhoto + '&font=' + font + '&text=' + text" *ngFor="let font of fonts">
-      <clip [photo]="selectedPhoto" [font]="font" [text]="text" [config]="{width: 800, height: 800}" [previewRatio]="0.5"></clip>
+    <a [href]="'/export?url=' + selectedPhoto + '&font=' + font + '&lines=' + lines" *ngFor="let font of fonts">
+      <clip [photo]="selectedPhoto" [font]="font" [lines]="lines" [config]="{width: 800, height: 800}" [previewRatio]="0.5"></clip>
+      <span class="meta-info">
+        {{font}}
+      </span>
     </a>
   </div>
 

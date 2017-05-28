@@ -1,0 +1,164 @@
+.clip-exports {
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-top: 4em;
+}
+
+.clip-exports .clip-export-item {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.clip-actions .tagline {
+  font-size: 0.5em;
+  color: #eaeaea;
+}
+
+.controls-group {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+}
+
+.controls-group .choices {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.controls-group .choice {
+  background: #F4F4F4;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3.5px;
+  box-sizing: border-box;
+  margin: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+.controls-group .choice .box {
+  background: #D8D8D8;
+}
+
+.controls-group .choice:hover .box {
+  background: #33848e;
+}
+
+.text-pos-choice {
+  position: relative;
+}
+
+.text-pos-choice .box {
+  height: 18px;
+  width: 18px;
+  position: absolute;
+  margin: 5px auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.text-pos-choice .box.c {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-pos-choice .box.m {
+  margin-top: 28px;
+}
+
+.text-pos-choice .box.r {
+  margin-left: 54px;
+}
+
+.text-pos-choice .box.l {
+  margin-left: 6px;
+}
+
+.text-pos-choice .box.b {
+  margin-top: 54px;
+}
+
+.text-fill-choice .box {
+  flex: 1 1;
+  background: #D8D8D8;
+}
+
+.text-fill-choice .box.p90 {
+  margin: 4px;
+}
+
+.text-fill-choice .box.p75 {
+  margin: 12px;
+}
+
+.text-fill-choice .box.p50 {
+  margin: 24px;
+}
+
+.text-fit-choice {
+  align-items: center;
+  align-content: center;
+}
+
+.text-fit-choice .box {
+  margin: 2px auto;
+}
+
+.text-fit-choice .w50 {
+  width: 50%;
+}
+
+.text-fit-choice .w75 {
+  width: 75%;
+}
+
+.text-fit-choice .h20 {
+  height: 20%;
+}
+
+.text-fit-choice .h25 {
+  height: 25%;
+}
+
+.text-fit-choice .h15 {
+  height: 15%;
+}
+
+.text-fit-choice .h10 {
+  height: 10%;
+}
+
+.choices input[type="radio"] {
+  display: none;
+}
+
+.choices label {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.controls-group .choices input:checked + label > .box {
+  background: #00bcd4;
+}
+
+.color-choice {
+  padding: 1em;
+}
+
+.color-choice color-picker {
+  padding: 1em;
+}
+
+@media (max-width: 500px) {
+  .clip-exports {
+    margin-top: 1em;
+  }
+}
+

@@ -14,6 +14,7 @@ import {
   RouterModule,
   PreloadAllModules
 } from '@angular/router';
+import {Autosize} from 'angular2-autosize';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -23,8 +24,9 @@ import { ROUTES } from './app.routes';
 // App is our top level component
 import { AppComponent } from './app.component';
 import { ClipComponent } from './clip/clip.component';
+import { FitTextComponent } from './clip/fit-text.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
-import { AppState, InternalStateType } from './app.service';
+import { AppState, InternalStateType, FontLoader } from './app.service';
 import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { ExportComponent } from './export';
@@ -43,7 +45,8 @@ import '../styles/headings.css';
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  AppState
+  AppState,
+  FontLoader,
 ];
 
 type StoreType = {
@@ -64,8 +67,10 @@ type StoreType = {
     HomeComponent,
     CreditsComponent,
     ClipComponent,
+    FitTextComponent,
     NoContentComponent,
-    XLargeDirective
+    XLargeDirective,
+    Autosize,
   ],
   /**
    * Import Angular's modules.
