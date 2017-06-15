@@ -6,7 +6,12 @@
   <h1>
     الخطوة الأولى: اختر الصورة
   </h1>
-
+  <div class="filter-controls">
+    <div class="search-container">
+      <input [(ngModel)]="searchTerm" (input)="search$.next($event.target.value)" class="search-box" placeholder="ابحث عن صورة معينة (أمثلة: جبال ثلجية، غروب الشمس، سيارة سباق، باقة زهر، فتاة، رمل شاطئ...)"/>
+      <div class="loading-pulse loading-indicator" [class.visible]="loading_"></div>
+    </div>
+  </div>
   <div class="filter-controls">
     <h5>
       فلتر الصور حسب

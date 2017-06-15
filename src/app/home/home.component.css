@@ -53,6 +53,31 @@ color-picker {
   padding: 1em;
 }
 
+.filter-controls .search-container {
+  position: relative;
+  width: 100%;
+}
+
+.filter-controls .search-container .loading-indicator {
+  position: absolute;
+  left: 2em;
+  top: 40%;
+  display: none;
+}
+
+.filter-controls .search-container .loading-indicator.visible {
+  display: block;
+}
+
+.filter-controls .search-box {
+  display: block;
+  width: 100%;
+  padding: .3em;
+  border: 1px solid #ccc;
+  font-size: 2em;
+  box-sizing: border-box;
+}
+
 @media (max-width: 500px) {
   .filter-controls {
     flex-direction: column;

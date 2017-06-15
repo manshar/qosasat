@@ -130,3 +130,42 @@ footer a {
 .meta-info {
   color: #999;
 }
+
+$base-line-height: 12px;
+$loader-color: #00BCD4;
+$off-loader-color: rgba($loader-color, 0.2);
+$spin-duration: 1s;
+$pulse-duration: 750ms;
+
+@keyframes pulse {
+  50% {
+    background: $loader-color;
+  }
+}
+
+.loading-pulse {
+  position: relative;
+  width: ($base-line-height / 4);
+  height: $base-line-height;
+  background: $off-loader-color;
+  animation: pulse $pulse-duration infinite;
+  animation-delay: ($pulse-duration / 3);
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    height: ($base-line-height / 1.5);
+    width: ($base-line-height / 4);
+    background: $off-loader-color;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: pulse $pulse-duration infinite;
+  }
+  &:before {
+    left: -($base-line-height / 2);
+  }
+  &:after {
+    left: ($base-line-height / 2);
+    animation-delay: ($pulse-duration / 1.5);
+  }
+}

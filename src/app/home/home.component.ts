@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs/Subject';
 import {
   Component,
   OnInit
@@ -12,6 +13,7 @@ import {Router} from '@angular/router';
 
 const PER_PAGE = 20;
 const CARBON_SRCSRC_ENDPOINT = 'https://srcsrc.carbon.tools/api/v1/photo/';
+const CARBON_SRCSRC_SEARCH_ENDPOINT = 'https://srcsrc.carbon.tools/api/v1/photo/search';
 
 function generateWebsafeColors() {
   let colors = [];
@@ -89,6 +91,12 @@ export class HomeComponent implements OnInit {
       'Technology': false,
     },
   };
+
+  searchTerm:string = '';
+  search$:Subject<string> = new Subject<string>();
+  filterTags_:string[] = [];
+  loading_:boolean = false;
+
   /**
    * TypeScript public modifiers
    */
@@ -96,21 +104,62 @@ export class HomeComponent implements OnInit {
     public title: Title,
     public http: Http,
     public router: Router,
-  ) { }
+  ) {
+    this.search$
+      .debounceTime(500)
+      .distinctUntilChanged()
+      .subscribe(term => {
+        // this.filterTags_ = term.trim().length > 0 ? term.split(/[،,\s]/i) : [];
+        // this.listPhotos();
+        if (this.getQuery_().trim().length < 1) {
+          this.listPhotos();
+        } else {
+          this.search();
+        }
+      });
+  }
+
+  getQuery_() {
+    const categories = this.getSelectedCategories();
+    const colors = this.getSelectedColors();
+    const catStr = categories.length > 0 ? categories.join(' ') : '';
+    const colorStr = colors.length > 0 ? colors.join(' ') : '';
+    return this.searchTerm + catStr + colorStr;
+  }
+
+  search() {
+    this.loading_ = true;
+    this.http.get(CARBON_SRCSRC_SEARCH_ENDPOINT, {
+      params: {
+        'q': this.getQuery_(),
+      }
+    }).map(res => res.json())
+      .subscribe(response => {
+        console.log(response.result);
+        this.photos = response.result;
+        this.next_url = response.next_url;
+        this.loading_ = false;
+      });
+  }
 
   listPhotos() {
+    this.loading_ = true;
+    const categories = this.getSelectedCategories();
+    const colors = this.getSelectedColors();
     this.http.get(CARBON_SRCSRC_ENDPOINT, {
       params: {
         'order': '-source_created_at',
         'limit': PER_PAGE,
-        'categories': this.getSelectedCategories(),
-        'colors': this.getSelectedColors(),
+        'categories': categories.length > 0 ? categories.join(',') : undefined,
+        'colors': colors.length > 0 ? colors.join(',') : undefined,
+        'tags': this.filterTags_.length > 0 ? this.filterTags_.join(',') : undefined,
       },
     }).map(res => res.json())
       .subscribe(response => {
         console.log(response.result);
         this.photos = response.result;
         this.next_url = response.next_url;
+        this.loading_ = false;
       });
   }
 
@@ -122,17 +171,20 @@ export class HomeComponent implements OnInit {
     if (!this.next_url) {
       return;
     }
+    this.loading_ = true;
     console.log('scroll');
     this.http.get(this.next_url).map(res => res.json())
       .subscribe(response => {
         this.photos = this.photos.concat(response.result);
         this.next_url = response.next_url;
+        this.loading_ = false;
       });
   }
 
   public filtersUpdated() {
     this.next_url = null;
-    this.listPhotos();
+    // this.listPhotos();
+    this.search();
   }
 
   handleUploadPhoto(data) {
