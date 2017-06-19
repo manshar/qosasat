@@ -1,4 +1,4 @@
-<div class="choose-image-page page"
+<div class="choose-image-page page" [class.embedded]="embedded"
     infiniteScroll
     [infiniteScrollDistance]="2"
     [infiniteScrollThrottle]="800"
@@ -12,7 +12,7 @@
       <div class="loading-pulse loading-indicator" [class.visible]="loading_"></div>
     </div>
   </div>
-  <div class="filter-controls">
+  <div class="filter-controls" *ngIf="!embedded">
     <h5>
       فلتر الصور حسب
     </h5>
@@ -43,7 +43,7 @@
           (success)="handleUploadPhoto($event)"></carbon-upup>
     </div>
     <div class="image-preview" *ngFor="let photo of photos">
-      <a [routerLink]=" ['/select-font'] " [queryParams]="{url: photo.original_serve_url}">
+      <a [routerLink]=" ['/select-font'] " [queryParams]="{url: photo.original_serve_url, embedded: embedded ? 1 : 0, embeddedOrigin: embeddedOrigin}">
         <clip [photo]="photo.original_serve_url" [config]="{width: 800, height: 800}" [previewRatio]="0.5"></clip>
       </a>
       <div class="credits">

@@ -108,8 +108,9 @@ export class FontLoader {
       },
       custom: {
         families: fontsToLoad,
-        urls: [urlPrefix + fonts.join(',')]
+        urls: [urlPrefix + fonts.join(',')],
       },
+      timeout: 30000,
     };
 
     // WebFont

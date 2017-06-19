@@ -272,7 +272,7 @@ import domtoimage from 'dom-to-image';
     display: block;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 850px) {
     .preview-img {
       width: 100%;
     }

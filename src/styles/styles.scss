@@ -100,7 +100,16 @@ footer a {
 
 @media (max-width: 500px) {
   .site-header {
-    font-size: 2em;
+    padding: 0.5em 0.1em;
+    text-align: right;
+    font-size: 1.5em;
+    padding-right: 1em;
+  }
+
+  .logo .tagline {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: .7em;
   }
 
   .logo {
@@ -110,6 +119,7 @@ footer a {
   .logo i {
     width: 32px;
     height: 32px;
+    top: -6px;
   }
 }
 

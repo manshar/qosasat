@@ -30,6 +30,10 @@ input[type="file"] {
   color: #fff;
 }
 
+.carbon-upup label .label > div {
+  min-height: 1em;
+}
+
 .carbon-upup label.dragging .label.drop-label {
   display: block;
 }
@@ -39,7 +43,7 @@ input[type="file"] {
   position: absolute;
   bottom: 0;
   right: 0; left: 0;
-  padding: 1em;
+  padding: .5em;
 }
 
 .label.default {

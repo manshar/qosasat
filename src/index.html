@@ -20,44 +20,47 @@
   <%= htmlWebpackPlugin.files.webpackManifest %>
 
   <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=barabics"/>
+
+  <style>
+    body {margin: 0;}
+    .splash-screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #33848e;
+      text-align: center;
+      color: #fff;
+      height: 100vh;
+      direction: rtl;
+      flex-direction: column;
+    }
+    .splash-screen .inner {
+      margin-top: auto;
+      max-width: 70%;
+    }
+    .splash-screen .foot {
+      margin-top: auto;
+      margin-bottom: 100px;
+    }
+  </style>
 </head>
 
 <body>
 
-  <header class="site-header">
-    <nav>
-      <a href="/about">
-        عن قصاصات
-      </a>
-    </nav>
-    <div class="logo">
-      <i></i>
-      <a href="/">
-        قُصَاصَات
-      </a>
-      <span class="tagline">
-          من أدوات
-
-        <a target="_blank" href="https://www.manshar.com?utm_source=manshar-clips">
-           منشر
-        </a>
-      </span>
-    </div>
-  </header>
-
   <app>
-    Loading...
+    <div class="splash-screen">
+      <div class="inner">
+        <img src="/assets/img/manshar-clips-logo-2x.png" width="64px"/>
+        <h1>
+          قُصَاصَات
+        </h1>
+        <h4>
+          صمِّم قصاصات صورية ونصية للنشر على الشبكات الإجتماعية
+        </h4>
+      </div>
+      <p class="foot">يتم تحميل التطبيق...</p>
+    </div>
   </app>
-
-  <footer>
-    <p>
-      من أصدقائكم القائمين على
-      <a target="blank" href="https://www.manshar.com?utm_source=manshar-clips">
-      منشر
-      </a>
-      .
-    </p>
-  </div>
 
   <!-- Google Analytics: change UA-71073175-1 to be your site's ID -->
   <script>

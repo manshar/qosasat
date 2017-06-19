@@ -7,15 +7,6 @@ clip {
   display: inline-block;
 }
 
-.image-preview {
-  margin: 1em;
-  display: inline-block;
-}
-.image-preview clip {
-  margin: 0;
-}
-
-
 .clip-preview-card {
   position: relative;
   display: inline-block;

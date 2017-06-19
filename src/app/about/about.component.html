@@ -10,10 +10,16 @@
     <textarea autosize [(ngModel)]="text" (input)="text$.next($event.target.value)"></textarea>
   </div>
 
+  <div class="loading-screen" *ngIf="loading">
+    <div class="loading-pulse"></div>
+    <p>
+      يتم تحميل الخطوط...
+    </p>
+  </div>
   <div class="clips-preview-fonts">
     <!-- Refresh the page for export - because otherwise it'll try to download all the fonts that is loaded in the page. -->
     <!--[routerLink]=" ['/export'] " [queryParams]="{font: font, text: text, url: selectedPhoto}"-->
-    <a [href]="'/export?url=' + selectedPhoto + '&font=' + font + '&lines=' + lines" *ngFor="let font of fonts">
+    <a [href]="'/export?url=' + selectedPhoto + '&font=' + font + '&lines=' + lines + '&embedded=' + (embedded ? 1 : 0) + '&embeddedOrigin=' + embeddedOrigin" *ngFor="let font of fonts">
       <clip [photo]="selectedPhoto" [font]="font" [lines]="lines" [config]="{width: 800, height: 800}" [previewRatio]="0.5"></clip>
       <span class="meta-info">
         {{font}}

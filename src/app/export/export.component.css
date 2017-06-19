@@ -4,6 +4,11 @@
   margin-top: 4em;
 }
 
+.embedded .clip-exports {
+  white-space: initial;
+  margin-top: 0;
+}
+
 .clip-exports .clip-export-item {
   display: inline-block;
   vertical-align: top;
@@ -162,3 +167,58 @@
   }
 }
 
+
+.clip-font-controls > summary,
+.preview-checkbox {
+  padding: 1em 0;
+}
+
+.loading-splash-screen {
+  position: fixed;
+  z-index: 9999;
+  background: rgba(0,0,0,0.7);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  display: none;
+}
+
+.loading-splash-screen.visible {
+  display: flex;
+}
+
+.loading-splash-screen h1,
+.loading-splash-screen h2 {
+  color: #fff;
+  font-size: 2em;
+}
+
+.loading-splash-screen h2 {
+  margin-top: auto;
+}
+
+.loading-splash-screen .loading-pulse {
+  margin-bottom: 4em;
+  height: 36px;
+  width: 9px;
+  margin-top: auto;
+}
+
+.loading-splash-screen .loading-pulse:before {
+  left: -18px;
+}
+.loading-splash-screen .loading-pulse:after {
+  left: 18px;
+}
+
+.loading-splash-screen .loading-pulse:before,
+.loading-splash-screen .loading-pulse:after {
+  height: 18px;
+  width: 9px;
+}

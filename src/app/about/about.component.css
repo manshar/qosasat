@@ -2,3 +2,11 @@
 .clips-preview-fonts img {
   width: 50%;
 }
+
+.loading-screen {
+  margin: 8em auto;
+}
+
+.loading-screen .loading-pulse {
+  margin: 0 auto;
+}

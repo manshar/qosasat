@@ -40,6 +40,8 @@ export class ExportComponent implements OnInit, AfterViewInit {
   text;
   lines = [];
 
+  embedded = false;
+  embeddedOrigin = '';
   textFill = 'p90';
   textPos = 'mc';
   textFit = 'fit';
@@ -161,6 +163,7 @@ export class ExportComponent implements OnInit, AfterViewInit {
       .distinctUntilChanged()
       .subscribe(text => this.lines = text.split('\n'));
   }
+  loading_:boolean = false;
 
   public ngOnInit() {
     this.route.queryParams.subscribe(
@@ -169,6 +172,8 @@ export class ExportComponent implements OnInit, AfterViewInit {
         this.selectedFont = params['font'];
         this.lines = params['lines'].split(',');
         this.text = this.lines.join('\n');
+        this.embedded = params['embedded'] == '1';
+        this.embeddedOrigin = params['embeddedOrigin'];
 
         const styleRules = `
         @font-face {
@@ -193,7 +198,40 @@ export class ExportComponent implements OnInit, AfterViewInit {
     return `${config.name}-${config.width}x${config.height}-${timestamp}.png`
   }
 
+  pick(clip) {
+    const timestamp = new Date().getTime();
+    this.loading_ = true;
+    clip.preview = false;
+    setTimeout(() => {
+      clip.export().then(blob => {
+        // FileSaver.saveAs(blob, this.getClipFileName_(clip.config, timestamp));
+        // Upload or send Blob?
+        parent.postMessage({
+          export: {
+            blob: blob,
+          },
+          input: {
+            lines: this.lines,
+            text: this.text,
+            photo: this.selectedPhoto,
+            font: this.selectedFont,
+          },
+          selectedOptions: {
+            textColor: this.textColor,
+            textFill: this.textFill,
+            textPos: this.textPos,
+            textFit: this.textFit,
+          }
+        }, this.embeddedOrigin);
+
+        clip.preview = true;
+        this.loading_ = false;
+      });
+    }, 500);
+  }
+
   download(optClip) {
+    this.loading_ = true;
     const timestamp = new Date().getTime();
     if (optClip) {
       optClip.preview = false;
@@ -201,8 +239,9 @@ export class ExportComponent implements OnInit, AfterViewInit {
         optClip.export().then(blob => {
           FileSaver.saveAs(blob, this.getClipFileName_(optClip.config, timestamp));
           optClip.preview = true;
+          this.loading_ = false;
         });
-      }, 200);
+      }, 500);
       return;
     } else {
       // Download all.
@@ -226,6 +265,7 @@ export class ExportComponent implements OnInit, AfterViewInit {
             .then((content) => {
                 FileSaver.saveAs(content, `manshar-clips-export-${timestamp}.zip`);
                 this.preview = true;
+                this.loading_ = false;
             });
 
         }).catch(errors => {

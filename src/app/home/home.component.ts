@@ -8,7 +8,7 @@ import { Title } from './title';
 import { XLargeDirective } from './x-large';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {Router} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 const PER_PAGE = 20;
@@ -96,6 +96,8 @@ export class HomeComponent implements OnInit {
   search$:Subject<string> = new Subject<string>();
   filterTags_:string[] = [];
   loading_:boolean = false;
+  embedded:boolean = false;
+  embeddedOrigin:string = '';
 
   /**
    * TypeScript public modifiers
@@ -104,7 +106,14 @@ export class HomeComponent implements OnInit {
     public title: Title,
     public http: Http,
     public router: Router,
+    public route: ActivatedRoute,
   ) {
+    this.route.queryParams.subscribe(
+      params => {
+        this.embedded = params['embedded'] == '1';
+        this.embeddedOrigin = params['embeddedOrigin'];
+      });
+
     this.search$
       .debounceTime(500)
       .distinctUntilChanged()
@@ -189,7 +198,7 @@ export class HomeComponent implements OnInit {
 
   handleUploadPhoto(data) {
     console.log('uploaded photo', data);
-    this.router.navigateByUrl('/select-font?url=' + data.result['image_url']);
+    this.router.navigateByUrl('/select-font?url=' + data.result['image_url'] + '&embedded=' + (this.embedded ? 1 : 0) + '&embeddedOrigin=' + this.embeddedOrigin);
   }
 
   filter(map) {

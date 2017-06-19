@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 /**
  * Angular 2 decorators and services
  */
@@ -20,9 +21,40 @@ import { AppState } from './app.service';
     './app.component.css'
   ],
   template: `
-    <main>
+    <header class="site-header">
+      <nav>
+        <a [href]="'/about' + (embeddedOrigin ? ('?utm_source=' + embeddedOrigin +'&utm_medium=embedded-clips') : '')" [target]="(embedded ? '_blank' : '_self')">
+          عن قصاصات
+        </a>
+      </nav>
+      <div class="logo">
+        <i></i>
+        <a [routerLink]="['/']" [queryParams]="{embedded: embedded ? 1 : 0, embeddedOrigin: embeddedOrigin}">
+          قُصَاصَات
+        </a>
+        <span class="tagline">
+            من أدوات
+
+          <a target="_blank" href="https://www.manshar.com?utm_source=manshar-clips">
+            منشر
+          </a>
+        </span>
+      </div>
+    </header>
+
+    <main [class.embedded]="embedded">
       <router-outlet (deactivate)="onDeactivate()"></router-outlet>
     </main>
+
+    <footer>
+      <p>
+        من أصدقائكم القائمين على
+        <a target="blank" href="https://www.manshar.com?utm_source=manshar-clips">
+        منشر
+        </a>
+        .
+      </p>
+    </footer>
   `
 })
 export class AppComponent implements OnInit {
@@ -31,6 +63,7 @@ export class AppComponent implements OnInit {
   public url = 'https://twitter.com/AngularClass';
 
   constructor(
+    public route: ActivatedRoute,
     public appState: AppState,
     private renderer:Renderer,
   ) {}
@@ -39,8 +72,14 @@ export class AppComponent implements OnInit {
     this.renderer.setElementProperty(document.body, "scrollTop", 0);
   }
 
+  embedded:boolean = false;
+  embeddedOrigin:string = '';
   public ngOnInit() {
-    console.log('Initial App State', this.appState.state);
+    this.route.queryParams.subscribe(
+      params => {
+        this.embedded = params['embedded'] == '1';
+        this.embeddedOrigin = params['embeddedOrigin'];
+      });
   }
 
 }
