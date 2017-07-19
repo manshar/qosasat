@@ -9,6 +9,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
       height: 100vh;
       box-sizing: border-box;
       padding-bottom: 80vh;
+      width: 100%;
     }
     @media (min-width: 500px) {
       .tab-content {

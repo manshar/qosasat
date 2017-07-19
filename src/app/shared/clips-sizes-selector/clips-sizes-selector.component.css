@@ -1,0 +1,16 @@
+.sizes-container {
+  margin: 2em 0;
+}
+
+.sizes-container >>> .items-container {
+
+}
+
+.size-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  border: 1px dashed #cecece;
+  text-align: center;
+}

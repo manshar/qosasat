@@ -1,0 +1,13 @@
+
+:host >>> .items-container {
+  flex-direction: column;
+}
+
+:host >>> .items-container .item:nth-child(even) {
+  background: #ececec;
+}
+
+.quote-item {
+  padding: 1em 2em;
+  display: block;
+}

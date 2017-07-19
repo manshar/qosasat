@@ -4,6 +4,7 @@ import { ClipsPhotosSelectorComponent } from "../shared/clips-photos-selector/cl
 import { ClipsFontsSelectorComponent } from "../shared/clips-fonts-selector/clips-fonts-selector.component";
 import { ClipsFormatsSelectorComponent } from "../shared/clips-formats-selector/clips-formats-selector.component";
 import { ClipsSizesSelectorComponent } from "../shared/clips-sizes-selector/clips-sizes-selector.component";
+import { YorwaQuotesSelectorComponent } from "../shared/yorwa-quotes-selector/yorwa-quotes-selector.component";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { Subject } from "rxjs/Subject";
 
@@ -14,33 +15,39 @@ import { Subject } from "rxjs/Subject";
 })
 
 export class SingleStepEditorComponent implements OnInit {
-  @ViewChild('textarea') textarea;
-  @ViewChild('previewEl') previewEl;
+  @ViewChild('textarea') private textarea;
+  @ViewChild('previewEl') private previewEl;
 
-  @ViewChild(ClipsPhotosSelectorComponent) photosSelector;
-  @ViewChild(ClipsFontsSelectorComponent) fontsSelector;
-  @ViewChild(ClipsFormatsSelectorComponent) formatsSelector;
-  @ViewChild(ClipsSizesSelectorComponent) sizesSelector;
+  @ViewChild(ClipsPhotosSelectorComponent) private photosSelector;
+  @ViewChild(ClipsFontsSelectorComponent) private fontsSelector;
+  @ViewChild(ClipsFormatsSelectorComponent) private formatsSelector;
+  @ViewChild(ClipsSizesSelectorComponent) private sizesSelector;
+  @ViewChild(YorwaQuotesSelectorComponent) private quotesSelector;
 
-  photosReachedEnd$:Subject = new Subject();
+  private photosReachedEnd$: Subject<any> = new Subject<any>();
+  private quotesReachedEnd$: Subject<any> = new Subject<any>();
 
-  size: any = {width: 800, height: 800};
-  editMode:boolean = false;
-  photo:Object = {
+  private size: any = {width: 800, height: 800};
+  private editMode: boolean = false;
+  private photo: Object = {
     original_serve_url: 'https://images.unsplash.com/photo-1500161727381-144726b3a965'
   };
-  font:string = 'barabics';
-  lines:string[] = [
+  private font: string = 'barabics';
+  private lines: string[] = [
     'مرحباً بالعالم',
     'ما الذي يلهمكم ويجعلكم تبتسمون اليوم؟',
   ];
-  previewRatio:number = 1;
-  textFill = 'p90';
-  textPos = 'mc';
-  textFit = 'fit';
+  private text: string = [
+    'مرحباً بالعالم',
+    'ما الذي يلهمكم ويجعلكم تبتسمون اليوم؟',
+  ].join('\n');
 
+  private previewRatio: number = 1;
+  private textFill: string = 'p90';
+  private textPos: string = 'mc';
+  private textFit: string = 'fit';
+  private exporterIframeSrc: SafeUrl;
 
-  exporterIframeSrc:SafeUrl;
   constructor(private renderer:Renderer,
               private sanitizer: DomSanitizer) {
     this.photosReachedEnd$
@@ -48,9 +55,15 @@ export class SingleStepEditorComponent implements OnInit {
       .subscribe(() => {
         this.photosSelector.loadNext();
       });
+
+    this.quotesReachedEnd$
+      .debounceTime(200)
+      .subscribe(() => {
+        this.quotesSelector.loadNext();
+      });
   }
 
-  setEditMode(mode) {
+  public setEditMode(mode) {
     this.editMode = mode;
     if (mode) {
       setTimeout(() => {
@@ -67,41 +80,50 @@ export class SingleStepEditorComponent implements OnInit {
     }
   }
 
-  updateText(text) {
+  public updateText(text) {
     this.setEditMode(false);
-    this.lines = text.split('\n').map(line => {
+    this.lines = text.split('\n').map((line) => {
       return line.trim();
     });
+    this.text = this.lines.join('\n');
   }
 
-  updatePhoto(event) {
+  public updatePhoto(event) {
     this.photo = event.photo;
   }
 
-  updateFont(event) {
+  public updateFont(event) {
     this.font = event.font;
   }
 
-  updateFormats(event) {
+  public updateFormats(event) {
     this[event.format.type] = event.format.value;
   }
 
-  updateSize(event) {
+  public updateSize(event) {
     this.size = {
       width: event.size.width,
       height: event.size.height,
     };
   }
 
-  handleKeyup(event) {
-    switch(event.keyCode) {
-      case 27: // esc.
-        this.setEditMode(false);
-        break
+  public updateQuote(event) {
+    const MAX_WORDS_PER_LINE = 8;
+    this.lines = event.quote.quote.split(/[,.\n!:،]/);
+    this.lines = this.lines.filter((line) => line.trim().length > 0);
+    if (this.lines.length < 2) {
+      const words = this.lines[0].split(/\s/);
+      const newLines = [];
+      while (words.length > 0) {
+        newLines.push(
+          words.splice(0, Math.floor(Math.random() * MAX_WORDS_PER_LINE) + 2).join(' '));
+      }
+      this.lines = newLines;
     }
+    this.text = this.lines.join('\n');
   }
 
-  download(clip) {
+  public download(clip) {
     // TODO(mk): Need to figure out a way to render in different sizes.
     // TODO(mk): Need to figure out a way to avoid re-downloading all fonts and only
     // requesting needed stuff.
@@ -129,12 +151,23 @@ export class SingleStepEditorComponent implements OnInit {
           `//${document.location.host}/download?config=${encodeConfig}`);
   }
 
-  random() {
+  public random() {
     this.photosSelector.random();
     this.fontsSelector.random();
     this.formatsSelector.random();
     this.sizesSelector.random();
+    this.quotesSelector.random();
   }
 
-  ngOnInit() {}
+  public ngOnInit() {}
+
+  private handleKeyup(event) {
+    switch (event.keyCode) {
+      case 27: // esc.
+        this.setEditMode(false);
+        break;
+      default:
+        break;
+    }
+  }
 }

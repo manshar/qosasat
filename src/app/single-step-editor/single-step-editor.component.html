@@ -33,25 +33,29 @@
       <textarea autosize #textarea
         (blur)="updateText($event.target.value)"
         (keyup)="handleKeyup($event)"
-        >{{lines.join('\n')}}</textarea>
+        [value]="text"
+        ></textarea>
       <button (click)="updateText(textarea.value)">حفظ</button>
     </div>
   </div>
   <div class="controls-container">
     <clips-tabs>
       <clips-tab title="صور" (scrolled)="photosReachedEnd$.next()">
+         <!-- add upload  -->
+         <!-- add search  -->
         <clips-photos-selector (change)="updatePhoto($event)"></clips-photos-selector>
       </clips-tab>
       <clips-tab title="خط">
+         <!-- add search  -->
         <clips-fonts-selector (change)="updateFont($event)"></clips-fonts-selector>
       </clips-tab>
       <clips-tab title="تنسيق">
         <clips-formats-selector (change)="updateFormats($event)"></clips-formats-selector>
       </clips-tab>
-      <!-- TODO(mk): Add quotes from Yorwa (or curated list of quotes).  -->
-      <!-- <clips-tab title="اقتباسات"> -->
-        <!-- <clips-quotes-selector></clips-quotes-selector> -->
-      <!-- </clips-tab> -->
+       <clips-tab title="اقتباسات" (scrolled)="quotesReachedEnd$.next()">
+         <!-- add search  -->
+         <yorwa-quotes-selector (change)="updateQuote($event)"></yorwa-quotes-selector>
+       </clips-tab>
       <clips-tab title="حجم">
         <clips-sizes-selector (change)="updateSize($event)"></clips-sizes-selector>
       </clips-tab>

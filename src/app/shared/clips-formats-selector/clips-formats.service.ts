@@ -20,14 +20,14 @@ export class ClipsFormatsService {
       type: 'textFill',
       name: '35%',
       value: 'p35',
-    }, {
-      type: 'textFill',
-      name: '25%',
-      value: 'p25',
-    }, {
-      type: 'textFill',
-      name: '10%',
-      value: 'p10',
+    // }, {
+    //   type: 'textFill',
+    //   name: '25%',
+    //   value: 'p25',
+    // }, {
+    //   type: 'textFill',
+    //   name: '10%',
+    //   value: 'p10',
     },],
     textFitChoices: [{
       type: 'textFit',

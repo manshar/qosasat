@@ -3,19 +3,32 @@
   font-weight: bold;
 }
 
+.formats-container {
+  padding: 1em;
+}
+
 :host .text-fill-selector >>> .item {
    width: 10%;
+   flex-grow: 1;
 }
 
 :host .text-fit-selector >>> .item {
    width: 49%;
+   flex-grow: 1;
 }
 
 :host .text-pos-selector >>> .item {
    width: 30%;
+   flex-grow: 1;
 }
 
 .format-item {
-  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  border: 1px dashed #cecece;
   text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }

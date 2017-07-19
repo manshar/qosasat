@@ -8,52 +8,72 @@ const PER_PAGE = 50;
 const CARBON_SRCSRC_ENDPOINT = 'https://srcsrc.carbon.tools/api/v1/photo/';
 const CARBON_SRCSRC_SEARCH_ENDPOINT = 'https://srcsrc.carbon.tools/api/v1/photo/search';
 
+export interface ClipsPhotosServiceSearchParams {
+  url?: string;
+  q?: string;
+  limit?: number;
+  order?: string;
+}
+
+export interface ClipsPhotosServiceListParams {
+  url?: string;
+  q?: string;
+  limit?: number;
+  order?: string;
+  categories?: string[];
+  tags?: string[];
+  colors?: string[];
+}
+
 @Injectable()
 export class ClipsPhotosService {
-  constructor(private http: Http) { }
+  private nextListUrl: string = CARBON_SRCSRC_ENDPOINT;
+  private nextSearchUrl: string = CARBON_SRCSRC_SEARCH_ENDPOINT;
 
-  nextSearchUrl:string = CARBON_SRCSRC_SEARCH_ENDPOINT;
-  search() {
-    return this.http.get(this.nextSearchUrl, {
+  constructor(private http: Http) { }
+  public search(params : ClipsPhotosServiceSearchParams = {}) {
+    return this.http.get(params.url || CARBON_SRCSRC_SEARCH_ENDPOINT, {
       params: {
-        'q': '',
+        q: params.q || '',
       }
-    }).map(res => {
+    }).map((res) => {
       const response = res.json();
       this.nextSearchUrl = response.next_url;
       return response;
     });
   }
 
-  nextSearch() {
+  public nextSearch() {
     if (!this.nextSearchUrl) {
       this.nextSearchUrl = CARBON_SRCSRC_SEARCH_ENDPOINT;
     }
-    return this.search();
+    return this.search({
+      url: this.nextSearchUrl
+    });
   }
 
-
-  nextListUrl:string = CARBON_SRCSRC_ENDPOINT;
-  list() {
-    return this.http.get(this.nextListUrl, {
+  public list(params: ClipsPhotosServiceListParams = {}) {
+    return this.http.get(params.url || CARBON_SRCSRC_ENDPOINT, {
       params: {
-        'order': '-source_created_at',
-        'limit': PER_PAGE,
+        order: '-source_created_at',
+        limit: PER_PAGE,
         // 'categories': [],
         // 'colors': [],
         // 'tags': [],
       },
-    }).map(res => {
+    }).map((res) => {
       const response = res.json();
       this.nextListUrl = response.next_url;
       return response;
     });
   }
 
-  nextList() {
+  public nextList() {
     if (!this.nextListUrl) {
       this.nextListUrl = CARBON_SRCSRC_ENDPOINT;
     }
-    return this.list();
+    return this.list({
+      url: this.nextListUrl,
+    });
   }
 }

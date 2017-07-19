@@ -1,0 +1,7 @@
+<clips-selector [items]="quotes" (change)="handleChange($event)">
+  <template let-item="$implicit" let-i="index">
+    <div class="quote-item">
+      {{item.quote}}
+    </div>
+  </template>
+</clips-selector>

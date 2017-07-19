@@ -34,7 +34,7 @@ import { HomeComponent } from './home';
 import { ExportComponent } from './export';
 import { CreditsComponent } from './credits';
 import { NoContentComponent } from './no-content';
-import { ClipsDirectExporterComponent } from "./clips-direct-exporter";
+import { ClipsDirectExporterComponent } from './clips-direct-exporter';
 import { XLargeDirective } from './home/x-large';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -47,6 +47,7 @@ import { ClipsPhotosModule } from './shared/clips-photos-selector/clips-photos.m
 import { ClipsFontsModule} from './shared/clips-fonts-selector/clips-fonts.module';
 import { ClipsFormatsModule } from './shared/clips-formats-selector/clips-formats.module';
 import { ClipsSizesModule } from './shared/clips-sizes-selector/clips-sizes.module';
+import { YorwaQuotesModule } from './shared/yorwa-quotes-selector/yorwa-quotes.module';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -99,6 +100,7 @@ type StoreType = {
     ClipsSelectorModule,
     ClipsFormatsModule,
     ClipsSizesModule,
+    YorwaQuotesModule,
     RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules })
   ],
   /**

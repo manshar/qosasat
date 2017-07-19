@@ -1,0 +1,7 @@
+:host >>> .items-container .item {
+  flex-grow: 1;
+}
+
+.photo-item {
+  width: 100%;
+}

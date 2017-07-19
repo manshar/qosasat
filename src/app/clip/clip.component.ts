@@ -419,14 +419,17 @@ export class ClipComponent {
   }
 
   onLoad() {
+    console.log('onLoad');
     this.loaded = true;
-    this.textContainer.fit().then(() => {
-      if (this.loadPromiseResolver_) {
-        this.loadPromiseResolver_();
-      } else {
-        this.loadPromise_ = Promise.resolve();
-      }
-    });
+    setTimeout(() => {
+      this.textContainer.fit(true).then(() => {
+        if (this.loadPromiseResolver_) {
+          this.loadPromiseResolver_();
+        } else {
+          this.loadPromise_ = Promise.resolve();
+        }
+      });
+    }, 200);
   }
 
   loadPromise_:Promise<any>;
