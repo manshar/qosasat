@@ -21,7 +21,7 @@ import { AppState } from './app.service';
     './app.component.css'
   ],
   template: `
-    <header class="site-header">
+    <header class="site-header" style="display: none">
       <nav>
         <a [href]="'/about' + (embeddedOrigin ? ('?utm_source=' + embeddedOrigin +'&utm_medium=embedded-clips') : '')" [target]="(embedded ? '_blank' : '_self')">
           عن قصاصات
@@ -46,7 +46,7 @@ import { AppState } from './app.service';
       <router-outlet (deactivate)="onDeactivate()"></router-outlet>
     </main>
 
-    <footer>
+    <footer style="display: none">
       <p>
         من أصدقائكم القائمين على
         <a target="blank" href="https://www.manshar.com?utm_source=manshar-clips">

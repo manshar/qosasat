@@ -1,0 +1,21 @@
+.formats-container h3 {
+  text-align: center;
+  font-weight: bold;
+}
+
+:host .text-fill-selector >>> .item {
+   width: 10%;
+}
+
+:host .text-fit-selector >>> .item {
+   width: 49%;
+}
+
+:host .text-pos-selector >>> .item {
+   width: 30%;
+}
+
+.format-item {
+  padding: 10px 0;
+  text-align: center;
+}

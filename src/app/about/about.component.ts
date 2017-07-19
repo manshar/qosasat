@@ -4,7 +4,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FontLoader } from '../app.service';
+import { ClipsFontsService } from '../shared/clips-fonts-selector/clips-fonts.service';
 import { ClipComponent } from '../clip/clip.component';
 
 import { Subject } from 'rxjs/Subject';
@@ -35,7 +35,7 @@ export class AboutComponent implements OnInit {
   public localState: any;
   constructor(
     public route: ActivatedRoute,
-    private fontLoader: FontLoader,
+    private fontLoader: ClipsFontsService,
   ) {
     this.text$
       .debounceTime(1000)

@@ -18,18 +18,18 @@ import domtoimage from 'dom-to-image';
         *ngIf="_preview"
         crossorigin
         [src]="getResizeUrl(photo)"
-        [ngStyle]="{'max-width': config.width * previewRatio + 'px'}"
         (load)="onLoad()">
       <img *ngIf="!_preview"
         crossorigin
         [src]="getResizeUrl(photo)"
-        [width]="config.width" [height]="config.height">
+        [width]="config.width" [height]="config.height" (load)="onLoad()">
 
       <div class="bg-drop"></div>
-      <div class="text-wrapper {{_textFill}} {{_textPos}}">
+      <div class="text-wrapper {{_textFill}} {{_textPos}}" [hidden]="!textVisible">
         <fit-text #textContainer class="text" [fitHeight]="true" [fitWidth]="true" [style.color]="'#' + textColor" [fitWidthRatio]="_fillRatio" [fitHeightRatio]="_fillRatio">
-          <div [ngStyle]="{'font-family': font}" *ngIf="_lines">
+          <div *ngIf="_lines">
             <fit-text class="line"
+              [font]="font"
               *ngFor="let line of _lines" [fitHeight]="false" [fitWidth]="_fitLineWidth">
               {{line}}
             </fit-text>
@@ -40,6 +40,10 @@ import domtoimage from 'dom-to-image';
 `,
   styles: [`
   .clip-preview-card {
+    display: none;
+  }
+
+  .text-wrapper[hidden] {
     display: none;
   }
 
@@ -265,28 +269,50 @@ import domtoimage from 'dom-to-image';
   .text .line {
     display: block;
     width: 100%;
-    // white-space: nowrap;
+    /* white-space: nowrap; */
   }
 
   .clip-preview-card.visible {
     display: block;
   }
 
-  @media (max-width: 850px) {
-    .preview-img {
-      width: 100%;
-    }
+  .preview-img {
+    max-height: 60vh;
+    max-width: 100vw;
   }
 
+  @media (min-width: 500px) {
+    .preview-img {
+      max-width: 70vw;
+      max-height: 100vh;
+    }
+
+  }
+
+  /*
+
+  // TODO(mk): Move this to outside component.
+  // .preview-img {
+  //   width: 100%;
+  // }
+
+  // @media (max-width: 850px) {
+  //   .preview-img {
+  //     width: 100%;
+  //   }
+  // }
+  */
   `],
 })
 export class ClipComponent {
   private _lines:string[];
+  // private _font:string;
   private _preview:boolean = true;
   private _textFill:string = 'p90';
   private _fillRatio:number = 0.9;
   private _textPos:string = 'mc';
   private _fitLineWidth:boolean = true;
+  @Input() textVisible:boolean = true;
 
   @ViewChild('clip') clip;
   @ViewChild('textContainer') textContainer;
@@ -352,6 +378,14 @@ export class ClipComponent {
 
   @Input() photo;
   @Input() font;
+  // set font(font:string) {
+  //   this._font = font;
+  //   setTimeout(() => {
+  //     if (this.loaded) {
+  //       this.textContainer.fit(true);
+  //     }
+  //   }, 10);
+  // }
 
   loaded = false;
   getResizeUrl(photo) {
@@ -386,15 +420,35 @@ export class ClipComponent {
 
   onLoad() {
     this.loaded = true;
-    this.textContainer.fit();
+    this.textContainer.fit().then(() => {
+      if (this.loadPromiseResolver_) {
+        this.loadPromiseResolver_();
+      } else {
+        this.loadPromise_ = Promise.resolve();
+      }
+    });
   }
+
+  loadPromise_:Promise<any>;
+  loadPromiseResolver_;
+  whenLoaded() {
+    if (this.loadPromise_) {
+      return this.loadPromise_;
+    }
+    return this.loadPromise_ = new Promise(resolve => {
+      this.loadPromiseResolver_ = resolve;
+    });
+  }
+
   public export() {
-    return domtoimage.toBlob(this.clip.nativeElement)
-      .then((blob) => {
-        return blob;
-      })
-      .catch(function (error) {
-          console.error('oops, something went wrong!', error);
-      });
+    return this.whenLoaded().then(() => {
+      return domtoimage.toBlob(this.clip.nativeElement)
+        .then((blob) => {
+          return blob;
+        })
+        .catch(function (error) {
+            console.error('oops, something went wrong!', error);
+        });
+    });
   }
 }

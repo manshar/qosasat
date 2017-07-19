@@ -1,0 +1,8 @@
+<!-- TODO(mk): Search and Filter Photos -->
+<!-- TODO(mk): Infinite Scrolling Photos -->
+
+<clips-selector [items]="photos" (change)="handleChange($event)">
+  <template let-item="$implicit" let-i="index">
+    <img class="photo-item" [src]="item.original_serve_url + '?w=100&h=100&fit=crop'" #img (error)="removeItem(item)"/>
+  </template>
+</clips-selector>

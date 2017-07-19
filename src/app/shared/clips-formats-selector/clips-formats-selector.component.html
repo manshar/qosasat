@@ -1,0 +1,30 @@
+<div class="formats-container">
+  <h3>
+    مساحة الكتابة
+  </h3>
+  <clips-selector class="text-fill-selector" #textFillSelector [items]="formats.textFillChoices" (change)="handleChange($event)">
+    <template let-item="$implicit" let-i="index">
+      <div class="format-item" >{{item.name}}</div>
+    </template>
+  </clips-selector>
+
+  <h3>
+    ملء الكتابة
+  </h3>
+  <clips-selector class="text-fit-selector" #textFitSelector [items]="formats.textFitChoices" (change)="handleChange($event)">
+    <template let-item="$implicit" let-i="index">
+      <div class="format-item">{{item.name}}</div>
+    </template>
+  </clips-selector>
+
+  <h3>
+    محاذات الكتابة
+  </h3>
+  <clips-selector class="text-pos-selector" #textPosSelector [items]="formats.textPosChoices" (change)="handleChange($event)">
+    <template let-item="$implicit" let-i="index">
+      <div class="format-item">{{item.name}}</div>
+    </template>
+  </clips-selector>
+
+  <!-- TODO(mk): Font Color -->
+</div>

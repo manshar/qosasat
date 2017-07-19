@@ -1,0 +1,14 @@
+<div class="items-container" (keyup)="handleKeyup($event)">
+   <div class="item"
+    tabindex="0" role="link"
+    *ngFor="let item of items"
+    [class.selected]="selectedItem == item"
+    (click)="select(item)"
+    (focus)="handleFocusItem(item)"
+    (blur)="handleBlurItem()">
+
+  <div class="selected-highlight"></div>
+
+  <template ngFor [ngForOf]="[item]" [ngForTemplate]="template">
+  </template>
+</div>

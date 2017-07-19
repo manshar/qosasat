@@ -1,0 +1,9 @@
+<div class="sizes-container">
+  <clips-selector [items]="sizes" (change)="handleChange($event)">
+    <template let-item="$implicit" let-i="index">
+      <div class="size-item" [style.width]="item.iconWidth" [style.height]="item.iconHeight">
+        <span>{{item.name}}</span>
+      </div>
+    </template>
+  </clips-selector>
+</div>

@@ -1,0 +1,62 @@
+<div class="single-step-editor">
+  <div class="preview" tabindex="0" role="link" (keypress)="setEditMode(true)" #previewEl>
+    <clip #preview
+        (click)="setEditMode(true)"
+        [textVisible]="!editMode"
+        [photo]="photo.original_serve_url"
+        [font]="font"
+        [lines]="lines"
+        [textFill]="textFill"
+        [textFit]="textFit"
+        [textPos]="textPos"
+        [config]="size"
+        [previewRatio]="previewRatio"
+        [preview]="preview"></clip>
+    <div class="controls-bar">
+      <button #downloadBtn (click)="download(preview)">
+        تحميل
+      </button>
+      <button #randomBtn (click)="random()">
+        عشوائي
+      </button>
+    </div>
+    <div class="credits-bar">
+      <div class="credits">
+        <span> &lt; </span>
+        <a [href]="photo.source_photographer_link + '?utm_source=manshar-clips&utm_medium=referral&utm_campaign=api-credit'" target="_blank">{{photo.source_photographer_name}}</a>
+        <span> / </span>
+        <a [href]="photo.source_link + '?utm_source=manshar-clips&utm_medium=referral&utm_campaign=api-credit'" target="_blank">{{photo.source_name}}</a>
+        <span> &gt; </span>
+      </div>
+    </div>
+    <div class="edit-textarea" [hidden]="!editMode">
+      <textarea autosize #textarea
+        (blur)="updateText($event.target.value)"
+        (keyup)="handleKeyup($event)"
+        >{{lines.join('\n')}}</textarea>
+      <button (click)="updateText(textarea.value)">حفظ</button>
+    </div>
+  </div>
+  <div class="controls-container">
+    <clips-tabs>
+      <clips-tab title="صور" (scrolled)="photosReachedEnd$.next()">
+        <clips-photos-selector (change)="updatePhoto($event)"></clips-photos-selector>
+      </clips-tab>
+      <clips-tab title="خط">
+        <clips-fonts-selector (change)="updateFont($event)"></clips-fonts-selector>
+      </clips-tab>
+      <clips-tab title="تنسيق">
+        <clips-formats-selector (change)="updateFormats($event)"></clips-formats-selector>
+      </clips-tab>
+      <!-- TODO(mk): Add quotes from Yorwa (or curated list of quotes).  -->
+      <!-- <clips-tab title="اقتباسات"> -->
+        <!-- <clips-quotes-selector></clips-quotes-selector> -->
+      <!-- </clips-tab> -->
+      <clips-tab title="حجم">
+        <clips-sizes-selector (change)="updateSize($event)"></clips-sizes-selector>
+      </clips-tab>
+    </clips-tabs>
+  </div>
+
+  <iframe #exporterIframe [src]="exporterIframeSrc" class="export-iframe"></iframe>
+</div>

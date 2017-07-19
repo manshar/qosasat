@@ -24,20 +24,29 @@ import { ROUTES } from './app.routes';
 // App is our top level component
 import { AppComponent } from './app.component';
 import { ClipComponent } from './clip/clip.component';
+import { ClipsTabComponent, ClipsTabsComponent } from './shared/clips-tabs';
 import { FitTextComponent } from './clip/fit-text.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
-import { AppState, InternalStateType, FontLoader } from './app.service';
+import { AppState, InternalStateType } from './app.service';
+import { SingleStepEditorComponent } from './single-step-editor';
 import { HomeComponent } from './home';
-import { AboutComponent } from './about';
+// import { AboutComponent } from './about';
 import { ExportComponent } from './export';
 import { CreditsComponent } from './credits';
 import { NoContentComponent } from './no-content';
+import { ClipsDirectExporterComponent } from "./clips-direct-exporter";
 import { XLargeDirective } from './home/x-large';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { ColorPickerModule } from './color-picker/color-picker.module';
+
 import { CarbonUpUpModule } from './carbon-upup/carbon-upup.module';
+import { ClipsSelectorModule } from './shared/clips-selector/clips-selector.module';
+import { ClipsPhotosModule } from './shared/clips-photos-selector/clips-photos.module';
+import { ClipsFontsModule} from './shared/clips-fonts-selector/clips-fonts.module';
+import { ClipsFormatsModule } from './shared/clips-formats-selector/clips-formats.module';
+import { ClipsSizesModule } from './shared/clips-sizes-selector/clips-sizes.module';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -46,7 +55,6 @@ import '../styles/headings.css';
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
   AppState,
-  FontLoader,
 ];
 
 type StoreType = {
@@ -62,11 +70,15 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    AboutComponent,
+    // AboutComponent,
+    ClipsDirectExporterComponent,
     ExportComponent,
     HomeComponent,
+    SingleStepEditorComponent,
     CreditsComponent,
     ClipComponent,
+    ClipsTabComponent,
+    ClipsTabsComponent,
     FitTextComponent,
     NoContentComponent,
     XLargeDirective,
@@ -82,6 +94,11 @@ type StoreType = {
     InfiniteScrollModule,
     ColorPickerModule,
     CarbonUpUpModule,
+    ClipsPhotosModule,
+    ClipsFontsModule,
+    ClipsSelectorModule,
+    ClipsFormatsModule,
+    ClipsSizesModule,
     RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules })
   ],
   /**

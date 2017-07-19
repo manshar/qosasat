@@ -1,0 +1,5 @@
+<clips-selector [items]="fonts" (change)="handleChange($event)">
+  <template let-item="$implicit" let-i="index">
+    <div class="font-item" [style.fontFamily]="item">أبجد هوز</div>
+  </template>
+</clips-selector>

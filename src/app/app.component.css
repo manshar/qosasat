@@ -3,7 +3,6 @@
 }
 
 clip {
-  margin: 1em;
   display: inline-block;
 }
 
@@ -61,7 +60,6 @@ button:hover {
 }
 
 .clip-actions {
-  /*padding: 0 1em;*/
 }
 
 .clip-export-item clip {

@@ -3,7 +3,7 @@ import { Component, ViewChild, ContentChildren, Input, Renderer, ElementRef } fr
 @Component({
   selector: 'fit-text',
   template: `
-    <div class="fit-text-container" #container>
+    <div class="fit-text-container" #container [style.fontFamily]="_font">
       <div #content class="fit-text-content">
         <ng-content></ng-content>
       </div>
@@ -23,6 +23,7 @@ import { Component, ViewChild, ContentChildren, Input, Renderer, ElementRef } fr
 })
 export class FitTextComponent {
   _measurer:HTMLElement;
+  _font:string;
   static _counter = 1;
   @ViewChild('container') container;
   @ViewChild('content') content;
@@ -32,6 +33,17 @@ export class FitTextComponent {
 
   @Input('fitWidthRatio') fitWidthRatio:number = 1;
   @Input('fitHeightRatio') fitHeightRatio:number = 1;
+  @Input()
+  set font(font:string) {
+    if (!this.childrenFitText) {
+      this._font = font;
+      return;
+    }
+    this.fit(true, font).then(() => {
+      this._font = font;
+    });
+  }
+
 
   _fitPromise:Promise<any>;
 
@@ -42,25 +54,25 @@ export class FitTextComponent {
     private renderer:Renderer,
     private el:ElementRef) { }
 
-  public fit(optForceRefit = false) {
-    // If it has fit-text children then call fit on these first.
-    const childrenPromises = this.childrenFitText.map(fittext => {
-      if (fittext.el === this.el) {
-        console.log('not a child but self resolving right away.');
-        return Promise.resolve();
-      }
-      return fittext.fitme(optForceRefit);
-    });
-
+  public fit(optForceRefit = false, optNewFont:string = null) {
+    let parentPromise = Promise.resolve();
     if (optForceRefit || !this.hasBeenFit) {
-      return Promise.all(childrenPromises).then(() => {
-        this.fitme(optForceRefit)
-      });
+      parentPromise = this.fitme(optForceRefit, optNewFont);
     }
-    return Promise.resolve();
+    return parentPromise.then(() => {
+      // If it has fit-text children then call fit on these first.
+      const childrenPromises = this.childrenFitText.map(fittext => {
+        if (fittext.el === this.el) {
+          console.log('not a child but self resolving right away.');
+          return Promise.resolve();
+        }
+        return fittext.fitme(optForceRefit, optNewFont);
+      });
+      return Promise.all(childrenPromises)
+    });
   }
 
-  public fitme(optForceRefit) {
+  public fitme(optForceRefit, optNewFont:string = null) {
     if (!optForceRefit && this._fitPromise) {
       console.log('returning already existing fit promise');
       return this._fitPromise;
@@ -80,6 +92,9 @@ export class FitTextComponent {
     this.renderer.setElementStyle(measurer, 'left', '0');
     this.renderer.setElementStyle(measurer, 'zIndex', '1');
     this.renderer.setElementStyle(measurer, 'visibility', 'hidden');
+    if (optNewFont) {
+      this.renderer.setElementStyle(measurer, 'font-family', optNewFont);
+    }
 
     return this._fitPromise = new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -93,38 +108,31 @@ export class FitTextComponent {
               }, 100);
             });
           }
-          console.log(
-            'expectedHeight:', expectedHeight,
-            'expectedWidth:',  expectedWidth,
-            'minFontSize:', 0.5,
-            'maxFontSize:', 5,
-          );
+          // console.log(
+          //   'expectedHeight:', expectedHeight,
+          //   'expectedWidth:',  expectedWidth,
+          //   'minFontSize:', 0.5,
+          //   'maxFontSize:', 5,
+          // );
 
           if (!this.fitWidth && !this.fitHeight) {
             updateFontSize_(this.content.nativeElement, 2);
             updateFontSize_(measurer, 2);
             resolve();
 
-          this.renderer.invokeElementMethod(
-              this.container.nativeElement,
-              'removeChild',
-              [measurer]);
-            console.log('not doing any fitting for this fit-text');
-            return;
-          }
-
-          if (!this.fitWidth) {
-            expectedWidth = undefined;
-          }
-          if (!this.fitHeight) {
-            expectedHeight = undefined;
+            this.renderer.invokeElementMethod(
+                this.container.nativeElement,
+                'removeChild',
+                [measurer]);
+              console.log('not doing any fitting for this fit-text');
+              return;
           }
 
           const fontSize = calculateFontSize_(
               measurer,
-              expectedHeight * this.fitHeightRatio,
-              expectedWidth * this.fitWidthRatio,
-              0.5, 10);
+              this.fitHeight ? expectedHeight * this.fitHeightRatio : undefined,
+              this.fitWidth ? expectedWidth * this.fitWidthRatio : undefined,
+              0.1, 13);
           requestAnimationFrame(() => {
             updateFontSize_(this.content.nativeElement, fontSize);
             this.renderer.invokeElementMethod(
@@ -151,6 +159,8 @@ function calculateFontSize_(measurer, expectedHeight, expectedWidth,
       measurer,
       'measured height:', height,
       'measured width:',  width,
+      'expectedHeight, expectedWidth',
+      expectedHeight, expectedWidth
     )
     if ((expectedHeight && height > expectedHeight) ||
         (expectedWidth && width > expectedWidth)) {
