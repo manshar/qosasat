@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/cor
 import { ClipsPhotosService } from './clips-photos.service';
 import { ClipsSelectorComponent } from '../clips-selector/clips-selector.component';
 import 'rxjs/add/operator/map';
+import { Photo } from './clips-photo.model';
 
 @Component({
   selector: 'clips-photos-selector',
@@ -11,17 +12,40 @@ import 'rxjs/add/operator/map';
 export class ClipsPhotosSelectorComponent implements OnInit {
   @ViewChild(ClipsSelectorComponent) private selector;
   @Output() private change = new EventEmitter<any>();
-  private photos: Object[];
+  private photos: Photo[];
+  private loading: boolean = true;
+  private searching: boolean = false;
+  private search$: EventEmitter<any> = new EventEmitter<any>();
+  private loadNextMethod: Function;
 
-  constructor(private photosService: ClipsPhotosService) { }
-
-  public ngOnInit() {
-    this.photosService.list()
-      .map((response) => response.result)
-      .subscribe((photos) => {
-        this.photos = photos;
-        this.selector.select(this.photos[0]);
+  constructor(private photosService: ClipsPhotosService) {
+    this.search$
+      .debounceTime(500)
+      .distinctUntilChanged()
+      .subscribe((term) => {
+        this.searching = true;
+        if (term.trim().length > 0) {
+          this.search(term);
+        } else {
+          this.list(false);
+        }
       });
+  }
+
+  public list(selectFirst: boolean = true) {
+    this.photosService.list()
+      .subscribe((photos) => {
+        this.loading = false;
+        this.loadNextMethod = this.photosService.nextList.bind(this.photosService);
+        this.photos = photos;
+        this.searching = false;
+        if (selectFirst) {
+          this.selector.select(this.photos[0]);
+        }
+      }, () => this.loading = false);
+  }
+  public ngOnInit() {
+    this.list();
   }
 
   public random() {
@@ -29,20 +53,55 @@ export class ClipsPhotosSelectorComponent implements OnInit {
   }
 
   public loadNext() {
-    console.log('inside load next');
-    this.photosService.nextList()
-      .map((response) => response.result)
+    if (this.loading) {
+      return;
+    }
+    this.loading = true;
+    this.loadNextMethod()
       .subscribe((photos) => {
-        console.log('Got photos', photos);
+        this.loading = false;
         this.photos = this.photos.concat(photos);
+      }, () => this.loading = false, () => {
+        this.searching = false;
+        this.loading = false;
       });
+  }
+
+  public search(term) {
+    this.photosService.search({
+      q: term,
+    }).subscribe((photos) => {
+        this.loading = false;
+        this.loadNextMethod = this.photosService.nextSearch.bind(this.photosService);
+        this.photos = photos;
+        this.searching = false;
+      }, () => this.loading = false, () => {
+        this.searching = false;
+        this.loading = false;
+      });
+  }
+
+  private handleUploadPhoto(event) {
+    const data = event.result;
+    data['source_name'] = data['source_name'] || 'CarbonUpUp';
+    const newPhoto = new Photo(data);
+    this.photos.splice(0, 0, newPhoto);
+    this.selector.select(newPhoto);
   }
 
   private removeItem(item) {
     this.photos.splice(this.photos.indexOf(item), 1);
   }
 
+  private handleSearchChange(event) {
+    event.stopImmediatePropagation();
+    event.preventDefault();
+  }
+
   private handleChange(event) {
+    if (!event.item) {
+      return;
+    }
     this.change.next({
       photo: event.item,
     });

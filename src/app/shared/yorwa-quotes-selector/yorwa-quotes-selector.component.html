@@ -1,7 +1,27 @@
-<clips-selector [items]="quotes" (change)="handleChange($event)">
-  <template let-item="$implicit" let-i="index">
-    <div class="quote-item">
-      {{item.quote}}
+<div class="quotes-selector-container">
+  <div class="controls-container">
+    <div class="search-container">
+      <input
+          (input)="search$.next($event.target.value)"
+          (change)="handleSearchChange($event)"
+          class="search-box"
+          placeholder="ابحث عن اقتباس حول موضوع (مثال: الحياة، النشاط، الحب، الشجاعة...)">
+      <div class="loading-pulse loading-indicator" [hidden]="!searching"></div>
     </div>
-  </template>
-</clips-selector>
+  </div>
+
+  <div class="quotes-container">
+    <clips-selector [items]="quotes" (change)="handleChange($event)">
+      <template let-item="$implicit" let-i="index">
+        <div class="quote-item">
+          {{item.quote}}
+        </div>
+      </template>
+    </clips-selector>
+  </div>
+
+  <div class="quotes-footer">
+    <div class="loading-pulse loading-indicator" [hidden]="!loading"></div>
+  </div>
+
+</div>

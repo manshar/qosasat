@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, Renderer } from '@angular/core';
 import FileSaver from 'file-saver';
-import { ClipComponent } from "../clip/clip.component";
-import { ActivatedRoute } from "@angular/router";
+import { ClipComponent } from '../clip/clip.component';
+import { ActivatedRoute } from '@angular/router';
+import { Photo } from '../shared/clips-photos-selector/clips-photo.model';
 
 @Component({
   selector: 'clips-direct-exporter',
@@ -10,11 +11,14 @@ import { ActivatedRoute } from "@angular/router";
 })
 
 export class ClipsDirectExporterComponent implements OnInit {
-  @ViewChild('previewEl') previewEl;
-  @ViewChild(ClipComponent) clip;
+  @ViewChild('previewEl') private previewEl;
+  @ViewChild(ClipComponent) private clip;
 
-  config: any = {
-    photo: 'https://images.unsplash.com/photo-1500161727381-144726b3a965',
+  private config: any = {
+    photo: new Photo({
+      original_serve_url: 'https://images.unsplash.com/photo-1500161727381-144726b3a965',
+      source_name: 'Unsplash',
+    }),
     font: 'barabics',
     lines: [
       'مرحباً بالعالم',
@@ -27,11 +31,10 @@ export class ClipsDirectExporterComponent implements OnInit {
     size: {width: 800, height: 800},
   };
 
+  constructor(private renderer: Renderer,
+              private route: ActivatedRoute) { }
 
-  constructor(private renderer:Renderer,
-              private route:ActivatedRoute) { }
-
-  download(clip) {
+  public download(clip) {
     // TODO(mk): Need to figure out a way to render in different sizes.
     // TODO(mk): Need to figure out a way to avoid re-downloading all fonts and only
     // requesting needed stuff.
@@ -41,40 +44,34 @@ export class ClipsDirectExporterComponent implements OnInit {
     // That iframe could either make the download there or just postMessage
     // to app the output blob.
     const timestamp = new Date().getTime();
-    clip.export().then(blob => {
+    clip.export(500).then((blob) => {
       FileSaver.saveAs(blob, timestamp + '.png');
     });
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     // Parse URL config.
-    this.route.queryParams.subscribe(
-        params => {
-          this.config = JSON.parse(decodeURIComponent(params['config']));
+    this.route.queryParams.subscribe((params) => {
+      this.config = JSON.parse(decodeURIComponent(params['config']));
+      this.config.photo = new Photo(this.config.photo);
+      const styleRules = `
+      @font-face {
+        font-family: '${this.config.font}';
+        font-weight: normal;
+        font-style: normal;
+        src: url('https://fonts.carbon.tools/${this.config.font}.eot#iefix');
+        src: url('https://fonts.carbon.tools/${this.config.font}.eot#iefix')
+              format('embedded-opentype'),
+            url('https://fonts.carbon.tools/${this.config.font}.woff2') format('woff2'),
+            url('https://fonts.carbon.tools/${this.config.font}.woff') format('woff'),
+            url('https://fonts.carbon.tools/${this.config.font}.ttf') format('truetype');
+      }`;
 
-          const styleRules = `
-          @font-face {
-            font-family: '${this.config.font}';
-            font-weight: normal;
-            font-style: normal;
-            src: url('https://fonts.carbon.tools/${this.config.font}.eot#iefix');
-            src: url('https://fonts.carbon.tools/${this.config.font}.eot#iefix') format('embedded-opentype'),
-                url('https://fonts.carbon.tools/${this.config.font}.woff2') format('woff2'),
-                url('https://fonts.carbon.tools/${this.config.font}.woff') format('woff'),
-                url('https://fonts.carbon.tools/${this.config.font}.ttf') format('truetype');
-          }`;
+      const styleEl = document.createElement('style');
+      styleEl.innerHTML = styleRules;
+      document.body.appendChild(styleEl);
 
-          var styleEl = document.createElement('style');
-          styleEl.innerHTML = styleRules;
-
-          document.body.appendChild(styleEl);
-
-          this.download(this.clip);
-        });
+      this.download(this.clip);
+    });
   }
-
-  parseConfig_(configParam) {
-  }
-
-
 }

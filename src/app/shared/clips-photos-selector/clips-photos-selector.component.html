@@ -1,8 +1,29 @@
 <!-- TODO(mk): Search and Filter Photos -->
 <!-- TODO(mk): Infinite Scrolling Photos -->
 
-<clips-selector [items]="photos" (change)="handleChange($event)">
-  <template let-item="$implicit" let-i="index">
-    <img class="photo-item" [src]="item.original_serve_url + '?w=100&h=100&fit=crop'" #img (error)="removeItem(item)"/>
-  </template>
-</clips-selector>
+<div class="photos-selector-container">
+  <div class="controls-container">
+    <div class="search-container">
+      <input (input)="search$.next($event.target.value)" (change)="handleSearchChange($event)" class="search-box" placeholder="ابحث عن صورة (أمثلة: جبال ثلجية، غروب الشمس، سيارة سباق، باقة زهر، فتاة، رمل شاطئ...)">
+      <div class="loading-pulse loading-indicator" [hidden]="!searching"></div>
+    </div>
+    <carbon-upup
+      label="اختر صورة من جهازك"
+      dragLabel="أو اسحبها إلى هنا من سطح المكتب"
+      uploadingLabel="يتم رفع الصورة..."
+      dropLabel="اترك الصورة هنا لتقوم برفعها..."
+      (success)="handleUploadPhoto($event)"></carbon-upup>
+  </div>
+
+  <div class="photos-container">
+    <clips-selector [items]="photos" (change)="handleChange($event)">
+      <template let-item="$implicit" let-i="index">
+        <img class="photo-item" [src]="item.getSrc(300, 300, true)" #img (error)="removeItem(item)"/>
+      </template>
+    </clips-selector>
+  </div>
+
+  <div class="photos-footer">
+    <div class="loading-pulse loading-indicator" [hidden]="!loading"></div>
+  </div>
+</div>

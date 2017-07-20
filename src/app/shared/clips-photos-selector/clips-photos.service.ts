@@ -3,6 +3,8 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/empty';
+import { Photo } from './clips-photo.model';
 
 const PER_PAGE = 50;
 const CARBON_SRCSRC_ENDPOINT = 'https://srcsrc.carbon.tools/api/v1/photo/';
@@ -31,21 +33,25 @@ export class ClipsPhotosService {
   private nextSearchUrl: string = CARBON_SRCSRC_SEARCH_ENDPOINT;
 
   constructor(private http: Http) { }
-  public search(params : ClipsPhotosServiceSearchParams = {}) {
+  public search(params: ClipsPhotosServiceSearchParams = {}) {
     return this.http.get(params.url || CARBON_SRCSRC_SEARCH_ENDPOINT, {
       params: {
-        q: params.q || '',
+        q: params.q || undefined,
+        order: '-source_created_at',
+        limit: PER_PAGE,
       }
     }).map((res) => {
       const response = res.json();
-      this.nextSearchUrl = response.next_url;
-      return response;
+      this.nextSearchUrl = response.next_url || null;
+      return response.result.map((item) => new Photo(item));
     });
   }
 
   public nextSearch() {
-    if (!this.nextSearchUrl) {
+    if (this.nextSearchUrl === undefined) {
       this.nextSearchUrl = CARBON_SRCSRC_SEARCH_ENDPOINT;
+    } else if (!this.nextSearchUrl) {
+      return Observable.empty<Response>();
     }
     return this.search({
       url: this.nextSearchUrl
@@ -64,7 +70,7 @@ export class ClipsPhotosService {
     }).map((res) => {
       const response = res.json();
       this.nextListUrl = response.next_url;
-      return response;
+      return response.result.map((item) => new Photo(item));
     });
   }
 

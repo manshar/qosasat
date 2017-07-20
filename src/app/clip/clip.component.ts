@@ -3,34 +3,51 @@ import {
   Input,
   ElementRef,
   ViewChild,
+  OnChanges,
+  SimpleChanges,
+  EventEmitter,
+  Output,
 } from '@angular/core';
 
+import { Photo } from '../shared/clips-photos-selector/clips-photo.model';
 import domtoimage from 'dom-to-image';
 
 @Component({
   selector: 'clip',
   template: `
-
     <div class="clip-preview-card" #clip
-        [ngStyle]="{'width': _preview ? '100%' : config.width + 'px'}"
+        [ngStyle]="{'width': preview ? '100%' : config.width + 'px'}"
         [class.visible]="loaded">
-      <img class="preview-img"
-        *ngIf="_preview"
-        crossorigin
-        [src]="getResizeUrl(photo)"
-        (load)="onLoad()">
-      <img *ngIf="!_preview"
-        crossorigin
-        [src]="getResizeUrl(photo)"
-        [width]="config.width" [height]="config.height" (load)="onLoad()">
 
+      <img class="preview-img"
+        *ngIf="preview"
+        crossorigin
+        [src]="_photoSrc"
+        (load)="onLoad()"
+        (error)="onError()" />
+
+      <img *ngIf="!preview"
+        crossorigin
+        [src]="_photoSrc"
+        [width]="config.width" [height]="config.height"
+        (load)="onLoad()"
+        (error)="onError()" />
+
+      <div class="loading-overlay" [hidden]="!loading">
+        <div class="loading-pulse loading-indicator"></div>
+      </div>
       <div class="bg-drop"></div>
-      <div class="text-wrapper {{_textFill}} {{_textPos}}" [hidden]="!textVisible">
-        <fit-text #textContainer class="text" [fitHeight]="true" [fitWidth]="true" [style.color]="'#' + textColor" [fitWidthRatio]="_fillRatio" [fitHeightRatio]="_fillRatio">
-          <div *ngIf="_lines">
+      <div class="text-wrapper {{_textFill}} {{textPos}}" [hidden]="!textVisible">
+        <fit-text #textContainer class="text"
+          [fitHeight]="true"
+          [fitWidth]="true"
+          [style.color]="'#' + textColor"
+          [fitWidthRatio]="_fillRatio"
+          [fitHeightRatio]="_fillRatio">
+          <div *ngIf="lines">
             <fit-text class="line"
               [font]="font"
-              *ngFor="let line of _lines" [fitHeight]="false" [fitWidth]="_fitLineWidth">
+              *ngFor="let line of lines" [fitHeight]="false" [fitWidth]="_fitLineWidth">
               {{line}}
             </fit-text>
           </div>
@@ -41,6 +58,29 @@ import domtoimage from 'dom-to-image';
   styles: [`
   .clip-preview-card {
     display: none;
+  }
+
+  .loading-overlay[hidden] {
+    display: none;
+  }
+
+  .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    right: 0;
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loading-overlay .loading-indicator {
+    transform: scale(3);
   }
 
   .text-wrapper[hidden] {
@@ -119,6 +159,54 @@ import domtoimage from 'dom-to-image';
     align-items: center;
   }
 
+  .bg-drop {
+    position: absolute;
+    top: 0; bottom: 0;
+    right: 0; left: 0;
+    background: rgba(0,0,0,.2);
+  }
+
+  .text {
+    width: 100%;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+  }
+
+  .text .line {
+    display: block;
+    width: 100%;
+    /* white-space: nowrap; */
+  }
+
+  .clip-preview-card.visible {
+    display: block;
+  }
+
+  .preview-img {
+    max-height: 60vh;
+    max-width: 100vw;
+  }
+
+  @media (min-width: 500px) {
+    .preview-img {
+      max-width: 70vw;
+      max-height: 100vh;
+    }
+  }
+
+  /*
 
 
   // .text-wrapper.p90.mc {
@@ -241,56 +329,6 @@ import domtoimage from 'dom-to-image';
   //   transform: translateY(-15%) translateX(70%) scale(.50);
   // }
 
-  .bg-drop {
-    position: absolute;
-    top: 0; bottom: 0;
-    right: 0; left: 0;
-    background: rgba(0,0,0,.2);
-  }
-
-  .text {
-    width: 100%;
-    flex-direction: column;
-    box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    color: #fff;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    direction: rtl;
-  }
-
-  .text .line {
-    display: block;
-    width: 100%;
-    /* white-space: nowrap; */
-  }
-
-  .clip-preview-card.visible {
-    display: block;
-  }
-
-  .preview-img {
-    max-height: 60vh;
-    max-width: 100vw;
-  }
-
-  @media (min-width: 500px) {
-    .preview-img {
-      max-width: 70vw;
-      max-height: 100vh;
-    }
-
-  }
-
-  /*
-
   // TODO(mk): Move this to outside component.
   // .preview-img {
   //   width: 100%;
@@ -304,154 +342,114 @@ import domtoimage from 'dom-to-image';
   */
   `],
 })
-export class ClipComponent {
-  private _lines:string[];
-  // private _font:string;
-  private _preview:boolean = true;
-  private _textFill:string = 'p90';
-  private _fillRatio:number = 0.9;
-  private _textPos:string = 'mc';
-  private _fitLineWidth:boolean = true;
-  @Input() textVisible:boolean = true;
+export class ClipComponent implements OnChanges {
+  private _textFill: string = 'p90';
+  private _fillRatio: number = 0.9;
+  private _fitLineWidth: boolean = true;
+  private _photoSrc: string;
+  private _noConfigChange: boolean = true;
+  private loading: boolean = true;
 
-  @ViewChild('clip') clip;
-  @ViewChild('textContainer') textContainer;
+  @ViewChild('clip') private clip;
+  @ViewChild('textContainer') private textContainer;
 
+  @Input() private textVisible: boolean = true;
+  @Input() private preview: boolean;
+  @Input() private previewRatio: number;
+  @Input() private config: any;
+  @Input() private text: string;
+  @Input() private textColor: string = 'ffffff';
+  @Input() private fontSize: string = '2em';
   @Input()
-  set preview(isPreview:boolean) {
-    this._preview = isPreview;
-    if (this.loaded) {
-      setTimeout(() => {
-        console.log('preview changed, refitting');
-        this.textContainer.fit(true);
-      }, 1);
-    }
-  }
-  @Input() previewRatio;
-  @Input() config;
-  @Input() text;
-  @Input() textColor = 'ffffff';
-  @Input() fontSize = '2em';
-  @Input()
-  set textFill(textFill:string) {
+  set textFill(textFill: string) {
     this._textFill = textFill;
     this._fillRatio = parseInt(textFill.substring(1), 10) / 100.0;
-    if (this.loaded) {
-      setTimeout(() => {
-        console.log('text fill changed, refitting...')
-        this.textContainer.fit(true);
-      }, 1);
-    }
   }
 
   @Input()
-  set textFit(textFit:string) {
+  set textFit(textFit: string) {
     this._fitLineWidth = textFit === 'fit';
-    if (this.loaded) {
-      setTimeout(() => {
-        console.log('text fit changed, refitting...')
-        this.textContainer.fit(true);
-      }, 1);
-    }
   }
 
-  @Input()
-  set textPos(textPos:string) {
-    this._textPos = textPos;
-    if (this.loaded) {
-      setTimeout(() => {
-        console.log('text fit changed, refitting...')
-        this.textContainer.fit(true);
-      }, 1);
-    }
-  }
+  @Input() private textPos: string;
+  @Input() private lines: string[];
+  @Input() private photo: Photo;
+  @Input() private font: string;
 
-  @Input()
-  set lines(lines:string[]) {
-    this._lines = lines || [];
-    setTimeout(() => {
-      if (this.loaded) {
-        this.textContainer.fit(true);
+  @Output() private imageFailed = new EventEmitter<any>();
+
+  private _loadPromise: Promise<any>;
+  private _loadPromiseResolver: Function;
+  private loaded: boolean = false;
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    const refitOnChangeProps = ['font', 'config', 'lines', 'textFill', 'textFit'];
+    const shouldRefit = refitOnChangeProps.some((prop) => prop in changes);
+    if ('photo' in changes || 'config' in changes) {
+      this._photoSrc = this.getResizeUrl(this.photo);
+      this.loading = true;
+      this.loaded = false;
+      this._loadPromise = null;
+      this._noConfigChange = !shouldRefit;
+      return;
+    } else {
+      if (shouldRefit && this.loaded) {
+        const timeout = 'lines' in changes ? 50 : 1;
+        setTimeout(() => this.textContainer.fit(true), timeout);
       }
-    }, 100);
+    }
   }
 
-  @Input() photo;
-  @Input() font;
-  // set font(font:string) {
-  //   this._font = font;
-  //   setTimeout(() => {
-  //     if (this.loaded) {
-  //       this.textContainer.fit(true);
-  //     }
-  //   }, 10);
-  // }
+  public export(waitTime = 10) {
+    return this.whenLoaded().then(() => {
+      return new Promise((resolve) => {
+        setTimeout(() => resolve(), waitTime);
+      }).then(() => {
+        return domtoimage.toBlob(this.clip.nativeElement)
+          .then((blob) => {
+            return blob;
+          })
+          .catch((error) => {
+              console.error('oops, something went wrong!', error);
+          });
+        });
+      });
+  }
 
-  loaded = false;
-  getResizeUrl(photo) {
+  private getResizeUrl(photo): string {
     if (!photo) {
       return;
     }
-    if (photo.indexOf('unsplash') !== -1) {
-      return photo + '?w=' + this.config.width + '&h=' + this.config.height + '&fit=crop'
-    } else if (photo.indexOf('lh3.googleusercontent.com') !== -1) {
-      return this.googleServedImageUrl_(photo, this.config.width, this.config.height, true);
-    }
+    return photo.getSrc(this.config.width, this.config.height, true);
   }
 
-  googleServedImageUrlBase_(photo:string) {
-    const indexOfEq = photo.indexOf('=');
-    return indexOfEq === -1 ? photo : photo.substring(0, indexOfEq);
+  private onError(event) {
+    this.imageFailed.emit({event});
   }
 
-  googleServedImageUrl_(photo:string, width, height, crop) {
-    const parts = [this.googleServedImageUrlBase_(photo), '='];
-    if (width) {
-      parts.push(`w${width}-`);
-    }
-    if (height) {
-      parts.push(`h${height}-`);
-    }
-    if (crop) {
-      parts.push('-c');
-    }
-    return parts.join('');
-  }
-
-  onLoad() {
-    console.log('onLoad');
+  private onLoad() {
     this.loaded = true;
-    setTimeout(() => {
-      this.textContainer.fit(true).then(() => {
-        if (this.loadPromiseResolver_) {
-          this.loadPromiseResolver_();
+    const promise = this._noConfigChange
+        ? Promise.resolve() : this.textContainer.fit(true);
+    promise.then(() => {
+      setTimeout(() => {
+        this._noConfigChange = true;
+        if (this._loadPromiseResolver) {
+          this._loadPromiseResolver();
         } else {
-          this.loadPromise_ = Promise.resolve();
+          this._loadPromise = Promise.resolve();
         }
-      });
-    }, 200);
-  }
-
-  loadPromise_:Promise<any>;
-  loadPromiseResolver_;
-  whenLoaded() {
-    if (this.loadPromise_) {
-      return this.loadPromise_;
-    }
-    return this.loadPromise_ = new Promise(resolve => {
-      this.loadPromiseResolver_ = resolve;
+        this.loading = false;
+      }, 200);
     });
   }
 
-  public export() {
-    return this.whenLoaded().then(() => {
-      return domtoimage.toBlob(this.clip.nativeElement)
-        .then((blob) => {
-          return blob;
-        })
-        .catch(function (error) {
-            console.error('oops, something went wrong!', error);
-        });
+  private whenLoaded() {
+    if (this._loadPromise) {
+      return this._loadPromise;
+    }
+    return this._loadPromise = new Promise((resolve) => {
+      this._loadPromiseResolver = resolve;
     });
   }
 }

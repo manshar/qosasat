@@ -1,3 +1,9 @@
+:host {
+  display: inline-block;
+  height: 30px;
+  width: 130px;
+}
+
 .carbon-upup {
   width: 100%;
   height: 100%;
@@ -7,6 +13,23 @@
 input[type="file"] {
   width: 0;
   height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.carbon-upup .main-label {
+  font-size: 2em;
+}
+
+.carbon-upup .drag-label {
+  font-size: 1em;
+}
+
+.carbon-upup .drop-label {
+  font-size: 1em;
 }
 
 .carbon-upup label {
@@ -31,7 +54,7 @@ input[type="file"] {
 }
 
 .carbon-upup label .label > div {
-  min-height: 1em;
+  /* min-height: 1em; */
 }
 
 .carbon-upup label.dragging .label.drop-label {
@@ -39,15 +62,15 @@ input[type="file"] {
 }
 
 .label {
-  font-size: 2em;
+  /* font-size: 2em;
   position: absolute;
   bottom: 0;
   right: 0; left: 0;
-  padding: .5em;
+  padding: .5em; */
 }
 
 .label.default {
-  color: #33848e;
+  /* color: #33848e; */
 }
 
 .carbon-upup img {
@@ -85,8 +108,16 @@ input[type="file"] {
 }
 
 
-@media (max-width: 500px) {
+.desktop {
+  display: none;
+}
+@media (min-width: 500px) {
   .desktop {
-    display: none;
+    display: block;
+  }
+
+  :host {
+    height: 60px;
+    width: 210px;
   }
 }

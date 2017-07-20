@@ -11,6 +11,9 @@ import 'rxjs/add/operator/map';
 export class YorwaQuotesSelectorComponent implements OnInit {
   @ViewChild(ClipsSelectorComponent) private selector;
   @Output() private change = new EventEmitter<any>();
+  private searching: boolean = false;
+  private loading: boolean = false;
+  private search$: EventEmitter<any> = new EventEmitter<any>();
 
   private quotes: Object[];
   private initialTerms: string[] = [
@@ -22,17 +25,44 @@ export class YorwaQuotesSelectorComponent implements OnInit {
     'العمل',
   ];
 
-  constructor(private quotesService: YorwaQuotesService) { }
+  constructor(private quotesService: YorwaQuotesService) {
+    this.search$
+      .debounceTime(500)
+      .distinctUntilChanged()
+      .subscribe((term) => {
+        this.searching = true;
+        if (term.trim().length > 0) {
+          this.search(term, false);
+        } else {
+          this.list();
+        }
+      });
+  }
 
   public ngOnInit() {
+    this.list();
+  }
+
+  public list() {
     const index = Math.floor(Math.random() * this.initialTerms.length);
+    this.search(this.initialTerms[index]);
+  }
+
+  public search(term, selectFirst: boolean = true) {
+    this.loading = selectFirst;
+    this.searching = true;
     this.quotesService.search({
-      q: this.initialTerms[index],
+      q: term,
     }).subscribe((quotes) => {
+      this.searching = false;
+      this.loading = false;
       this.quotes = quotes;
-      this.selector.select(this.quotes[0]);
+      if (selectFirst) {
+        this.selector.select(this.quotes[0]);
+      }
     }, (error) => {
-      console.log(error);
+      this.loading = false;
+      this.searching = false;
     });
   }
 
@@ -41,19 +71,32 @@ export class YorwaQuotesSelectorComponent implements OnInit {
   }
 
   public loadNext() {
+    if (this.loading) {
+      return;
+    }
+    this.loading = true;
     this.quotesService.nextSearch()
       .subscribe((quotes) => {
+        this.loading = false;
         this.quotes = this.quotes.concat(quotes);
-      });
+      }, () => this.loading = false);
   }
 
   private removeItem(item) {
     this.quotes.splice(this.quotes.indexOf(item), 1);
   }
 
+  private handleSearchChange(event) {
+    event.stopImmediatePropagation();
+    event.preventDefault();
+  }
+
   private handleChange(event) {
+    if (!event.item) {
+      return;
+    }
     this.change.next({
-      quote: event.item,
+      quote: JSON.parse(JSON.stringify(event.item)),
     });
   }
 

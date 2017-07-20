@@ -48,7 +48,6 @@ export class CarbonUpUpComponent implements OnInit {
   }
 
   handleDrop_(event) {
-    console.log('drop');
     event.preventDefault();
     event.stopPropagation();
     var files = event.dataTransfer.files;
@@ -78,17 +77,18 @@ export class CarbonUpUpComponent implements OnInit {
     // TODO Learn about Observables and maybe switch to using them
     // everywhere instead of mixing them with promises.
     this.upup.upload(file, progress => {
-      console.log(progress);
       this.progress.emit(progress);
       this.renderer.setElementStyle(
         this.progressBar.nativeElement,
         'width',
         progress + '%');
     }).then(response => {
-      console.log(response);
       this.success.emit(response)
+      this.renderer.setElementAttribute(
+          this.previewImage.nativeElement,
+          'src', 'null');
+      this.preview = false;
     }, errors => {
-      console.error(errors);
       this.error.emit(errors)
     });
   }

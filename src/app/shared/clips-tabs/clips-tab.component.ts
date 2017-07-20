@@ -23,7 +23,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
         [scrollWindow]="false"
         [infiniteScrollContainer]="scrollContainer"
         [infiniteScrollDistance]="3"
-        [infiniteScrollThrottle]="300"
+        [infiniteScrollThrottle]="100"
         (scrolled)="onScroll()">
       <ng-content></ng-content>
     </div>

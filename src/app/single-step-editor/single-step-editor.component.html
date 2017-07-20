@@ -1,9 +1,10 @@
 <div class="single-step-editor">
-  <div class="preview" tabindex="0" role="link" (keypress)="setEditMode(true)" #previewEl>
+  <div class="preview" tabindex="0" role="link" (keypress)="handleKeypress($event)" #previewEl>
     <clip #preview
         (click)="setEditMode(true)"
+        (imageFailed)="loadRandomPhoto()"
         [textVisible]="!editMode"
-        [photo]="photo.original_serve_url"
+        [photo]="photo"
         [font]="font"
         [lines]="lines"
         [textFill]="textFill"
@@ -20,12 +21,12 @@
         عشوائي
       </button>
     </div>
-    <div class="credits-bar">
+    <div class="credits-bar" *ngIf="photo && photo.showCredits">
       <div class="credits">
         <span> &lt; </span>
-        <a [href]="photo.source_photographer_link + '?utm_source=manshar-clips&utm_medium=referral&utm_campaign=api-credit'" target="_blank">{{photo.source_photographer_name}}</a>
+        <a [href]="photo.photographerLink" target="_blank">{{photo.photographerName}}</a>
         <span> / </span>
-        <a [href]="photo.source_link + '?utm_source=manshar-clips&utm_medium=referral&utm_campaign=api-credit'" target="_blank">{{photo.source_name}}</a>
+        <a [href]="photo.sourceLink" target="_blank">{{photo.sourceName}}</a>
         <span> &gt; </span>
       </div>
     </div>

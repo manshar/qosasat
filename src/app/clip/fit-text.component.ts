@@ -4,7 +4,8 @@ import { Component, ViewChild, ContentChildren, Input, Renderer, ElementRef } fr
   selector: 'fit-text',
   template: `
     <div class="fit-text-container" #container [style.fontFamily]="_font">
-      <div #content class="fit-text-content">
+      <div #content class="fit-text-content"
+          [class.visible]="doneFitting">
         <ng-content></ng-content>
       </div>
     </div>
@@ -13,26 +14,50 @@ import { Component, ViewChild, ContentChildren, Input, Renderer, ElementRef } fr
 
     :host {
       // position: relative;
+      max-width: 100%;
+      max-height: 100%;
     }
+
     .fit-text-container {
+      max-width: 100%;
+      max-height: 100%;
       position: relative;
       white-space: nowrap;
       display: block;
     }
+
+    .fit-text-measurer .fit-text-container {
+      max-width: initial;
+      max-height: initial;
+    }
+
+    .fit-text-measurer {
+      visibility: hidden !important;
+      opacity: 0;
+    }
+
+    .fit-text-content {
+      opacity: 0;
+      transition: opacity .2s;
+    }
+
+    .fit-text-content.visible {
+      opacity: 1;
+    }
   `]
 })
 export class FitTextComponent {
-  _measurer:HTMLElement;
-  _font:string;
-  static _counter = 1;
-  @ViewChild('container') container;
-  @ViewChild('content') content;
+  public doneFitting: boolean = false;
 
-  @Input('fitWidth') fitWidth:boolean;
-  @Input('fitHeight') fitHeight:boolean;
+  private _font: string;
+  @ViewChild('container') private container;
+  @ViewChild('content') private content;
 
-  @Input('fitWidthRatio') fitWidthRatio:number = 1;
-  @Input('fitHeightRatio') fitHeightRatio:number = 1;
+  @Input('fitWidth') private fitWidth: boolean;
+  @Input('fitHeight') private fitHeight: boolean;
+
+  @Input('fitWidthRatio') private fitWidthRatio: number = 1;
+  @Input('fitHeightRatio') private fitHeightRatio: number = 1;
   @Input()
   set font(font:string) {
     if (!this.childrenFitText) {
@@ -44,31 +69,38 @@ export class FitTextComponent {
     });
   }
 
+  private _fitPromise: Promise<any>;
+  private hasBeenFit: boolean = false;
 
-  _fitPromise:Promise<any>;
-
-  hasBeenFit:boolean = false;
-
-  @ContentChildren(FitTextComponent, {descendants: true}) childrenFitText;
+  @ContentChildren(FitTextComponent, {descendants: true}) private childrenFitText;
   constructor(
-    private renderer:Renderer,
-    private el:ElementRef) { }
+    private renderer: Renderer,
+    private el: ElementRef) { }
 
   public fit(optForceRefit = false, optNewFont:string = null) {
-    let parentPromise = Promise.resolve();
-    if (optForceRefit || !this.hasBeenFit) {
-      parentPromise = this.fitme(optForceRefit, optNewFont);
-    }
-    return parentPromise.then(() => {
-      // If it has fit-text children then call fit on these first.
-      const childrenPromises = this.childrenFitText.map(fittext => {
-        if (fittext.el === this.el) {
-          console.log('not a child but self resolving right away.');
-          return Promise.resolve();
-        }
-        return fittext.fitme(optForceRefit, optNewFont);
-      });
-      return Promise.all(childrenPromises)
+    this.doneFitting = optForceRefit ? false : this.doneFitting;
+
+    // If it has fit-text children then call fit on these first.
+    const childrenPromises = this.childrenFitText.map((fittext) => {
+      if (fittext.el === this.el) {
+        console.log('not a child but self resolving right away.');
+        return Promise.resolve();
+      }
+      fittext.doneFitting = optForceRefit ? false : fittext.doneFitting;
+      console.log('fitting child');
+      return fittext.fitme(optForceRefit, optNewFont)
+        .then(() => {
+          setTimeout(
+            () => fittext.doneFitting = true, 50);
+        });
+    });
+
+    return Promise.all(childrenPromises).then(() => {
+      return this.fitme(optForceRefit, optNewFont)
+        .then(() => {
+          setTimeout(
+            () => this.doneFitting = true, 50);
+        });
     });
   }
 
@@ -80,7 +112,9 @@ export class FitTextComponent {
     this.hasBeenFit = true;
 
     const measurer = document.createElement('div');
-    measurer.innerHTML = this.content.nativeElement.innerHTML;
+    let html = this.content.nativeElement.innerHTML;
+    // html = html.replace(/font-size:\s?\d+(\.\d+)?(px|em);/gi, '');
+    measurer.innerHTML = html;
     measurer.classList.add('fit-text-measurer');
 
     this.renderer.invokeElementMethod(
@@ -102,11 +136,18 @@ export class FitTextComponent {
           let expectedWidth = this.el.nativeElement.offsetWidth;
           let expectedHeight = this.el.nativeElement.offsetHeight;
           if (expectedHeight === 0 || expectedWidth === 0) {
-            return new Promise(resolve => {
-              setTimeout(() => {
-                resolve(this.fitme(true));
-              }, 100);
-            });
+            console.log('expectedHeight or width are 0:', this.el.nativeElement);
+            resolve();
+            // return new Promise(resolve => {
+            //   setTimeout(() => {
+            //     console.log('trying again');
+            //     if (!this.el.nativeElement.parentElement) {
+            //       resolve(false);
+            //     } else {
+            //       resolve(this.fitme(true));
+            //     }
+            //   }, 100);
+            // });
           }
           // console.log(
           //   'expectedHeight:', expectedHeight,
@@ -124,10 +165,11 @@ export class FitTextComponent {
                 this.container.nativeElement,
                 'removeChild',
                 [measurer]);
-              console.log('not doing any fitting for this fit-text');
-              return;
+            console.log('not doing any fitting for this fit-text');
+            return;
           }
 
+          console.log('fitHeight:', this.fitHeight);
           const fontSize = calculateFontSize_(
               measurer,
               this.fitHeight ? expectedHeight * this.fitHeightRatio : undefined,
@@ -148,20 +190,24 @@ export class FitTextComponent {
   }
 }
 
+// TODO(mk): Emojis on a separate line with large enough font-size won't display.
+// https://twitter.com/wesbos/status/650006363041497088
+// Maybe check if the line is only Emoji limit the computed font-size.
+
 function calculateFontSize_(measurer, expectedHeight, expectedWidth,
     minFontSize, maxFontSize) {
-  while (maxFontSize - minFontSize > 0.2) {
+  while (maxFontSize - minFontSize > .2) {
     const mid = (minFontSize + maxFontSize) / 2.0;
     measurer.style.fontSize = mid + 'em';
     const height = measurer.offsetHeight;
     const width = measurer.offsetWidth;
-    console.log(
-      measurer,
-      'measured height:', height,
-      'measured width:',  width,
-      'expectedHeight, expectedWidth',
-      expectedHeight, expectedWidth
-    )
+    // console.log(
+    //   measurer,
+    //   'measured height:', height,
+    //   'measured width:',  width,
+    //   'expectedHeight, expectedWidth',
+    //   expectedHeight, expectedWidth
+    // )
     if ((expectedHeight && height > expectedHeight) ||
         (expectedWidth && width > expectedWidth)) {
       maxFontSize = mid;

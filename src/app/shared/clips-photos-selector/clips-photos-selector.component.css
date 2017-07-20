@@ -1,7 +1,65 @@
 :host >>> .items-container .item {
   flex-grow: 1;
+  width: 24%;
 }
 
 .photo-item {
   width: 100%;
+}
+
+.search-container {
+  position: relative;
+  flex-grow: 1;
+}
+
+.search-container input {
+  display: block;
+  width: calc(100% - 14px);
+  padding: 0.5em 1em;
+  font-size: 1em;
+  box-sizing: border-box;
+  border: 1px solid #cecece;
+  margin: 7px auto;
+}
+
+.search-container .loading-indicator {
+  position: absolute;
+  left: 2.6em;
+  top: 37%;
+}
+
+
+.controls-container {
+  display: flex;
+}
+
+.controls-container carbon-upup {
+  font-size: 8px;
+  width: 140px;
+  text-align: center;
+  padding: 5px 1em;
+  height: 45px;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  background: #33848e;
+  color: #fff;
+  margin: 7px 0 7px 7px;
+  line-height: 2.2;
+}
+
+.photos-footer {
+  display: flex;
+  justify-content: center;
+  margin: 2em;
+}
+
+.controls-container carbon-upup:hover {
+  background: #00bcd4;
+}
+
+@media (min-width: 500px) {
+  .controls-container carbon-upup {
+    line-height: 1.4;
+  }
 }
