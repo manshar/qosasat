@@ -38,16 +38,23 @@ import domtoimage from 'dom-to-image';
       </div>
       <div class="bg-drop"></div>
       <div class="text-wrapper {{_textFill}} {{textPos}}" [hidden]="!textVisible">
-        <fit-text #textContainer class="text"
+        <fit-text #textContainer class="text text-container"
+          [class.visible]="!linesChanging"
           [fitHeight]="true"
           [fitWidth]="true"
           [style.color]="'#' + textColor"
           [fitWidthRatio]="_fillRatio"
-          [fitHeightRatio]="_fillRatio">
+          [fitHeightRatio]="_fillRatio"
+          [expectedWidth]="config.width"
+          [expectedHeight]="config.height">
           <div *ngIf="lines">
             <fit-text class="line"
               [font]="font"
-              *ngFor="let line of lines" [fitHeight]="false" [fitWidth]="_fitLineWidth">
+              *ngFor="let line of lines"
+              [fitHeight]="false"
+              [fitWidth]="_fitLineWidth"
+              [expectedWidth]="config.width"
+              [expectedHeight]="config.height">
               {{line}}
             </fit-text>
           </div>
@@ -58,6 +65,14 @@ import domtoimage from 'dom-to-image';
   styles: [`
   .clip-preview-card {
     display: none;
+  }
+
+  .text-container {
+    visibility: hidden;
+  }
+
+  .text-container.visible {
+    visibility: visible;
   }
 
   .loading-overlay[hidden] {
@@ -194,20 +209,8 @@ import domtoimage from 'dom-to-image';
     display: block;
   }
 
-  .preview-img {
-    max-height: 60vh;
-    max-width: 100vw;
-  }
-
-  @media (min-width: 500px) {
-    .preview-img {
-      max-width: 70vw;
-      max-height: 100vh;
-    }
-  }
 
   /*
-
 
   // .text-wrapper.p90.mc {
   //   transform: translateY(-50%) translateX(50%) scale(.9);
@@ -349,6 +352,7 @@ export class ClipComponent implements OnChanges {
   private _photoSrc: string;
   private _noConfigChange: boolean = true;
   private loading: boolean = true;
+  private linesChanging: boolean = false;
 
   @ViewChild('clip') private clip;
   @ViewChild('textContainer') private textContainer;
@@ -395,7 +399,10 @@ export class ClipComponent implements OnChanges {
     } else {
       if (shouldRefit && this.loaded) {
         const timeout = 'lines' in changes ? 50 : 1;
-        setTimeout(() => this.textContainer.fit(true), timeout);
+        this.linesChanging = true;
+        setTimeout(() => this.textContainer.fit(true).then(() => {
+          this.linesChanging = false;
+        }), timeout);
       }
     }
   }
@@ -428,6 +435,7 @@ export class ClipComponent implements OnChanges {
   }
 
   private onLoad() {
+    console.log('onLoad');
     this.loaded = true;
     const promise = this._noConfigChange
         ? Promise.resolve() : this.textContainer.fit(true);
@@ -439,6 +447,7 @@ export class ClipComponent implements OnChanges {
         } else {
           this._loadPromise = Promise.resolve();
         }
+        console.log('promise');
         this.loading = false;
       }, 200);
     });

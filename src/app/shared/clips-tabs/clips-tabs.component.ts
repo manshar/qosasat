@@ -12,16 +12,17 @@ import { ClipsTabComponent } from "./clips-tab.component";
     .tabs-wrapper {
       display: flex;
       flex-direction: column;
+      width: 100%;
     }
 
     .clips-tabs-labels {
       display: flex;
       border-bottom: 1px solid #eaeaea;
-      height: 50px;
+      height: 32px;
     }
 
     .tab-label {
-      padding: 12px;
+      padding: 0 12px;
       text-align: center;
       cursor: pointer;
     }
@@ -32,6 +33,16 @@ import { ClipsTabComponent } from "./clips-tab.component";
 
     .tab-label.active {
       border-bottom: 3px solid #33848e;
+    }
+
+    @media (min-width: 500px) {
+      .clips-tabs-labels {
+        height: 50px;
+      }
+      .tab-label {
+        padding: 12px;
+      }
+
     }
   `],
   template: `

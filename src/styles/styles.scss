@@ -3,22 +3,20 @@
 @import 'variables';
 
 nav {
-  margin-top: 16px;
 }
 
 nav a {
-  color: white;
-  padding: 8px 16px;
-  margin: 8px;
   vertical-align: middle;
-  line-height: 1.25;
   text-align: center;
   text-decoration: none;
-  border-radius: 4px;
+  font-size: 0.7em;
+  padding: 0.4em 1em;
+  display: block;
+  color: #999;
 }
 
 nav a:hover {
-  background-color: #00BCD4;
+  color: #00BCD4;
 }
 
 html, body{
@@ -39,20 +37,13 @@ input, button, textarea {
 
 .site-header,
 footer {
-  font-size: 3.5em;
-  padding: 1em;
-  background: #33848e;
-  color: #fff;
+  background: #fafafa;
   font-family: dubai;
-  text-align: center;
   position: relative;
 }
 
 .site-header nav {
-  font-size: .5em;
-  position: absolute;
-  top: 0;
-  left: 0;
+  float: left;
 }
 
 footer {
@@ -63,64 +54,40 @@ footer a {
   color: #fff;
 }
 
+.logo .tagline {
+  font-size: .4em;
+  display: block;
+  color: #999;
+}
+
 .logo i {
   background: url(/assets/img/manshar-clips-logo-2x.png) no-repeat;
   display: inline-block;
-  width: 64px;
-  height: 64px;
+  width: 26px;
+  height: 26px;
   background-size: cover;
-  position: absolute;
-  right: 0;
+  margin-top: -0.2em;
 }
 .logo {
   position: relative;
-  display: inline-block;
-  padding-right: 80px;
+  display: flex;
+  align-items: center;
 }
 
 .logo a {
   text-decoration: none;
-  color: #fff;
+  color: #33848e;
+  padding-left: 7px;
 }
 
 .logo a:hover {
   color: #00BCD4;
 }
 
-.logo .tagline {
-  font-size: .4em;
-  display: block;
-}
 
 .page {
   text-align: center;
   overflow-x: hidden;
-}
-
-
-@media (max-width: 500px) {
-  .site-header {
-    padding: 0.5em 0.1em;
-    text-align: right;
-    font-size: 1.5em;
-    padding-right: 1em;
-  }
-
-  .logo .tagline {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: .7em;
-  }
-
-  .logo {
-    padding-right: 50px;
-  }
-
-  .logo i {
-    width: 32px;
-    height: 32px;
-    top: -6px;
-  }
 }
 
 .clips-preview-fonts a {

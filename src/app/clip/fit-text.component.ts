@@ -41,7 +41,8 @@ import { Component, ViewChild, ContentChildren, Input, Renderer, ElementRef } fr
       transition: opacity .2s;
     }
 
-    .fit-text-content.visible {
+    .fit-text-content.visible,
+    .fit-text-content.visible * {
       opacity: 1;
     }
   `]
@@ -55,6 +56,8 @@ export class FitTextComponent {
 
   @Input('fitWidth') private fitWidth: boolean;
   @Input('fitHeight') private fitHeight: boolean;
+  @Input('expectedWidth') private expectedWidth: number;
+  @Input('expectedHeight') private expectedHeight: number;
 
   @Input('fitWidthRatio') private fitWidthRatio: number = 1;
   @Input('fitHeightRatio') private fitHeightRatio: number = 1;
@@ -71,6 +74,8 @@ export class FitTextComponent {
 
   private _fitPromise: Promise<any>;
   private hasBeenFit: boolean = false;
+  private maxRetryCount: number = 20;
+  private retryCount: number = 0;
 
   @ContentChildren(FitTextComponent, {descendants: true}) private childrenFitText;
   constructor(
@@ -90,14 +95,16 @@ export class FitTextComponent {
       console.log('fitting child');
       return fittext.fitme(optForceRefit, optNewFont)
         .then(() => {
+          console.log('fittext 1');
           setTimeout(
-            () => fittext.doneFitting = true, 50);
+            () => {fittext.doneFitting = true}, 50);
         });
     });
 
     return Promise.all(childrenPromises).then(() => {
       return this.fitme(optForceRefit, optNewFont)
         .then(() => {
+          console.log('fitme p');
           setTimeout(
             () => this.doneFitting = true, 50);
         });
@@ -110,6 +117,20 @@ export class FitTextComponent {
       return this._fitPromise;
     }
     this.hasBeenFit = true;
+
+    // Just a fallback for the first load - for some reason it's not showing.
+    setTimeout(() => {
+      console.log('timeout 2000 before if');
+      if (!this.doneFitting) {
+        console.log('timeout 2000');
+        // this.doneFitting = true;
+        this.fitme(optForceRefit, optNewFont)
+          .then(() => {
+            setTimeout(
+              () => this.doneFitting = true, 50);
+          });
+      }
+    }, 2000);
 
     const measurer = document.createElement('div');
     let html = this.content.nativeElement.innerHTML;
@@ -133,21 +154,26 @@ export class FitTextComponent {
     return this._fitPromise = new Promise((resolve, reject) => {
       setTimeout(() => {
         requestAnimationFrame(() => {
-          let expectedWidth = this.el.nativeElement.offsetWidth;
-          let expectedHeight = this.el.nativeElement.offsetHeight;
-          if (expectedHeight === 0 || expectedWidth === 0) {
-            console.log('expectedHeight or width are 0:', this.el.nativeElement);
-            resolve();
-            // return new Promise(resolve => {
-            //   setTimeout(() => {
-            //     console.log('trying again');
-            //     if (!this.el.nativeElement.parentElement) {
-            //       resolve(false);
-            //     } else {
-            //       resolve(this.fitme(true));
-            //     }
-            //   }, 100);
-            // });
+          let expectedWidth = (
+              this.el.nativeElement.offsetWidth ||
+              this.expectedWidth);
+          let expectedHeight = (
+              this.el.nativeElement.offsetHeight ||
+              this.expectedHeight);
+          if ((expectedHeight === 0 || expectedWidth === 0) &&
+              this.retryCount++ < this.maxRetryCount) {
+            console.log('expectedHeight or width are 0:', this.retryCount);
+            // resolve();
+            return new Promise((resolve) => {
+              setTimeout(() => {
+                console.log('trying again');
+                if (!this.el.nativeElement.parentElement) {
+                  resolve(false);
+                } else {
+                  resolve(this.fitme(true));
+                }
+              }, 100);
+            });
           }
           // console.log(
           //   'expectedHeight:', expectedHeight,

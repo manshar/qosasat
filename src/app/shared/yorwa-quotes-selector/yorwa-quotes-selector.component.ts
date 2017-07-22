@@ -23,6 +23,9 @@ export class YorwaQuotesSelectorComponent implements OnInit {
     'الإجتهاد',
     'إلهام',
     'العمل',
+    'الحب',
+    'الشجاعة',
+    'العائلة',
   ];
 
   constructor(private quotesService: YorwaQuotesService) {

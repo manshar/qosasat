@@ -41,6 +41,7 @@ export class SingleStepEditorComponent implements OnInit {
   private photosReachedEnd$: Subject<any> = new Subject<any>();
   private quotesReachedEnd$: Subject<any> = new Subject<any>();
 
+  private downloading: boolean = false;
   private size: any = {width: 800, height: 800};
   private editMode: boolean = false;
   private photo: Photo = new Photo({
@@ -140,6 +141,7 @@ export class SingleStepEditorComponent implements OnInit {
   }
 
   public download(clip) {
+    this.downloading = true;
     // TODO(mk): Need to figure out a way to render in different sizes.
     // TODO(mk): Need to figure out a way to avoid re-downloading all fonts and only
     // requesting needed stuff.
@@ -178,7 +180,15 @@ export class SingleStepEditorComponent implements OnInit {
     this.quotesSelector.random();
   }
 
-  public ngOnInit() {}
+  public ngOnInit() {
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.blob) {
+        const timestamp = new Date().getTime();
+        FileSaver.saveAs(e.data.blob, timestamp + '.png');
+        this.downloading = false;
+      }
+    });
+  }
 
   private handleKeypress(event) {
     switch (event.keyCode) {
@@ -208,9 +218,7 @@ export class SingleStepEditorComponent implements OnInit {
     return text.split('\n').map((line) => {
       let fixedLine = line.trim();
       if (this._hasEmoji(fixedLine)) {
-        // const numOfEmojis = fixedLine.length / 2;
-        // const padStr = '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0';
-        fixedLine = this._maybePadEmojiString(fixedLine, 40);
+        fixedLine = this._maybePadEmojiString(fixedLine, 35);
       }
       return fixedLine;
     });

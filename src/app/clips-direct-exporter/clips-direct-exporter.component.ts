@@ -35,17 +35,14 @@ export class ClipsDirectExporterComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   public download(clip) {
-    // TODO(mk): Need to figure out a way to render in different sizes.
-    // TODO(mk): Need to figure out a way to avoid re-downloading all fonts and only
-    // requesting needed stuff.
-    // These two could possibly be solved by having a separate route like
-    // /raw-export#{config: ''} that can be embedded in an iframe and
-    // executes the export inside of itself.
-    // That iframe could either make the download there or just postMessage
-    // to app the output blob.
     const timestamp = new Date().getTime();
     clip.export(500).then((blob) => {
-      FileSaver.saveAs(blob, timestamp + '.png');
+      const origin = `${document.location.protocol}//${document.location.host}`;
+      if (this.config.download) {
+        FileSaver.saveAs(blob, timestamp + '.png');
+      } else {
+        parent.postMessage({ blob }, this.config.embeddedOrigin || origin);
+      }
     });
   }
 

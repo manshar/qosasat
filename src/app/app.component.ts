@@ -21,27 +21,6 @@ import { AppState } from './app.service';
     './app.component.css'
   ],
   template: `
-    <header class="site-header" style="display: none">
-      <nav>
-        <a [href]="'/about' + (embeddedOrigin ? ('?utm_source=' + embeddedOrigin +'&utm_medium=embedded-clips') : '')" [target]="(embedded ? '_blank' : '_self')">
-          عن قصاصات
-        </a>
-      </nav>
-      <div class="logo">
-        <i></i>
-        <a [routerLink]="['/']" [queryParams]="{embedded: embedded ? 1 : 0, embeddedOrigin: embeddedOrigin}">
-          قُصَاصَات
-        </a>
-        <span class="tagline">
-            من أدوات
-
-          <a target="_blank" href="https://www.manshar.com?utm_source=manshar-clips">
-            منشر
-          </a>
-        </span>
-      </div>
-    </header>
-
     <main [class.embedded]="embedded">
       <router-outlet (deactivate)="onDeactivate()"></router-outlet>
     </main>

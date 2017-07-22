@@ -1,5 +1,8 @@
 <div class="single-step-editor">
   <div class="preview" tabindex="0" role="link" (keypress)="handleKeypress($event)" #previewEl>
+    <div class="downloading-overlay" [hidden]="!downloading">
+      <div class="loading-indicator loading-pulse"></div>
+    </div>
     <clip #preview
         (click)="setEditMode(true)"
         (imageFailed)="loadRandomPhoto()"
@@ -40,6 +43,27 @@
     </div>
   </div>
   <div class="controls-container">
+    <header class="site-header">
+      <nav>
+        <a [href]="'/about'">
+          عن قصاصات
+        </a>
+      </nav>
+      <div class="logo">
+        <i></i>
+        <a [routerLink]="['/']">
+          قُصَاصَات
+        </a>
+        <span class="tagline">
+            من أدوات
+
+          <a target="_blank" href="https://www.manshar.com?utm_source=manshar-clips">
+            منشر
+          </a>
+        </span>
+      </div>
+    </header>
+
     <clips-tabs>
       <clips-tab title="صور" (scrolled)="photosReachedEnd$.next()">
          <!-- add upload  -->
