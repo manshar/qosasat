@@ -200,7 +200,7 @@ export class FitTextComponent {
               measurer,
               this.fitHeight ? expectedHeight * this.fitHeightRatio : undefined,
               this.fitWidth ? expectedWidth * this.fitWidthRatio : undefined,
-              0.1, 13);
+              0.1, 8);
           requestAnimationFrame(() => {
             updateFontSize_(this.content.nativeElement, fontSize);
             this.renderer.invokeElementMethod(

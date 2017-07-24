@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit, ViewChildren, ContentChildren, QueryList } from '@angular/core';
+import { Component, OnInit, AfterContentInit, ViewChildren, ContentChildren, QueryList, Output, EventEmitter } from '@angular/core';
 import { ClipsTabComponent } from "./clips-tab.component";
 
 @Component({
@@ -51,7 +51,7 @@ import { ClipsTabComponent } from "./clips-tab.component";
         <div class="tab-label" *ngFor="let tab of tabs"
             tabindex="0" role="link"
             [class.active]="tab.active"
-            (click)="select(tab)"
+            (click)="handleClick(tab)"
             (keypress)="handleKeypress($event, tab)"
             [style.width]="(100/tabs.length) + '%'">
           {{tab.title}}
@@ -63,28 +63,37 @@ import { ClipsTabComponent } from "./clips-tab.component";
     </div>
   `,
 })
-export class ClipsTabsComponent implements OnInit, AfterContentInit {
-  @ContentChildren(ClipsTabComponent) tabs: QueryList<ClipsTabComponent>;
+export class ClipsTabsComponent implements AfterContentInit {
+  @ContentChildren(ClipsTabComponent) public tabs: QueryList<ClipsTabComponent>;
+  @Output('tabselected') public tabselected: EventEmitter<any> = new EventEmitter<any>();
+  @Output('tabclicked') public tabclicked: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() { }
-
-  handleKeypress(event, tab) {
+  public handleKeypress(event, tab) {
     switch (event.keyCode) {
       case 13: // enter
         this.select(tab);
+        this.tabclicked.emit(tab);
+        break;
+      default:
         break;
     }
   }
-  select(selectedTab: ClipsTabComponent) {
+
+  public handleClick(tab) {
+    this.select(tab);
+    this.tabclicked.emit(tab);
+  }
+
+  public select(selectedTab: ClipsTabComponent) {
     this.tabs.forEach(tab => {
       tab.active = false;
     });
     selectedTab.active = true;
-  }
-  ngOnInit() {
+
+    this.tabselected.emit(selectedTab);
   }
 
-  ngAfterContentInit(): void {
+  public ngAfterContentInit(): void {
     this.select(this.tabs.first);
   }
 

@@ -12,10 +12,30 @@
   position: relative;
   align-items: center;
   background: rgba(0,0,0, 0.9);
-  height: 60vh;
+  height: 100vh;
+  transition: height .3s;
+  will-change: height;
 }
+
+.controls-visible .preview clip {
+  /* transform: scale(.5); */
+}
+
+/* .preview clip >>> .preview-img {
+  transition: height .3s, width .3s;
+} */
+
+.controls-visible .preview {
+   height: 30vh;
+}
+
+.controls-visible .preview clip >>> .preview-img {
+   max-height: 30vh;
+}
+
 .preview clip {
   display: block;
+  transition: transform .3s;
 }
 
 .preview .edit-textarea[hidden] {
@@ -79,21 +99,20 @@
 }
 
 .controls-container {
-  /* width: 30vw; */
-  /* max-height: 70vh;   */
+  /* transform: translateY(61vh); */
 }
 
 .preview .controls-bar {
   position: absolute;
-  top: 0;
-  left: 5px;
+  bottom: 5px;
+  right: 5px;
   z-index: 9;
 }
 
 .preview .credits-bar {
   position: absolute;
   bottom: 0;
-  right: 0;
+  left: 0;
   z-index: 9;
   background: rgba(0,0,0,.6);
   padding: 0 1em;
@@ -117,17 +136,9 @@
 
 
 clip >>> .preview-img {
-  max-height: 60vh;
+  max-height: 91vh;
   max-width: 100vw;
 }
-
-@media (min-width: 500px) {
-  clip >>> .preview-img {
-    max-width: 70vw;
-    max-height: 100vh;
-  }
-}
-
 
 @media (min-width: 500px) {
   .single-step-editor .preview {
@@ -149,9 +160,31 @@ clip >>> .preview-img {
     height: auto;
   }
 
+  .preview .controls-bar {
+    bottom: auto;
+    top: 5px;
+  }
+
   .controls-container {
     /* flex-direction: row; */
     width: 30vw;
+  }
+
+  .controls-visible .preview {
+    height: auto;
+  }
+
+  clip >>> .preview-img {
+    max-width: 70vw;
+    max-height: 100vh;
+  }
+
+  .controls-visible .preview clip >>> .preview-img {
+    max-height: 100vh;
+  }
+
+  .close-menu-button {
+    display: none;
   }
 
 }

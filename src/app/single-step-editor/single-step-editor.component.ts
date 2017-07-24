@@ -18,6 +18,7 @@ import {
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Subject } from 'rxjs/Subject';
 import { Photo } from "../shared/clips-photos-selector/clips-photo.model";
+import { ClipComponent } from "../clip/clip.component";
 
 
 // tslint:disable-next-line:max-line-length
@@ -31,6 +32,7 @@ const EMOJI_REGEX = /(?:[\u00A9\u00AE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9
 export class SingleStepEditorComponent implements OnInit {
   @ViewChild('textarea') private textarea;
   @ViewChild('previewEl') private previewEl;
+  @ViewChild(ClipComponent) private clip;
 
   @ViewChild(ClipsPhotosSelectorComponent) private photosSelector;
   @ViewChild(ClipsFontsSelectorComponent) private fontsSelector;
@@ -41,6 +43,7 @@ export class SingleStepEditorComponent implements OnInit {
   private photosReachedEnd$: Subject<any> = new Subject<any>();
   private quotesReachedEnd$: Subject<any> = new Subject<any>();
 
+  private visibleControls: boolean = false;
   private downloading: boolean = false;
   private size: any = {width: 800, height: 800};
   private editMode: boolean = false;
@@ -189,6 +192,21 @@ export class SingleStepEditorComponent implements OnInit {
       }
     });
   }
+
+  public showControls() {
+    if (!this.visibleControls) {
+      this.visibleControls = true;
+      setTimeout(() => this.clip.refit(), 300);
+    }
+  }
+
+  public hideControls() {
+    if (this.visibleControls) {
+      this.visibleControls = false;
+      setTimeout(() => this.clip.refit(), 300);
+    }
+  }
+
 
   private handleKeypress(event) {
     switch (event.keyCode) {

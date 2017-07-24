@@ -12,7 +12,6 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { ClipComponent } from '../clip/clip.component';
 
-import { FontLoader } from '../app.service';
 import JSZip from 'jszip';
 import FileSaver from 'file-saver';
 import { Subject } from 'rxjs/Subject';

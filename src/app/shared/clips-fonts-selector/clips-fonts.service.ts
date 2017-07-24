@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as WebFont from 'webfontloader/webfontloader';
+import ArFontsConfig from './data/ar-fonts.json';
 
 @Injectable()
 // export class FontLoader {
@@ -18,13 +19,13 @@ export class ClipsFontsService {
         resolve(this.loadedConfigs[config]);
         return this.loadedConfigs[config];
       }
-      return System.import('./data/' + config)
-        .then(json => {
-          this.loadedConfigs[config] = json;
-          this.loadingFonts.concat(json['fonts']);
-          resolve(json);
-          return json;
-        });
+      // return System.import('./data/' + config)
+        // .then(json => {
+      this.loadedConfigs[config] = ArFontsConfig;
+      this.loadingFonts.concat(ArFontsConfig['fonts']);
+      resolve(ArFontsConfig);
+      return ArFontsConfig;
+        // });
     });
   }
 

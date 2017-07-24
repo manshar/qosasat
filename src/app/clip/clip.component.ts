@@ -357,13 +357,13 @@ export class ClipComponent implements OnChanges {
   @ViewChild('clip') private clip;
   @ViewChild('textContainer') private textContainer;
 
-  @Input() private textVisible: boolean = true;
-  @Input() private preview: boolean;
-  @Input() private previewRatio: number;
-  @Input() private config: any;
-  @Input() private text: string;
-  @Input() private textColor: string = 'ffffff';
-  @Input() private fontSize: string = '2em';
+  @Input() public textVisible: boolean = true;
+  @Input() public preview: boolean;
+  @Input() public previewRatio: number;
+  @Input() public config: any;
+  @Input() public text: string;
+  @Input() public textColor: string = 'ffffff';
+  @Input() public fontSize: string = '2em';
   @Input()
   set textFill(textFill: string) {
     this._textFill = textFill;
@@ -375,12 +375,12 @@ export class ClipComponent implements OnChanges {
     this._fitLineWidth = textFit === 'fit';
   }
 
-  @Input() private textPos: string;
-  @Input() private lines: string[];
-  @Input() private photo: Photo;
-  @Input() private font: string;
+  @Input() public textPos: string;
+  @Input() public lines: string[];
+  @Input() public photo: Photo;
+  @Input() public font: string;
 
-  @Output() private imageFailed = new EventEmitter<any>();
+  @Output() public imageFailed = new EventEmitter<any>();
 
   private _loadPromise: Promise<any>;
   private _loadPromiseResolver: Function;
@@ -405,6 +405,10 @@ export class ClipComponent implements OnChanges {
         }), timeout);
       }
     }
+  }
+
+  public refit() {
+    this.textContainer.fit(true);
   }
 
   public export(waitTime = 10) {

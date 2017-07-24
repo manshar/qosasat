@@ -1,4 +1,4 @@
-<div class="single-step-editor">
+<div class="single-step-editor" [class.controls-visible]="visibleControls">
   <div class="preview" tabindex="0" role="link" (keypress)="handleKeypress($event)" #previewEl>
     <div class="downloading-overlay" [hidden]="!downloading">
       <div class="loading-indicator loading-pulse"></div>
@@ -22,6 +22,9 @@
       </button>
       <button #randomBtn (click)="random()">
         عشوائي
+      </button>
+      <button class="close-menu-button" (click)="hideControls()" *ngIf="visibleControls">
+        أغلق القائمة
       </button>
     </div>
     <div class="credits-bar" *ngIf="photo && photo.showCredits">
@@ -64,7 +67,7 @@
       </div>
     </header>
 
-    <clips-tabs>
+    <clips-tabs (tabclicked)="showControls()">
       <clips-tab title="صور" (scrolled)="photosReachedEnd$.next()">
          <!-- add upload  -->
          <!-- add search  -->
