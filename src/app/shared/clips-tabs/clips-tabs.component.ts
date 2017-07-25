@@ -18,11 +18,11 @@ import { ClipsTabComponent } from "./clips-tab.component";
     .clips-tabs-labels {
       display: flex;
       border-bottom: 1px solid #eaeaea;
-      height: 32px;
+      height: 44px;
     }
 
     .tab-label {
-      padding: 0 12px;
+      padding: 6px 12px;
       text-align: center;
       cursor: pointer;
     }

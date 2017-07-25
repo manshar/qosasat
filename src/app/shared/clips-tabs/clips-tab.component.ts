@@ -8,7 +8,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
       position: absolute;
       height: 100vh;
       box-sizing: border-box;
-      padding-bottom: 80vh;
+      padding-bottom: 40vh;
       width: 100%;
     }
     @media (min-width: 500px) {

@@ -109,6 +109,31 @@
   z-index: 9;
 }
 
+.preview .status-bar {
+  color: #cecece;
+  position: absolute;
+  top: 0;
+  background: rgba(0,0,0,.2);
+  padding: 0 1em;
+  font-size: 0.8em;
+}
+
+.preview .status-bar .queued-message[hidden] {
+  display: none;
+}
+
+.preview .status-bar .queued-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview .status-bar .queued-message .loading-indicator {
+  margin-left: 1em;
+}
+
+
+
 .preview .credits-bar {
   position: absolute;
   bottom: 0;

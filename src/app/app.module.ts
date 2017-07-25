@@ -14,7 +14,7 @@ import {
   RouterModule,
   PreloadAllModules
 } from '@angular/router';
-import {Autosize} from 'angular2-autosize';
+import { Autosize } from 'angular2-autosize';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -44,13 +44,21 @@ import { ColorPickerModule } from './color-picker/color-picker.module';
 import { CarbonUpUpModule } from './carbon-upup/carbon-upup.module';
 import { ClipsSelectorModule } from './shared/clips-selector/clips-selector.module';
 import { ClipsPhotosModule } from './shared/clips-photos-selector/clips-photos.module';
-import { ClipsFontsModule} from './shared/clips-fonts-selector/clips-fonts.module';
+import {
+  ClipsFontsModule,
+} from './shared/clips-fonts-selector/clips-fonts.module';
 import { ClipsFormatsModule } from './shared/clips-formats-selector/clips-formats.module';
 import { ClipsSizesModule } from './shared/clips-sizes-selector/clips-sizes.module';
 import { YorwaQuotesModule } from './shared/yorwa-quotes-selector/yorwa-quotes.module';
+import {
+  ClipsExportManagerModule,
+} from './shared/clips-export-manager/clips-export-manager.module';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
+
+import 'hammerjs';
+import 'hammer-timejs';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -71,10 +79,7 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    // AboutComponent,
     ClipsDirectExporterComponent,
-    ExportComponent,
-    HomeComponent,
     SingleStepEditorComponent,
     CreditsComponent,
     ClipComponent,
@@ -82,7 +87,6 @@ type StoreType = {
     ClipsTabsComponent,
     FitTextComponent,
     NoContentComponent,
-    XLargeDirective,
     Autosize,
   ],
   /**
@@ -100,6 +104,7 @@ type StoreType = {
     ClipsSelectorModule,
     ClipsFormatsModule,
     ClipsSizesModule,
+    ClipsExportManagerModule,
     YorwaQuotesModule,
     RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules })
   ],

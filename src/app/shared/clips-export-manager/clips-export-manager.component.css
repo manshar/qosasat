@@ -1,0 +1,6 @@
+.iframes-container {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  left: -999999px;
+}

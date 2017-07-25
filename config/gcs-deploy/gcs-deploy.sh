@@ -1,4 +1,4 @@
-npm build:prod
+npm run build:prod
 cd dist/
 gsutil -m rsync -d -R . gs://qosasat.manshar.com
 gsutil -m acl set -R -a public-read gs://qosasat.manshar.com/*

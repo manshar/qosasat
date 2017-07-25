@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/cor
 import { ClipsPhotosService } from './clips-photos.service';
 import { ClipsSelectorComponent } from '../clips-selector/clips-selector.component';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 import { Photo } from './clips-photo.model';
 
 @Component({

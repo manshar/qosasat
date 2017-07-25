@@ -1,5 +1,6 @@
 {
- "name": "App",
+"short_name": "قصاصات",
+ "name": "قصاصات - تصميم صور بسهولة",
  "icons": [
   {
    "src": "/assets/icon/android-icon-36x36.png",
@@ -31,5 +32,13 @@
    "sizes": "192x192",
    "type": "image/png"
   }
- ]
+ ],
+  "start_url": "/?launcher=true&utm_source=homescreen",
+  "background_color": "#33848e",
+  "theme_color": "#00bcd4",
+  "display": "standalone",
+  "description": "تطبيق لتصميم قصاصات صورية ونصية ومشاركتها على الشبكات الإجتماعية بسهولة",
+  "dir": "rtl",
+  "lang": "ar",
+  "orientation": "natural"
 }

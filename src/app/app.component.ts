@@ -24,16 +24,6 @@ import { AppState } from './app.service';
     <main [class.embedded]="embedded">
       <router-outlet (deactivate)="onDeactivate()"></router-outlet>
     </main>
-
-    <footer style="display: none">
-      <p>
-        من أصدقائكم القائمين على
-        <a target="blank" href="https://www.manshar.com?utm_source=manshar-clips">
-        منشر
-        </a>
-        .
-      </p>
-    </footer>
   `
 })
 export class AppComponent implements OnInit {
@@ -44,7 +34,7 @@ export class AppComponent implements OnInit {
   constructor(
     public route: ActivatedRoute,
     public appState: AppState,
-    private renderer:Renderer,
+    private renderer: Renderer,
   ) {}
 
   onDeactivate() {
@@ -55,7 +45,7 @@ export class AppComponent implements OnInit {
   embeddedOrigin:string = '';
   public ngOnInit() {
     this.route.queryParams.subscribe(
-      params => {
+      (params) => {
         this.embedded = params['embedded'] == '1';
         this.embeddedOrigin = params['embeddedOrigin'];
       });

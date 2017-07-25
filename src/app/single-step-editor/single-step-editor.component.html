@@ -18,7 +18,12 @@
         [preview]="preview"></clip>
     <div class="controls-bar">
       <button #downloadBtn (click)="download(preview)">
-        تحميل
+        <span *ngIf="!isEmbedMode">
+          تصدير وتنزيل
+        </span>
+        <span *ngIf="isEmbedMode">
+          صدّر وأدخل القصاصة
+        </span>
       </button>
       <button #randomBtn (click)="random()">
         عشوائي
@@ -26,6 +31,14 @@
       <button class="close-menu-button" (click)="hideControls()" *ngIf="visibleControls">
         أغلق القائمة
       </button>
+    </div>
+    <div class="status-bar">
+      <div class="queued-message" [hidden]="queuedExportsCount == 0">
+        <div class="loading-indicator loading-pulse"></div>
+        يتم تصدير
+        {{queuedExportsCount}}
+        قصاصات
+      </div>
     </div>
     <div class="credits-bar" *ngIf="photo && photo.showCredits">
       <div class="credits">
@@ -67,10 +80,10 @@
       </div>
     </header>
 
-    <clips-tabs (tabclicked)="showControls()">
+    <clips-tabs (tabclicked)="showControls()"
+      (swipeup)="swipeUpControls$.next($event)" (swipedown)="swipeDownControls$.next($event)"
+      (panup)="swipeUpControls$.next($event)" (pandown)="swipeDownControls$.next($event)">
       <clips-tab title="صور" (scrolled)="photosReachedEnd$.next()">
-         <!-- add upload  -->
-         <!-- add search  -->
         <clips-photos-selector (change)="updatePhoto($event)"></clips-photos-selector>
       </clips-tab>
       <clips-tab title="خط">
@@ -81,7 +94,6 @@
         <clips-formats-selector (change)="updateFormats($event)"></clips-formats-selector>
       </clips-tab>
        <clips-tab title="اقتباسات" (scrolled)="quotesReachedEnd$.next()">
-         <!-- add search  -->
          <yorwa-quotes-selector (change)="updateQuote($event)"></yorwa-quotes-selector>
        </clips-tab>
       <clips-tab title="حجم">
@@ -90,5 +102,7 @@
     </clips-tabs>
   </div>
 
-  <iframe #exporterIframe [src]="exporterIframeSrc" class="export-iframe"></iframe>
+  <clips-export-manager (exportcomplete)="handleExportComplete($event)"></clips-export-manager>
+
+  <!-- <iframe #exporterIframe [src]="exporterIframeSrc" class="export-iframe"></iframe> -->
 </div>

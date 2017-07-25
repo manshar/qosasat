@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/cor
 import { YorwaQuotesService } from './yorwa-quotes.service';
 import { ClipsSelectorComponent } from '../clips-selector/clips-selector.component';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 @Component({
   selector: 'yorwa-quotes-selector',

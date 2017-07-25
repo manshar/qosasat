@@ -67,7 +67,8 @@
     "webdriver:start": "npm run webdriver-manager start",
     "webdriver:update": "webdriver-manager update",
     "webpack-dev-server": "node --max_old_space_size=4096 node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js"
+    "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
+    "precache": "sw-precache --root=dist --verbose"
   },
   "dependencies": {
     "@angular/animations": "~4.0.3",
@@ -87,6 +88,8 @@
     "core-js": "^2.4.1",
     "dom-to-image": "^2.5.2",
     "file-saver": "^1.3.3",
+    "hammer-timejs": "^1.1.0",
+    "hammerjs": "^2.0.8",
     "http-server": "^0.9.0",
     "ie-shim": "^0.1.0",
     "jszip": "^3.1.3",
@@ -149,6 +152,7 @@
     "source-map-loader": "^0.2.1",
     "string-replace-loader": "~1.2.0",
     "style-loader": "^0.16.1",
+    "sw-precache": "^5.2.0",
     "to-string-loader": "^1.1.5",
     "ts-node": "^3.0.2",
     "tslib": "^1.6.1",
