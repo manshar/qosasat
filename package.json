@@ -68,7 +68,7 @@
     "webdriver:update": "webdriver-manager update",
     "webpack-dev-server": "node --max_old_space_size=4096 node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
-    "precache": "sw-precache --root=dist --verbose"
+    "precache": "sw-precache --config=config/sw-precache-config.js --verbose"
   },
   "dependencies": {
     "@angular/animations": "~4.0.3",

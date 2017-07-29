@@ -8,31 +8,40 @@ import { ClipsSelectorComponent } from "../clips-selector/clips-selector.compone
   templateUrl: 'clips-formats-selector.component.html'
 })
 export class ClipsFormatsSelectorComponent implements OnInit {
-  @ViewChild('textFillSelector') textFillSelector;
-  @ViewChild('textFitSelector') textFitSelector;
-  @ViewChild('textPosSelector') textPosSelector;
+  public formats: Object = {};
+  @Output() public change = new EventEmitter<any>()
 
-  @Output() change = new EventEmitter<any>()
-  handleChange(event) {
-    this.change.next({
-      format: event.item,
-    });
+  @ViewChild('textFillSelector') private textFillSelector;
+  @ViewChild('textFitSelector') private textFitSelector;
+  @ViewChild('textPosSelector') private textPosSelector;
+
+  constructor(private formatsService: ClipsFormatsService) { }
+
+  public whenReady() {
+    return Promise.all([
+      this.textFillSelector.whenReady(),
+      this.textFitSelector.whenReady(),
+      this.textPosSelector.whenReady(),
+    ]);
   }
 
-  formats:Object = {};
-  constructor(private formatsService:ClipsFormatsService) { }
-
-  ngOnInit() {
+  public ngOnInit() {
     this.formats = this.formatsService.getAvailableFormats();
+    this.textFillSelector.ready();
+    this.textFitSelector.ready();
+    this.textPosSelector.ready();
+    this.random();
+  }
+
+  public random() {
     this.textFillSelector.select(this.formats['textFillChoices'][0]);
     this.textFitSelector.select(this.formats['textFitChoices'][0]);
     this.textPosSelector.select(this.formats['textPosChoices'][4]);
   }
 
-  public random() {
-    this.textFillSelector.random();
-    this.textFitSelector.random();
-    this.textPosSelector.random();
+  public handleChange(event) {
+    this.change.next({
+      format: event.item,
+    });
   }
-
 }

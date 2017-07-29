@@ -33,7 +33,7 @@
    "type": "image/png"
   }
  ],
-  "start_url": "/?launcher=true&utm_source=homescreen",
+  "start_url": "/index.html?launcher=true&utm_source=homescreen",
   "background_color": "#33848e",
   "theme_color": "#00bcd4",
   "display": "standalone",

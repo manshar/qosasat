@@ -62,9 +62,7 @@ export class YorwaQuotesSelectorComponent implements OnInit {
       this.searching = false;
       this.loading = false;
       this.quotes = quotes;
-      if (selectFirst) {
-        this.selector.select(this.quotes[0]);
-      }
+      this.selector.ready();
     }, (error) => {
       this.loading = false;
       this.searching = false;
@@ -85,6 +83,10 @@ export class YorwaQuotesSelectorComponent implements OnInit {
         this.loading = false;
         this.quotes = this.quotes.concat(quotes);
       }, () => this.loading = false);
+  }
+
+  public whenReady() {
+    return this.selector.whenReady();
   }
 
   private removeItem(item) {

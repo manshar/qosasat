@@ -1,0 +1,53 @@
+<div class="clip-preview-card" #clip
+    [ngStyle]="{'width': preview ? '100%' : config.width + 'px'}">
+
+  <div class="clip-wrapper">
+    <img class="clip-resizer" [src]='resizerSrc' />
+
+    <div class="responsive-content">
+      <img class="preview-img"
+        *ngIf="preview && !failedLoadingImage && !nophoto"
+        crossorigin
+        [src]="_photoSrc"
+        (load)="onLoad()"
+        [hidden]="!loaded"
+        (error)="onError()" />
+
+      <img *ngIf="!preview && !failedLoadingImage && !nophoto"
+        crossorigin
+        [hidden]="!loaded"
+        [src]="_photoSrc"
+        [width]="config.width" [height]="config.height"
+        (load)="onLoad()"
+        (error)="onError()" />
+
+      <div class="loading-overlay" [hidden]="!loading">
+        <div class="loading-pulse loading-indicator"></div>
+      </div>
+      <div class="bg-drop"></div>
+      <div class="text-wrapper {{_textFill}} {{textPos}}" [hidden]="!textVisible || (!loaded && !nophoto)">
+        <fit-text #textContainer class="text text-container"
+          [class.visible]="!linesChanging"
+          [fitHeight]="true"
+          [fitWidth]="true"
+          [style.color]="'#' + textColor"
+          [fitWidthRatio]="_fillRatio"
+          [fitHeightRatio]="_fillRatio"
+          [expectedWidth]="config.width"
+          [expectedHeight]="config.height">
+          <div *ngIf="lines">
+            <fit-text class="line"
+              [font]="font"
+              *ngFor="let line of lines"
+              [fitHeight]="false"
+              [fitWidth]="_fitLineWidth"
+              [expectedWidth]="config.width"
+              [expectedHeight]="config.height">
+              {{line}}
+            </fit-text>
+          </div>
+        </fit-text>
+      </div>
+    </div>
+  </div>
+</div>

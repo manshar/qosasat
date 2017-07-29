@@ -107,11 +107,11 @@ export class FitTextComponent {
           console.log('fitme p');
           setTimeout(
             () => this.doneFitting = true, 50);
-        });
+      });
     });
   }
 
-  public fitme(optForceRefit, optNewFont:string = null) {
+  public fitme(optForceRefit, optNewFont: string = null) {
     if (!optForceRefit && this._fitPromise) {
       console.log('returning already existing fit promise');
       return this._fitPromise;
@@ -119,18 +119,17 @@ export class FitTextComponent {
     this.hasBeenFit = true;
 
     // Just a fallback for the first load - for some reason it's not showing.
-    setTimeout(() => {
-      console.log('timeout 2000 before if');
-      if (!this.doneFitting) {
-        console.log('timeout 2000');
-        // this.doneFitting = true;
-        this.fitme(optForceRefit, optNewFont)
-          .then(() => {
-            setTimeout(
-              () => this.doneFitting = true, 50);
-          });
-      }
-    }, 2000);
+    // setTimeout(() => {
+    //   if (!this.doneFitting) {
+    //     console.log('timeout 2000');
+    //     // this.doneFitting = true;
+    //     this.fitme(optForceRefit, optNewFont)
+    //       .then(() => {
+    //         setTimeout(
+    //           () => this.doneFitting = true, 50);
+    //       });
+    //   }
+    // }, 2000);
 
     const measurer = document.createElement('div');
     let html = this.content.nativeElement.innerHTML;
@@ -183,8 +182,8 @@ export class FitTextComponent {
           // );
 
           if (!this.fitWidth && !this.fitHeight) {
-            updateFontSize_(this.content.nativeElement, 2);
-            updateFontSize_(measurer, 2);
+            updateFontSize_(this.content.nativeElement, 4);
+            updateFontSize_(measurer, 4);
             resolve();
 
             this.renderer.invokeElementMethod(

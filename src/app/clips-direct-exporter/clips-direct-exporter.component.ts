@@ -15,23 +15,7 @@ export class ClipsDirectExporterComponent implements OnInit {
   @ViewChild(ClipComponent) private clip;
 
   private _passedConfig: any;
-  private config: any = {
-    id: 'export-' + new Date().getTime(),
-    photo: new Photo({
-      original_serve_url: 'https://images.unsplash.com/photo-1500161727381-144726b3a965',
-      source_name: 'Unsplash',
-    }),
-    font: 'barabics',
-    lines: [
-      'مرحباً بالعالم',
-      'ما الذي يلهمكم ويجعلكم تبتسمون اليوم؟',
-    ],
-    previewRatio: 1,
-    textFill: 'p90',
-    textPos: 'mc',
-    textFit: 'fit',
-    size: {width: 800, height: 800},
-  };
+  private config: any = {};
 
   constructor(private renderer: Renderer,
               private route: ActivatedRoute) { }

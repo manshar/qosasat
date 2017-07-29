@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
-import { ClipsFontsService } from "./clips-fonts.service";
-import { ClipsSelectorComponent } from "../clips-selector/clips-selector.component";
+import { ClipsFontsService } from './clips-fonts.service';
+import { ClipsSelectorComponent } from '../clips-selector/clips-selector.component';
 
 @Component({
   selector: 'clips-fonts-selector',
@@ -8,27 +8,29 @@ import { ClipsSelectorComponent } from "../clips-selector/clips-selector.compone
   templateUrl: 'clips-fonts-selector.component.html'
 })
 export class ClipsFontsSelectorComponent implements OnInit {
-  @ViewChild(ClipsSelectorComponent) selector;
-  @Output() change = new EventEmitter<any>()
-  handleChange(event) {
+  public fonts: Object[] = [];
+  @Output() public change = new EventEmitter<any>()
+
+  private loadedFonts: Object = {};
+  @ViewChild(ClipsSelectorComponent) private selector;
+
+  constructor(private fontsService: ClipsFontsService) { }
+
+  public handleChange(event) {
     this.change.next({
       font: event.item,
     });
   }
 
-  loadedFonts:Object = {};
-  fonts:Object[] = [];
-  constructor(private fontsService:ClipsFontsService) { }
+  public whenReady() {
+    return this.selector.whenReady();
+  }
 
-  ngOnInit() {
-    this.fontsService.onFontLoad(data => {
+  public ngOnInit() {
+    this.fontsService.onFontLoad((data) => {
       if (!this.loadedFonts[data.font]) {
         this.fonts.push(data.font);
         this.loadedFonts[data.font] = true;
-
-        if (this.fonts.length < 2) {
-          this.selector.select(this.fonts[0]);
-        }
       }
     });
     this.fontsService.loadConfig('ar-fonts.json');
@@ -37,5 +39,4 @@ export class ClipsFontsSelectorComponent implements OnInit {
   public random() {
     this.selector.random();
   }
-
 }

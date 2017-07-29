@@ -5,7 +5,7 @@
     </div>
     <clip #preview
         (click)="setEditMode(true)"
-        (imageFailed)="loadRandomPhoto()"
+        (imageFailed)="imageFailedToLoad = true"
         [textVisible]="!editMode"
         [photo]="photo"
         [font]="font"

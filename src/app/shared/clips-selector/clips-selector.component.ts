@@ -1,4 +1,13 @@
-import { Component, OnInit, Output, EventEmitter, Input, ContentChild, TemplateRef } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  Input,
+  ContentChild,
+  TemplateRef,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -6,48 +15,76 @@ import 'rxjs/add/operator/map';
   styleUrls: ['clips-selector.component.css'],
   templateUrl: 'clips-selector.component.html',
 })
-export class ClipsSelectorComponent implements OnInit {
-  @Input() items:any[] = [];
-  @Output() change = new EventEmitter<any>();
-  @ContentChild(TemplateRef) template: TemplateRef<any>;
+export class ClipsSelectorComponent implements OnChanges {
+  @Input() public items: any[] = [];
 
-  selectedItem:Object;
-  focusedItem:Object;
-  constructor() { }
+  @Output() public change = new EventEmitter<any>();
+  @ContentChild(TemplateRef) public template: TemplateRef<any>;
+
+  public readyPromise: Promise<any>;
+  private selectedItem: Object;
+  private focusedItem: Object;
+  private _readyRejector: (reason?: any) => void;
+  private _readyResolver: (value?: {} | PromiseLike<{}>) => void;
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if ('items' in changes && changes['items'].currentValue) {
+      setTimeout(() => {
+        if (this.readyPromise) {
+          this.ready();
+        } else {
+          this.readyPromise = Promise.resolve();
+        }
+      }, 10);
+    }
+  }
 
   public random() {
     const index = Math.floor(Math.random() * this.items.length);
     this.select(this.items[index]);
   }
 
-  select(item) {
+  public select(item) {
     if (item !== this.selectedItem) {
       this.selectedItem = item;
-      this.change.emit({
-        item: item,
-      });
+      this.change.emit({ item });
     }
   }
 
-  ngOnInit() {
+  public whenReady() {
+    if (this.readyPromise) {
+      return this.readyPromise;
+    }
+    return this.readyPromise = new Promise((resolve, reject) => {
+      this._readyResolver = resolve;
+      this._readyRejector = reject;
+    });
   }
 
-  handleFocusItem(item) {
+  public ready() {
+    this._readyResolver();
+  }
+
+  public error() {
+    this._readyRejector();
+  }
+
+  public handleFocusItem(item) {
     this.focusedItem = item;
   }
 
-  handleBlurItem() {
+  public handleBlurItem() {
     this.focusedItem = null;
   }
 
-  handleKeyup(event) {
+  public handleKeyup(event) {
     let selectedIndex = 0;
-    switch(event.keyCode) {
+    switch (event.keyCode) {
       case 13: // enter.
         if (this.focusedItem) {
           this.select(this.focusedItem);
         }
-        break
+        break;
       case 39: // right.
       case 38: // up.
         selectedIndex = this.items.indexOf(this.selectedItem);
@@ -57,6 +94,8 @@ export class ClipsSelectorComponent implements OnInit {
       case 40: // down.
         selectedIndex = this.items.indexOf(this.selectedItem);
         this.select(this.items[Math.min(selectedIndex + 1, this.items.length - 1)]);
+        break;
+      default:
         break;
     }
   }

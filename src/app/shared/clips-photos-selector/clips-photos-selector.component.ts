@@ -29,21 +29,22 @@ export class ClipsPhotosSelectorComponent implements OnInit {
         if (term.trim().length > 0) {
           this.search(term);
         } else {
-          this.list(false);
+          this.list();
         }
       });
   }
 
-  public list(selectFirst: boolean = true) {
+  public whenReady() {
+    return this.selector.whenReady();
+  }
+
+  public list() {
     this.photosService.list()
       .subscribe((photos) => {
         this.loading = false;
         this.loadNextMethod = this.photosService.nextList.bind(this.photosService);
         this.photos = photos;
         this.searching = false;
-        if (selectFirst) {
-          this.selector.select(this.photos[0]);
-        }
       }, () => this.loading = false);
   }
   public ngOnInit() {
@@ -108,5 +109,4 @@ export class ClipsPhotosSelectorComponent implements OnInit {
       photo: event.item,
     });
   }
-
 }

@@ -56,23 +56,15 @@ export class SingleStepEditorComponent implements OnInit {
   private photosReachedEnd$: Subject<any> = new Subject<any>();
   private quotesReachedEnd$: Subject<any> = new Subject<any>();
 
+  private imageFailedToLoad: boolean;
   private visibleControls: boolean = false;
   private downloading: boolean = false;
   private size: any = {width: 800, height: 800};
   private editMode: boolean = false;
-  private photo: Photo = new Photo({
-    original_serve_url: 'https://images.unsplash.com/photo-1500161727381-144726b3a965',
-    source_name: 'Unsplash',
-  });
-  private font: string = 'barabics';
-  private lines: string[] = [
-    'مرحباً بالعالم',
-    'ما الذي يلهمكم ويجعلكم تبتسمون اليوم؟',
-  ];
-  private text: string = [
-    'مرحباً بالعالم',
-    'ما الذي يلهمكم ويجعلكم تبتسمون اليوم؟',
-  ].join('\n');
+  private photo: Photo;
+  private font: string;
+  private lines: string[];
+  private text: string;
 
   private previewRatio: number = 1;
   private textFill: string = 'p90';
@@ -134,6 +126,7 @@ export class SingleStepEditorComponent implements OnInit {
   }
 
   public updatePhoto(event) {
+    this.imageFailedToLoad = false;
     this.photo = event.photo;
   }
 
@@ -182,15 +175,17 @@ export class SingleStepEditorComponent implements OnInit {
       textFit: this.textFit,
       textPos: this.textPos,
       size: this.size,
+      nophoto: this.imageFailedToLoad,
     };
     this.exportManager.add(config);
     this.queuedExportsCount++;
   }
 
   public random() {
+    this.imageFailedToLoad = false;
     this.photosSelector.random();
     this.fontsSelector.random();
-    this.formatsSelector.random();
+    // this.formatsSelector.random();
     this.sizesSelector.random();
     this.quotesSelector.random();
   }
@@ -204,6 +199,16 @@ export class SingleStepEditorComponent implements OnInit {
 
       this.isEmbedMode = params['embedded'] === '1';
       this.embeddedOrigin = params['embeddedOrigin'];
+    });
+
+    Promise.all([
+      this.fontsSelector.whenReady().then(() => console.log('fontsSelector ready')),
+      this.formatsSelector.whenReady().then(() => console.log('formatsSelector ready')),
+      this.photosSelector.whenReady().then(() => console.log('photosSelector ready')),
+      this.quotesSelector.whenReady().then(() => console.log('quotesSelector ready')),
+      this.sizesSelector.whenReady().then(() => console.log('sizesSelector ready')),
+    ]).then(() => {
+      this.random();
     });
   }
 

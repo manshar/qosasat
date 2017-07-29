@@ -11,341 +11,33 @@ import {
 
 import { Photo } from '../shared/clips-photos-selector/clips-photo.model';
 import domtoimage from 'dom-to-image';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'clip',
-  template: `
-    <div class="clip-preview-card" #clip
-        [ngStyle]="{'width': preview ? '100%' : config.width + 'px'}"
-        [class.visible]="loaded">
-
-      <img class="preview-img"
-        *ngIf="preview"
-        crossorigin
-        [src]="_photoSrc"
-        (load)="onLoad()"
-        (error)="onError()" />
-
-      <img *ngIf="!preview"
-        crossorigin
-        [src]="_photoSrc"
-        [width]="config.width" [height]="config.height"
-        (load)="onLoad()"
-        (error)="onError()" />
-
-      <div class="loading-overlay" [hidden]="!loading">
-        <div class="loading-pulse loading-indicator"></div>
-      </div>
-      <div class="bg-drop"></div>
-      <div class="text-wrapper {{_textFill}} {{textPos}}" [hidden]="!textVisible">
-        <fit-text #textContainer class="text text-container"
-          [class.visible]="!linesChanging"
-          [fitHeight]="true"
-          [fitWidth]="true"
-          [style.color]="'#' + textColor"
-          [fitWidthRatio]="_fillRatio"
-          [fitHeightRatio]="_fillRatio"
-          [expectedWidth]="config.width"
-          [expectedHeight]="config.height">
-          <div *ngIf="lines">
-            <fit-text class="line"
-              [font]="font"
-              *ngFor="let line of lines"
-              [fitHeight]="false"
-              [fitWidth]="_fitLineWidth"
-              [expectedWidth]="config.width"
-              [expectedHeight]="config.height">
-              {{line}}
-            </fit-text>
-          </div>
-        </fit-text>
-      </div>
-    </div>
-`,
-  styles: [`
-  .clip-preview-card {
-    display: none;
-  }
-
-  .text-container {
-    visibility: hidden;
-  }
-
-  .text-container.visible {
-    visibility: visible;
-  }
-
-  .loading-overlay[hidden] {
-    display: none;
-  }
-
-  .loading-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    bottom: 0;
-    background: rgba(0,0,0,0.6);
-    right: 0;
-    z-index: 9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .loading-overlay .loading-indicator {
-    transform: scale(3);
-  }
-
-  .text-wrapper[hidden] {
-    display: none;
-  }
-
-  .text-wrapper {
-    display: block;
-    position: absolute;
-    box-sizing: border-box;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-  }
-
-  .text-wrapper.mc {
-    margin: 0 auto;
-  }
-
-  .text-wrapper.tc,
-  .text-wrapper.bc {
-    margin: 16px auto;
-  }
-
-  .text-wrapper.ml {
-    margin: auto auto auto 16px;
-  }
-  .text-wrapper.tl,
-  .text-wrapper.bl {
-    margin: 16px auto 16px 16px;
-  }
-
-  .text-wrapper.mr {
-    margin: auto 16px auto auto;
-  }
-
-  .text-wrapper.tr,
-  .text-wrapper.br {
-    margin: 16px 16px 16px auto;
-  }
-
-  .text-wrapper.tl fit-text,
-  .text-wrapper.tc fit-text,
-  .text-wrapper.tr fit-text {
-    justify-content: flex-start;
-  }
-
-  .text-wrapper.bl fit-text,
-  .text-wrapper.bc fit-text,
-  .text-wrapper.br fit-text {
-    justify-content: flex-end;
-  }
-
-  .text-wrapper.ml fit-text,
-  .text-wrapper.mc fit-text,
-  .text-wrapper.mr fit-text {
-    justify-content: center;
-  }
-
-  .text-wrapper.tl fit-text,
-  .text-wrapper.bl fit-text,
-  .text-wrapper.ml fit-text {
-    align-items: flex-end;
-  }
-
-  .text-wrapper.tr fit-text,
-  .text-wrapper.br fit-text,
-  .text-wrapper.mr fit-text {
-    align-items: flex-start;
-  }
-
-  .text-wrapper.tc fit-text,
-  .text-wrapper.bc fit-text,
-  .text-wrapper.mc fit-text {
-    align-items: center;
-  }
-
-  .bg-drop {
-    position: absolute;
-    top: 0; bottom: 0;
-    right: 0; left: 0;
-    background: rgba(0,0,0,.2);
-  }
-
-  .text {
-    width: 100%;
-    flex-direction: column;
-    box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    color: #fff;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    direction: rtl;
-  }
-
-  .text .line {
-    display: block;
-    width: 100%;
-    /* white-space: nowrap; */
-  }
-
-  .clip-preview-card.visible {
-    display: block;
-  }
-
-
-  /*
-
-  // .text-wrapper.p90.mc {
-  //   transform: translateY(-50%) translateX(50%) scale(.9);
-  // }
-
-  // .text-wrapper.p90.mc {
-  //   transform: translateY(-50%) translateX(50%) scale(.9);
-  // }
-
-  // .text-wrapper.p90.tc {
-  //   transform: translateY(-80%) translateX(50%) scale(.9);
-  // }
-
-  // .text-wrapper.p90.bc {
-  //   transform: translateY(-20%) translateX(50%) scale(.9);
-  // }
-
-  // .text-wrapper.p90.tl {
-  //   transform: translateY(-80%) translateX(50%) scale(.9);
-  // }
-
-  // .text-wrapper.p90.ml {
-  //   transform: translateY(-50%) translateX(50%) scale(.9);
-  // }
-
-  // .text-wrapper.p90.bl {
-  //   transform: translateY(-20%) translateX(50%) scale(.9);
-  // }
-
-  // .text-wrapper.p90.tr {
-  //   transform: translateY(-80%) translateX(50%) scale(.9);
-  // }
-
-  // .text-wrapper.p90.mr {
-  //   transform: translateY(-50%) translateX(50%) scale(.9);
-  // }
-
-  // .text-wrapper.p90.br {
-  //   transform: translateY(-20%) translateX(50%) scale(.9);
-  // }
-
-
-
-  // .text-wrapper.p75.mc {
-  //   transform: translateY(-50%) translateX(50%) scale(.75);
-  // }
-
-  // .text-wrapper.p75.mc {
-  //   transform: translateY(-50%) translateX(50%) scale(.75);
-  // }
-
-  // .text-wrapper.p75.tc {
-  //   transform: translateY(-82%) translateX(50%) scale(.75);
-  // }
-
-  // .text-wrapper.p75.bc {
-  //   transform: translateY(-18%) translateX(50%) scale(.75);
-  // }
-
-  // .text-wrapper.p75.tl {
-  //   transform: translateY(-82%) translateX(40%) scale(.75);
-  // }
-
-  // .text-wrapper.p75.ml {
-  //   transform: translateY(-50%) translateX(40%) scale(.75);
-  // }
-
-  // .text-wrapper.p75.bl {
-  //   transform: translateY(-18%) translateX(40%) scale(.75);
-  // }
-
-  // .text-wrapper.p75.tr {
-  //   transform: translateY(-82%) translateX(60%) scale(.75);
-  // }
-
-  // .text-wrapper.p75.mr {
-  //   transform: translateY(-50%) translateX(60%) scale(.75);
-  // }
-
-  // .text-wrapper.p75.br {
-  //   transform: translateY(-18%) translateX(60%) scale(.75);
-  // }
-
-
-
-  // .text-wrapper.p50.mc {
-  //   transform: translateY(-50%) translateX(50%) scale(.50);
-  // }
-
-  // .text-wrapper.p50.tc {
-  //   transform: translateY(-85%) translateX(50%) scale(.50);
-  // }
-
-  // .text-wrapper.p50.bc {
-  //   transform: translateY(-15%) translateX(50%) scale(.50);
-  // }
-
-  // .text-wrapper.p50.tl {
-  //   transform: translateY(-85%) translateX(30%) scale(.50);
-  // }
-
-  // .text-wrapper.p50.ml {
-  //   transform: translateY(-50%) translateX(30%) scale(.50);
-  // }
-
-  // .text-wrapper.p50.bl {
-  //   transform: translateY(-15%) translateX(30%) scale(.50);
-  // }
-
-  // .text-wrapper.p50.tr {
-  //   transform: translateY(-85%) translateX(70%) scale(.50);
-  // }
-
-  // .text-wrapper.p50.mr {
-  //   transform: translateY(-50%) translateX(70%) scale(.50);
-  // }
-
-  // .text-wrapper.p50.br {
-  //   transform: translateY(-15%) translateX(70%) scale(.50);
-  // }
-
-  // TODO(mk): Move this to outside component.
-  // .preview-img {
-  //   width: 100%;
-  // }
-
-  // @media (max-width: 850px) {
-  //   .preview-img {
-  //     width: 100%;
-  //   }
-  // }
-  */
-  `],
+  templateUrl: 'clip.component.html',
+  styleUrls: ['clip.component.css'],
 })
 export class ClipComponent implements OnChanges {
+  failedLoadingImage: boolean;
+  public resizerSrc;
+  @Input() public displayWidth: string;
+  @Input() public displayHeight: string;
+  @Input() public textVisible: boolean = true;
+  @Input() public preview: boolean;
+  @Input() public previewRatio: number;
+  @Input() public config: any;
+  @Input() public text: string;
+  @Input() public textColor: string = 'ffffff';
+  @Input() public fontSize: string = '2em';
+  @Input() public textPos: string;
+  @Input() public lines: string[];
+  @Input() public photo: Photo;
+  @Input() public font: string;
+  @Input() public nophoto: boolean = false;
+
+  @Output() public imageFailed = new EventEmitter<any>();
+
   private _textFill: string = 'p90';
   private _fillRatio: number = 0.9;
   private _fitLineWidth: boolean = true;
@@ -357,13 +49,6 @@ export class ClipComponent implements OnChanges {
   @ViewChild('clip') private clip;
   @ViewChild('textContainer') private textContainer;
 
-  @Input() public textVisible: boolean = true;
-  @Input() public preview: boolean;
-  @Input() public previewRatio: number;
-  @Input() public config: any;
-  @Input() public text: string;
-  @Input() public textColor: string = 'ffffff';
-  @Input() public fontSize: string = '2em';
   @Input()
   set textFill(textFill: string) {
     this._textFill = textFill;
@@ -375,29 +60,34 @@ export class ClipComponent implements OnChanges {
     this._fitLineWidth = textFit === 'fit';
   }
 
-  @Input() public textPos: string;
-  @Input() public lines: string[];
-  @Input() public photo: Photo;
-  @Input() public font: string;
-
-  @Output() public imageFailed = new EventEmitter<any>();
-
   private _loadPromise: Promise<any>;
   private _loadPromiseResolver: Function;
+  private _loadPromiseRejector: Function;
   private loaded: boolean = false;
+
+  constructor(private sanitizer: DomSanitizer) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
     const refitOnChangeProps = ['font', 'config', 'lines', 'textFill', 'textFit'];
+
+    if ('config' in changes) {
+      this.resizerSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
+        `data:image/svg+xml;utf8,<svg
+          height="${this.config.height}"
+          width="${this.config.width}"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          version="1.1"></svg>`);
+    }
     const shouldRefit = refitOnChangeProps.some((prop) => prop in changes);
     if ('photo' in changes || 'config' in changes) {
       this._photoSrc = this.getResizeUrl(this.photo);
       this.loading = true;
       this.loaded = false;
       this._loadPromise = null;
-      this._noConfigChange = !shouldRefit;
       return;
     } else {
-      if (shouldRefit && this.loaded) {
+      if (shouldRefit) {
         const timeout = 'lines' in changes ? 50 : 1;
         this.linesChanging = true;
         setTimeout(() => this.textContainer.fit(true).then(() => {
@@ -435,14 +125,20 @@ export class ClipComponent implements OnChanges {
   }
 
   private onError(event) {
+    if (!this.photo) {
+      return;
+    }
     this.imageFailed.emit({event});
+    this.loaded = true;
+    this.failedLoadingImage = true;
+    this.textContainer.fit(true);
+    this.loading = false;
   }
 
   private onLoad() {
-    console.log('onLoad');
     this.loaded = true;
-    const promise = this._noConfigChange
-        ? Promise.resolve() : this.textContainer.fit(true);
+    const promise = this.textContainer.fit(true);
+    this.loading = false;
     promise.then(() => {
       setTimeout(() => {
         this._noConfigChange = true;
@@ -451,8 +147,6 @@ export class ClipComponent implements OnChanges {
         } else {
           this._loadPromise = Promise.resolve();
         }
-        console.log('promise');
-        this.loading = false;
       }, 200);
     });
   }
@@ -461,8 +155,9 @@ export class ClipComponent implements OnChanges {
     if (this._loadPromise) {
       return this._loadPromise;
     }
-    return this._loadPromise = new Promise((resolve) => {
+    return this._loadPromise = new Promise((resolve, reject) => {
       this._loadPromiseResolver = resolve;
+      this._loadPromiseRejector = reject;
     });
   }
 }

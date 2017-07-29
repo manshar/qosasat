@@ -2,39 +2,6 @@
   margin: 0 1em;
 }
 
-clip {
-  display: inline-block;
-}
-
-.clip-preview-card {
-  position: relative;
-  display: inline-block;
-}
-
-.clip-preview-card.offscreen {
-  position: absolute;
-  top: -999999px;
-  left: -999999px;
-}
-
-.clip-preview-card img {
-  display: block;
-}
-
-.clip-controls {
-  display: flex;
-}
-
-.clip-controls input,
-.clip-controls textarea {
-  color: #333;
-  flex-grow: 1;
-}
-
-.clip-controls button {
-  width: 30vw;
-}
-
 button {
   color: #fff;
   background: #33848e;
@@ -43,40 +10,6 @@ button {
 }
 button:hover {
   background: #00bcd4;
-}
-
-.clip-controls textarea {
-  font-size: 1.5em;
-  padding: .2em 1em;
-  text-align: center;
-  direction: rtl;
-}
-
-.clip-controls input,
-.clip-controls button,
-.clip-actions button {
-  font-size: 2em;
-  padding: .2em 1em;
-}
-
-.clip-actions {
-}
-
-.clip-export-item clip {
-  margin: 0;
-}
-
-.clip-export-item {
-  margin: 1em;
-}
-
-.clip-actions button {
-  width: 100%;
-}
-
-
-.clip-controls .checkbox {
-  width: 60px;
 }
 
 .credits {
@@ -89,27 +22,6 @@ button:hover {
 }
 
 @media (max-width: 500px) {
-  .clip-controls {
-    flex-direction: column;
-  }
-
-  .clip-controls input,
-  .clip-controls textarea   {
-    border: 1px solid #666;
-    padding: .2em;
-  }
-
-  .clip-controls button,
-  .clip-actions button {
-    font-size: 1.4em;
-    padding: .5em 0;
-  }
-
-  .clip-controls button,
-  .clip-controls .checkbox {
-    width: auto;
-  }
-
   .page h1 {
     margin: .3em 0;
   }

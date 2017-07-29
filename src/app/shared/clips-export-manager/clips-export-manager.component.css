@@ -2,5 +2,5 @@
   visibility: hidden;
   pointer-events: none;
   position: absolute;
-  left: -999999px;
+  top: 0;
 }

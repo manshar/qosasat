@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
-import { ClipsSizesService } from "./clips-sizes.service";
-import { ClipsSelectorComponent } from "../clips-selector/clips-selector.component";
+import { ClipsSizesService } from './clips-sizes.service';
+import { ClipsSelectorComponent } from '../clips-selector/clips-selector.component';
 
 @Component({
   selector: 'clips-sizes-selector',
@@ -8,21 +8,25 @@ import { ClipsSelectorComponent } from "../clips-selector/clips-selector.compone
   templateUrl: 'clips-sizes-selector.component.html'
 })
 export class ClipsSizesSelectorComponent implements OnInit {
-  @ViewChild(ClipsSelectorComponent) selector;
+  public sizes: Object = {};
+  @Output() public change = new EventEmitter<any>()
 
-  @Output() change = new EventEmitter<any>()
-  handleChange(event) {
+  @ViewChild(ClipsSelectorComponent) private selector;
+  constructor(private sizesService: ClipsSizesService) { }
+
+  public whenReady() {
+    return this.selector.whenReady();
+  }
+
+  public handleChange(event) {
     this.change.next({
       size: event.item,
     });
   }
 
-  sizes:Object = {};
-  constructor(private sizesService:ClipsSizesService) { }
-
-  ngOnInit() {
+  public ngOnInit() {
     this.sizes = this.sizesService.getAvailableSizes();
-    this.selector.select(this.sizes[0]);
+    this.selector.ready();
   }
 
   public random() {

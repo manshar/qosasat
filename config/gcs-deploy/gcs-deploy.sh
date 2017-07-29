@@ -1,4 +1,5 @@
 npm run build:prod
+npm run precache
 cd dist/
 gsutil -m rsync -d -R . gs://qosasat.manshar.com
 gsutil -m acl set -R -a public-read gs://qosasat.manshar.com/*
