@@ -58,6 +58,7 @@ import '../styles/headings.css';
 
 import 'hammerjs';
 import 'hammer-timejs';
+import { ClipsColorsModule } from "./shared/clips-colors-selector/clips-colors.module";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -102,6 +103,7 @@ type StoreType = {
     ClipsSelectorModule,
     ClipsFormatsModule,
     ClipsSizesModule,
+    ClipsColorsModule,
     ClipsExportManagerModule,
     YorwaQuotesModule,
     RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules })

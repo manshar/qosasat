@@ -1,4 +1,4 @@
-<div class="single-step-editor" [class.controls-visible]="visibleControls">
+<div class="single-step-editor" [class.controls-visible]="visibleControls" [class.chrome-new-tab-mode]="newTabMode" [class.view-mode]="viewMode">
   <div class="preview" tabindex="0" role="link" (keypress)="handleKeypress($event)" #previewEl>
     <div class="downloading-overlay" [hidden]="!downloading">
       <div class="loading-indicator loading-pulse"></div>
@@ -13,11 +13,13 @@
         [textFill]="textFill"
         [textFit]="textFit"
         [textPos]="textPos"
+        [textColor]="textColor"
         [config]="size"
         [previewRatio]="previewRatio"
         [preview]="preview"></clip>
     <div class="controls-bar">
       <button #downloadBtn (click)="download(preview)">
+        <i class="icon download"></i>
         <span *ngIf="!isEmbedMode">
           تصدير وتنزيل
         </span>
@@ -26,10 +28,17 @@
         </span>
       </button>
       <button #randomBtn (click)="random()">
-        عشوائي
+        <i class="icon random"></i>
+      </button>
+      <button #editButton (click)="setEditMode(true)" [hidden]="newTabMode && viewMode">
+        <i class="icon edit"></i>
       </button>
       <button class="close-menu-button" (click)="hideControls()" *ngIf="visibleControls">
         أغلق القائمة
+      </button>
+      <button class="open-menu-button chrome-new-tab-visible" [hidden]="!newTabMode || !viewMode" (click)="viewMode = false">
+        <i class="icon design"></i>
+        <span>صمم قصاصتك الخاصة</span>
       </button>
     </div>
     <div class="status-bar">
@@ -67,7 +76,7 @@
       </nav>
       <div class="logo">
         <i></i>
-        <a [routerLink]="['/']">
+        <a [routerLink]="['/']" [target]="newTabMode || isEmbedded ? '_blank' : '_self'">
           قُصَاصَات
         </a>
         <span class="tagline">
@@ -90,14 +99,19 @@
          <!-- add search  -->
         <clips-fonts-selector (change)="updateFont($event)"></clips-fonts-selector>
       </clips-tab>
-      <clips-tab title="تنسيق">
-        <clips-formats-selector (change)="updateFormats($event)"></clips-formats-selector>
+      <clips-tab title="اقتباسات" (scrolled)="quotesReachedEnd$.next()">
+        <yorwa-quotes-selector (change)="updateQuote($event)"></yorwa-quotes-selector>
       </clips-tab>
-       <clips-tab title="اقتباسات" (scrolled)="quotesReachedEnd$.next()">
-         <yorwa-quotes-selector (change)="updateQuote($event)"></yorwa-quotes-selector>
-       </clips-tab>
-      <clips-tab title="حجم">
+      <clips-tab title="تنسيق">
+        <h3>
+          حجم الصورة
+        </h3>
         <clips-sizes-selector (change)="updateSize($event)"></clips-sizes-selector>
+        <clips-formats-selector (change)="updateFormats($event)"></clips-formats-selector>
+        <h3>
+          لون الخط
+        </h3>
+        <clips-colors-selector (change)="updateColor($event)"></clips-colors-selector>
       </clips-tab>
     </clips-tabs>
   </div>

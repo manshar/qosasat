@@ -31,7 +31,7 @@
 
 .controls-visible .preview clip >>> .clip-resizer {
    max-height: 30vh;
-   max-width: 70vw;
+   max-width: 100vw;
 }
 
 .preview clip {
@@ -99,8 +99,40 @@
   transform: scale(4) rotate(90deg);
 }
 
-.controls-container {
-  /* transform: translateY(61vh); */
+.chrome-new-tab-mode.view-mode .controls-container {
+  display: none;
+}
+
+.chrome-new-tab-mode.view-mode clip >>> .clip-resizer {
+  max-height: 100vh;
+  max-width: 100vw;
+}
+
+.chrome-new-tab-mode.view-mode button .icon + span {
+  display: none;
+}
+
+.chrome-new-tab-mode .preview .credits-bar {
+  left: auto;
+  right: 0;
+}
+
+clip >>> .text-wrapper {
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
+
+
+.controls-container >>> .sizes-container {
+  margin: 0;
+}
+
+.controls-container >>> h3 {
+  margin: .5em;
+  text-align: center;
+  font-weight: bold;
+}
+.controls-container >>> .formats-container {
+  padding-top: 0;
 }
 
 .preview .controls-bar {
@@ -108,6 +140,7 @@
   bottom: 5px;
   right: 5px;
   z-index: 9;
+  display: flex;
 }
 
 .preview .status-bar {
@@ -148,6 +181,32 @@
 
 .preview .controls-bar button {
   background: rgba(255,255,255,.2);
+  padding: 0.7em;
+  margin: 0 0.2em;
+  display: flex;
+  align-items: center;
+}
+
+.preview .controls-bar button[hidden] {
+  display: none;
+}
+
+.preview .controls-bar button .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.preview .controls-bar button .icon.download {
+  width: 24px;
+  height: 24px;
+}
+.preview .controls-bar button .icon.download + span {
+  display: none;
+}
+
+.preview .controls-bar button .icon.download {
+  width: 24px;
+  height: 24px;
 }
 
 .preview .controls-bar button:hover {
@@ -167,6 +226,9 @@ clip >>> .clip-resizer {
 }
 
 @media (min-width: 500px) {
+  .controls-container >>> h3 {
+    margin: 1em;
+  }
   .single-step-editor .preview {
     justify-content: center;
   }
@@ -207,10 +269,11 @@ clip >>> .clip-resizer {
 
   .controls-visible .preview clip >>> .clip-resizer {
     max-height: 100vh;
+    max-width: 70vw;
   }
 
   .close-menu-button {
-    display: none;
+    display: none !important;
   }
 
 }

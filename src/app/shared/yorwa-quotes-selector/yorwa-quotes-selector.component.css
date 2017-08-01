@@ -1,9 +1,29 @@
+.quotes-selector-container {
+  position: relative;
+}
+
 :host >>> .items-container {
   flex-direction: column;
 }
 
+.controls-container {
+  position: sticky;
+  top: 7px;
+  width: 100%;
+  z-index: 9;
+}
+
 :host >>> .items-container .item:nth-child(even) {
   background: #ececec;
+}
+
+.yorwa-logo {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  height: 30px;
+  background: #fff;
+  padding: 0;
 }
 
 .quote-item {
@@ -20,10 +40,12 @@
   display: block;
   width: calc(100% - 14px);
   padding: 0.5em 1em;
+  padding-right: 55px;
   font-size: 1em;
   box-sizing: border-box;
-  border: 1px solid #cecece;
   margin: 7px auto;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,.3);
+  border: none;
 }
 
 .search-container .loading-indicator {

@@ -18,3 +18,16 @@
   top:0;bottom:0;right:0;left:0;
   background: rgba(0, 188, 212, 0.4);
 }
+
+
+.item.random-item {
+  background: #999;
+}
+.item.random-item:hover {
+  background: rgba(0, 188, 212, 1);
+}
+
+.item .icon.random {
+  width: 46px;
+  height: 46px;
+}

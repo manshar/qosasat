@@ -28,6 +28,17 @@ export class YorwaQuotesSelectorComponent implements OnInit {
     'الحب',
     'الشجاعة',
     'العائلة',
+    'الصداقة',
+    'حبيبتي',
+    'حبيبي',
+    'الفضاء',
+    'النجوم',
+    'الأشجار',
+    'الورود',
+    'كاظم الساهر',
+    'نزار القباني',
+    'طوقان',
+    'درويش',
   ];
 
   constructor(private quotesService: YorwaQuotesService) {

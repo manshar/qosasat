@@ -10,5 +10,6 @@ export class IClipConfig {
   public textFill: string;
   public textPos: string;
   public textFit: string;
+  public textColor: string;
   public size: IClipSizeConfig;
 }

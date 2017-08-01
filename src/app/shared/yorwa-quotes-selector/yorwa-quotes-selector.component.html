@@ -6,6 +6,11 @@
           (change)="handleSearchChange($event)"
           class="search-box"
           placeholder="ابحث عن اقتباس حول موضوع (مثال: الحياة، النشاط، الحب، الشجاعة...)">
+      <div class="yorwa-logo" [hidden]="searching">
+        <a href="http://www.yorwa.com/?utm_source=manshar-clips" target="_blank">
+          <img src="/assets/img/yorwa-logo-100.png" width="50px"/>
+        </a>
+      </div>
       <div class="loading-pulse loading-indicator" [hidden]="!searching"></div>
     </div>
   </div>

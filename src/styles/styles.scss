@@ -64,6 +64,7 @@ footer a {
   height: 24px;
   background-size: cover;
 }
+
 .logo {
   position: relative;
   display: flex;
@@ -141,4 +142,29 @@ $pulse-duration: 750ms;
     left: ($base-line-height / 2);
     animation-delay: ($pulse-duration / 1.5);
   }
+}
+
+.icon.random {
+  background: url(/assets/icon/icons/ic_casino_white_48px.svg) no-repeat;
+  background-size: cover;
+  display: block;
+}
+
+.icon.edit {
+  background: url(/assets/icon/icons/ic_mode_edit_white_48px.svg) no-repeat;
+  background-size: cover;
+  display: block;
+}
+
+.icon.download {
+  background: url(/assets/icon/icons/ic_file_download_white_48px.svg) no-repeat;
+  background-size: cover;
+  display: block;
+}
+
+
+.icon.design {
+  background: url(/assets/icon/icons/ic_text_fields_white_48px.svg) no-repeat;
+  background-size: cover;
+  display: block;
 }

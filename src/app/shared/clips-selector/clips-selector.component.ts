@@ -17,6 +17,7 @@ import 'rxjs/add/operator/map';
 })
 export class ClipsSelectorComponent implements OnChanges {
   @Input() public items: any[] = [];
+  @Input() public enableRandomButton: boolean = true;
 
   @Output() public change = new EventEmitter<any>();
   @ContentChild(TemplateRef) public template: TemplateRef<any>;
@@ -81,8 +82,10 @@ export class ClipsSelectorComponent implements OnChanges {
     let selectedIndex = 0;
     switch (event.keyCode) {
       case 13: // enter.
-        if (this.focusedItem) {
+        if (this.focusedItem && this.focusedItem !== 'random') {
           this.select(this.focusedItem);
+        } else if (this.focusedItem === 'random') {
+          this.random();
         }
         break;
       case 39: // right.

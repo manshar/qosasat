@@ -5,3 +5,7 @@ clip {
 .clip-preview-card {
   display: block;
 }
+
+clip >>> .text-wrapper {
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}

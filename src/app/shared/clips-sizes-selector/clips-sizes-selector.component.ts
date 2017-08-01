@@ -29,6 +29,10 @@ export class ClipsSizesSelectorComponent implements OnInit {
     this.selector.ready();
   }
 
+  public select(index) {
+    this.selector.select(this.sizes[index]);
+  }
+
   public random() {
     this.selector.random();
   }

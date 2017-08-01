@@ -1,0 +1,7 @@
+<div class="colors-selector-container">
+  <clips-selector class="colors-selector" #colorsSelector [items]="colors" (change)="handleChange($event)">
+    <template let-item="$implicit" let-i="index">
+      <div class="color-item" [style.backgroundColor]="'#' + item">{{item}}</div>
+    </template>
+  </clips-selector>
+</div>

@@ -17,7 +17,6 @@ import { ClipsTabComponent } from "./clips-tab.component";
 
     .clips-tabs-labels {
       display: flex;
-      border-bottom: 1px solid #eaeaea;
       height: 44px;
     }
 

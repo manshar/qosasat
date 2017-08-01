@@ -2,8 +2,14 @@
   flex-grow: 1;
 }
 
-.font-item {
+.font-item,
+:host >>> .random-item {
   width: 100px;
   padding: 10px 0;
   text-align: center;
+}
+
+:host >>> .item.random-item .icon.random {
+  width: 32px;
+  height: 32px;
 }

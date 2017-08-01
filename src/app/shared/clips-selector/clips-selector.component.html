@@ -1,5 +1,12 @@
 <div class="items-container" (keyup)="handleKeyup($event)">
-   <div class="item"
+  <div class="item random-item" *ngIf="enableRandomButton"
+    tabindex="0" role="link"
+    (click)="random()"
+    (focus)="handleFocusItem('random')"
+    (blur)="handleBlurItem()">
+    <i class="icon random"></i>
+  </div>
+  <div class="item"
     tabindex="0" role="link"
     *ngFor="let item of items"
     [class.selected]="selectedItem == item"
@@ -9,6 +16,7 @@
 
   <div class="selected-highlight"></div>
 
-  <template ngFor [ngForOf]="[item]" [ngForTemplate]="template">
-  </template>
+    <template ngFor [ngForOf]="[item]" [ngForTemplate]="template">
+    </template>
+  </div>
 </div>

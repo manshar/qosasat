@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-
-import { ClipsFontsSelectorComponent } from './clips-fonts-selector.component';
-import { ClipsFontsService } from './clips-fonts.service';
 import { CommonModule } from '@angular/common';
+
+import { ClipsColorsSelectorComponent } from './clips-colors-selector.component';
+import { ClipsColorsService } from './clips-colors.service';
 import { ClipsSelectorComponent } from '../clips-selector/clips-selector.component';
 import { ClipsSelectorModule } from '../clips-selector/clips-selector.module';
 
@@ -12,13 +12,13 @@ import { ClipsSelectorModule } from '../clips-selector/clips-selector.module';
     ClipsSelectorModule,
   ],
   exports: [
-    ClipsFontsSelectorComponent,
+    ClipsColorsSelectorComponent,
   ],
   declarations: [
-    ClipsFontsSelectorComponent,
+    ClipsColorsSelectorComponent,
   ],
   providers: [
-    ClipsFontsService,
+    ClipsColorsService,
   ],
 })
-export class ClipsFontsModule { }
+export class ClipsColorsModule { }
