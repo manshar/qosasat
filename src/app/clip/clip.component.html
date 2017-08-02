@@ -1,5 +1,6 @@
 <div class="clip-preview-card" #clip
-    [ngStyle]="{'width': preview ? '100%' : config.width + 'px'}">
+    [ngStyle]="{'width': preview ? '100%' : config.width + 'px'}"
+    [class.preview-mode]="preview">
 
   <div class="clip-wrapper">
     <img class="clip-resizer" [src]='resizerSrc' />

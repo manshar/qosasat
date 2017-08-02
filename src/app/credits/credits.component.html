@@ -1,107 +1,162 @@
-<div class="about-page page">
-  <h1>
-    عن قُصاصات
-  </h1>
-
-  <p class="">
-    قصاصات هي أداة تساعدك على إنتاج وعمل تصميمات بسيطة لصور ونصوص لتشاركها على الشبكات الإجتماعية.
-  </p>
-
-  <h1>
-    خصائص قصاصات
-  </h1>
-
-  <ul>
-    <li>
-      أكثر من ٢٠٠ ألف صورة بجودة عالية يمكنك استخدامها بدون ترخيص
-    </li>
-    <li>
-      حوالي ١٤٠ خط يمكنك مقارنتهم بخطوة واحدة على تصميمك
-    </li>
-    <li>
-      إنتاج مختلف الأحجام الموصى بها للمشاركة على الشبكات الإجتماعية المختلفة
-    </li>
-    <li>
-      تحميل جميع الأحجام كملف مضغوط واحد
-    </li>
-  </ul>
-
-  <h1>
-    أمثلة
-  </h1>
-
-  <div class="samples">
-    <div>
-      <h4>صورة بالحجم المناسب والموصى به للمشاركة على تويتر</h4>
-      <img src="/assets/img/samples/life-smile/twitter/twitter-in-stream-photo.png" width="100%">
-    </div>
-    <div>
-      <h4>صورة مربعة للمشاركة على إنستجرام</h4>
-      <img src="/assets/img/samples/life-beauty/instagram/instagram-square-photo.png" width="100%">
-    </div>
-    <div>
-      <h4>صورة بالحجم المناسب لغطاء صفحتك الشخصية على الفيسبوك</h4>
-      <img src="/assets/img/samples/life-comedy/facebook/facebook-cover-photo.png" width="100%">
-    </div>
-  </div>
-
-  <h1>
-    تواصلوا معنا
-  </h1>
-
-  <p class="">
-    أخبرونا ما رأيكم وتواصلوا معنا على صفحتنا على
-    <a target="blank" href="https://facebook.com/mansharcom">
-    فيسبوك
+<header class="site-header">
+  <nav>
+    <a target="_blank" href="https://chrome.google.com/webstore/detail/%D8%AA%D8%A8%D9%88%D9%8A%D8%A8%D8%A9-%D9%82%D8%B5%D8%A7%D8%B5%D8%A7%D8%AA/fckgnjdaljjnbonhalgidlbggffphpfi?utm_source=qosasat&utm_medium=header&utm_campaign=qosasat">
+      إضافة كروم
     </a>
-     أو على
-     <a target="blank" href="https://twitter.com/mansharcom">
-     تويتر
-     </a>
-     .
-  </p>
+    <a [href]="'/about'">
+      عن قصاصات
+    </a>
+  </nav>
+  <div class="logo">
+    <i></i>
+    <a [routerLink]="['/']" [target]="newTabMode || isEmbedded ? '_blank' : '_self'">
+      قُصَاصَات
+    </a>
+    <span class="tagline">
+        من أدوات
 
-  <h1>
-    الأدوات والخدمات المستخدمة
-  </h1>
+      <a target="_blank" href="https://www.manshar.com?utm_source=qosasat&utm_medium=header&utm_campaign=qosasat">
+        منشر
+      </a>
+    </span>
+  </div>
+</header>
+<div class="about-page page">
 
-  <div class="credits">
-    <p>
-      لم يكن بناء قصاصات ممكن بدون استخدام بعض الأدوات والخدمات التي قام ببنائها أشخاص آخرون! هذه بعضها:
+  <div class="single-column">
+    <h1>
+      عن قُصاصات
+    </h1>
+
+    <p class="">
+      قصاصات هي أداة تساعدك على إنتاج وعمل تصميمات بسيطة لصور ونصوص لتشاركها على الشبكات الإجتماعية.
     </p>
 
+    <h1>
+      خصائص قصاصات
+    </h1>
+
+    <ul>
+      <li>
+        أكثر من ٢٠٠ ألف صورة بجودة عالية يمكنك استخدامها بدون ترخيص
+      </li>
+      <li>
+        حوالي ١٤٠ خط يمكنك مقارنتهم بخطوة واحدة على تصميمك
+      </li>
+      <li>
+        عدد هائل من الاقتباسات الجاهزة للإستخدام
+      </li>
+      <li>
+        إنتاج مختلف الأحجام للمشاركة على الشبكات الإجتماعية المختلفة
+      </li>
+      <li>
+        تحميل صورك الخاصة واستخدام نصك الخاص لإنتاج قصاصات
+      </li>
+      <li>
+        <a href="https://chrome.google.com/webstore/detail/%D8%AA%D8%A8%D9%88%D9%8A%D8%A8%D8%A9-%D9%82%D8%B5%D8%A7%D8%B5%D8%A7%D8%AA/fckgnjdaljjnbonhalgidlbggffphpfi" target="_blank">
+          إضافة لمتصفح الكروم للتبويبة الجديدة
+        </a>
+      </li>
+    </ul>
+
+    <h1>
+      أمثلة
+    </h1>
+  </div>
+  <div class="samples staged">
     <div>
-      <div class="credit-logo fontface">
-        <a target="blank" href="https://www.fontface.me/">
-          <img src="https://www.fontface.me/images/font-face-logo.svg" />
-        </a>
-      </div>
-      <p>
-        مشروع رائع يستضيف خطوط عربية للاستخدام على الويب! يمكنكم القيام
-        <a target="blank" href="https://www.fontface.me/page/donate">
-        بدعم المشروع بالتبرع مالياً هنا
-        </a>
-        .
-      </p>
-      <p>
-        جميع الخطوط الحالية المستخدمة في منشر هي مستضافة على فنوت فيسـ
-      </p>
+      <img src="/assets/img/samples/export-1500972870351.png">
     </div>
-
     <div>
-      <div class="credit-logo unsplash">
-        <a target="blank" href="https://www.unsplash.com/?utm_source=manshar-clips&utm_medium=referral&utm_campaign=api-credit">
-          <h3>Unsplash</h3>
-        </a>
-      </div>
-
-      <p>
-        مشروع رائع يستضيف يوفر صور عالية الجودة مجانية للاستخدام بأي طريقة تود فيها وبدون الحاجة إلى ترخيص!
-      </p>
-      <p>
-        جميع الصور المستخدمة حالياً هي من موقع Unsplash.
-      </p>
+      <img src="/assets/img/samples/1500939898777.png">
+    </div>
+    <div>
+      <img src="/assets/img/samples/export-1501323412874.png">
+    </div>
+    <div>
+      <img src="/assets/img/samples/export-1501562831138.png">
+    </div>
+    <div>
+      <img src="/assets/img/samples/export-1501322942994.png">
+    </div>
+    <div>
+      <img src="/assets/img/samples/export-1501578450076.png">
     </div>
   </div>
 
+  <div class="single-column">
+
+    <h1>
+      تواصلوا معنا
+    </h1>
+
+    <p class="">
+      أخبرونا ما رأيكم وتواصلوا معنا على صفحتنا على
+      <a target="blank" href="https://facebook.com/mansharcom">
+      فيسبوك
+      </a>
+      أو على
+      <a target="blank" href="https://twitter.com/mansharcom">
+      تويتر
+      </a>
+      .
+    </p>
+
+    <h1>
+      الأدوات والخدمات المستخدمة
+    </h1>
+
+    <div class="credits">
+      <p>
+        لم يكن بناء قصاصات ممكن بدون استخدام بعض الأدوات والخدمات التي قام ببنائها أشخاص آخرون! هذه بعضها:
+      </p>
+
+      <div>
+        <div class="credit-logo fontface">
+          <a target="blank" href="https://www.fontface.me/">
+            <img src="https://www.fontface.me/images/font-face-logo.svg" />
+          </a>
+        </div>
+        <p>
+          مشروع رائع يستضيف خطوط عربية للاستخدام على الويب! يمكنكم القيام
+          <a target="blank" href="https://www.fontface.me/page/donate">
+          بدعم المشروع بالتبرع مالياً هنا
+          </a>
+          .
+        </p>
+        <p>
+          جميع الخطوط الحالية المستخدمة في منشر هي مستضافة على فنوت فيسـ
+        </p>
+      </div>
+
+      <div>
+        <div class="credit-logo unsplash">
+          <a target="blank" href="https://www.unsplash.com/?utm_source=manshar-clips&utm_medium=referral&utm_campaign=api-credit">
+            <h3>Unsplash</h3>
+          </a>
+        </div>
+
+        <p>
+          مشروع رائع يستضيف يوفر صور عالية الجودة مجانية للاستخدام بأي طريقة تود فيها وبدون الحاجة إلى ترخيص!
+        </p>
+        <p>
+          جميع الصور المستخدمة حالياً هي من موقع Unsplash.
+        </p>
+      </div>
+
+
+      <div>
+        <div class="credit-logo yorwa">
+          <a href="http://www.yorwa.com/?utm_source=qosasat&utm_medium=about-page&utm_campaign=api-credit" target="_blank">
+            <img src="/assets/img/yorwa-logo-800.png"/>
+          </a>
+        </div>
+        <p>
+          مشروع محرك بحث متخصص بفهرسة والبحث في قائمة كبيرة من الإقتباسات التي يكتبها الناس على الشبكات الإجتماعية.
+          .
+        </p>
+      </div>
+
+    </div>
+  </div>
 </div>

@@ -173,7 +173,10 @@
   left: 10px;
   line-height: 1;
   font-size: 1.5em;
-  /* margin: -16px; */
+}
+
+.preview-mode .text-wrapper .clips-watermark {
+  font-size: 1em;
 }
 
 .text-wrapper.br .clips-watermark {

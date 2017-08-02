@@ -27,6 +27,7 @@ export class ClipsSelectorComponent implements OnChanges {
   private focusedItem: Object;
   private _readyRejector: (reason?: any) => void;
   private _readyResolver: (value?: {} | PromiseLike<{}>) => void;
+  private _recCount: number = 0;
 
   public ngOnChanges(changes: SimpleChanges): void {
     if ('items' in changes && changes['items'].currentValue) {
@@ -41,8 +42,14 @@ export class ClipsSelectorComponent implements OnChanges {
   }
 
   public random() {
-    const index = Math.floor(Math.random() * this.items.length);
-    this.select(this.items[index]);
+    this.whenReady().then(() => {
+      if (!this.items && this._recCount++ < 5) {
+        setTimeout(() => this.random(), 200);
+        return;
+      }
+      const index = Math.floor(Math.random() * this.items.length);
+      this.select(this.items[index]);
+    });
   }
 
   public select(item) {

@@ -32,6 +32,10 @@ input, button, textarea {
   font-family: dubai, Arial, Helvetica, sans-serif;
 }
 
+.site-header nav {
+  display: flex;
+}
+
 .site-header,
 footer {
   background: #fafafa;
@@ -84,7 +88,6 @@ footer a {
 
 .page {
   text-align: center;
-  overflow-x: hidden;
 }
 
 .clips-preview-fonts a {

@@ -30,7 +30,9 @@ export class ClipsFormatsSelectorComponent implements OnInit {
     this.textFillSelector.ready();
     this.textFitSelector.ready();
     this.textPosSelector.ready();
-    this.random();
+    this.textFillSelector.select(this.formats['textFillChoices'][0]);
+    this.textFillSelector.select(this.formats['textFitChoices'][0]);
+    this.textFillSelector.select(this.formats['textPosChoices'][4]);
   }
 
   public selectFill(index) {

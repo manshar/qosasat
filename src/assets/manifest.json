@@ -33,9 +33,9 @@
    "type": "image/png"
   }
  ],
-  "start_url": "/index.html?launcher=true&utm_source=homescreen",
-  "background_color": "#33848e",
-  "theme_color": "#00bcd4",
+  "start_url": "/?launcher=true&utm_source=homescreen&utm_medium=launcher&utm_campaign=qosasat",
+  "background_color": "#00bcd4",
+  "theme_color": "#33848e",
   "display": "standalone",
   "description": "تطبيق لتصميم قصاصات صورية ونصية ومشاركتها على الشبكات الإجتماعية بسهولة",
   "dir": "rtl",

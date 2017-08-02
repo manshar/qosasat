@@ -202,6 +202,7 @@ export class SingleStepEditorComponent implements OnInit {
       this.formatsSelector.random();
       this.formatsSelector.selectFill(2);
     } else {
+      this.formatsSelector.selectFill(0);
       this.sizesSelector.random();
     }
     this.quotesSelector.random();
@@ -239,9 +240,7 @@ export class SingleStepEditorComponent implements OnInit {
       this.photosSelector.whenReady().then(() => console.log('photosSelector ready')),
       this.quotesSelector.whenReady().then(() => console.log('quotesSelector ready')),
       this.sizesSelector.whenReady().then(() => console.log('sizesSelector ready')),
-    ]).then(() => {
-      this.random();
-    });
+    ]).then(() => this.random());
   }
 
   public handleExportComplete(event) {
