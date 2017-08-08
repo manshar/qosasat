@@ -13,7 +13,7 @@ import { Component, ViewChild, ContentChildren, Input, Renderer, ElementRef } fr
   styles: [`
 
     :host {
-      // position: relative;
+      position: relative;
       max-width: 100%;
       max-height: 100%;
     }
@@ -39,6 +39,7 @@ import { Component, ViewChild, ContentChildren, Input, Renderer, ElementRef } fr
     .fit-text-content {
       opacity: 0;
       transition: opacity .2s;
+      display: inline-block;
     }
 
     .fit-text-content.visible,
@@ -81,6 +82,31 @@ export class FitTextComponent {
   constructor(
     private renderer: Renderer,
     private el: ElementRef) { }
+
+
+  public getPositionRelativeTo(parentEl) {
+    let el = this.content.nativeElement;
+    const position = {top: 0, left: 0};
+    while (el !== parentEl) {
+      position.top += el.offsetTop;
+      position.left += el.offsetLeft;
+      el = el.parentElement;
+    }
+
+    return position;
+  }
+
+  public getDimensionsRelativeTo(parentEl) {
+    const styles = getComputedStyle(this.content.nativeElement);
+    const position = this.getPositionRelativeTo(parentEl);
+    return {
+      fontSize: styles.fontSize,
+      fontFamily: styles.fontFamily,
+      color: styles.color,
+      left: position.left,
+      top: position.top,
+    };
+  }
 
   public fit(optForceRefit = false, optNewFont:string = null) {
     this.doneFitting = optForceRefit ? false : this.doneFitting;
@@ -199,7 +225,7 @@ export class FitTextComponent {
               measurer,
               this.fitHeight ? expectedHeight * this.fitHeightRatio : undefined,
               this.fitWidth ? expectedWidth * this.fitWidthRatio : undefined,
-              0.1, 8);
+              0.1, 13);
           requestAnimationFrame(() => {
             updateFontSize_(this.content.nativeElement, fontSize);
             this.renderer.invokeElementMethod(

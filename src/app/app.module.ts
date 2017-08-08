@@ -59,6 +59,7 @@ import '../styles/headings.css';
 import 'hammerjs';
 import 'hammer-timejs';
 import { ClipsColorsModule } from "./shared/clips-colors-selector/clips-colors.module";
+import { ClipModule } from './clip/clip.module';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -82,10 +83,8 @@ type StoreType = {
     ClipsDirectExporterComponent,
     SingleStepEditorComponent,
     CreditsComponent,
-    ClipComponent,
     ClipsTabComponent,
     ClipsTabsComponent,
-    FitTextComponent,
     NoContentComponent,
     Autosize,
   ],
@@ -97,6 +96,7 @@ type StoreType = {
     HttpModule,
     InfiniteScrollModule,
     ColorPickerModule,
+    ClipModule,
     CarbonUpUpModule,
     ClipsPhotosModule,
     ClipsFontsModule,

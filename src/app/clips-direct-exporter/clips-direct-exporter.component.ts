@@ -3,6 +3,9 @@ import FileSaver from 'file-saver';
 import { ClipComponent } from '../clip/clip.component';
 import { ActivatedRoute } from '@angular/router';
 import { Photo } from '../shared/clips-photos-selector/clips-photo.model';
+import { ClipRenderService } from '../clip/clip-render.service';
+
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'clips-direct-exporter',
@@ -18,23 +21,26 @@ export class ClipsDirectExporterComponent implements OnInit {
   private config: any = {};
 
   constructor(private renderer: Renderer,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private renderService: ClipRenderService) { }
 
   public download(clip) {
-    const timestamp = new Date().getTime();
-    clip.export(500).then((blob) => {
-      const origin = `${document.location.protocol}//${document.location.host}`;
-      if (this.config.download) {
-        FileSaver.saveAs(blob, timestamp + '.png');
-      } else {
-        parent.postMessage({
-           blob,
-           type: 'exportcomplete',
-           id: this.config.id,
-           config: this._passedConfig,
-        }, this.config.embeddedOrigin || origin);
-      }
+    clip.export(1500).then((blob) => {
+      this.downloadSuccess(blob);
+    }).catch((error) => {
+      return this.renderOnServerWithChrome().toPromise()
+        .then((blob) => {
+          this.downloadSuccess(blob);
+        });
     });
+  }
+
+  public renderOnServerWithChrome() {
+    return this.renderService.renderWithChrome(
+      document.location.href, {
+        width: this.config.size.width,
+        height: this.config.size.height,
+      });
   }
 
   public ngOnInit() {
@@ -62,5 +68,24 @@ export class ClipsDirectExporterComponent implements OnInit {
 
       this.download(this.clip);
     });
+  }
+
+  private downloadSuccess(blob) {
+    const timestamp = new Date().getTime();
+    const origin = `${document.location.protocol}//${document.location.host}`;
+    if (this.config.download) {
+      // console.log(blob);
+      // document.open(blob, '_blank');
+      // const svgString = blob.split(',')[1];
+      // FileSaver.saveAs(new Blob([blob], {"type": "image/svg+xml"}), timestamp + '.svg');
+      FileSaver.saveAs(blob, timestamp + '.png');
+    } else {
+      parent.postMessage({
+          blob,
+          type: 'exportcomplete',
+          id: this.config.id,
+          config: this._passedConfig,
+      }, this.config.embeddedOrigin || origin);
+    }
   }
 }

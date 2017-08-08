@@ -7,11 +7,16 @@ import {
   SimpleChanges,
   EventEmitter,
   Output,
+  ViewChildren,
 } from '@angular/core';
 
 import { Photo } from '../shared/clips-photos-selector/clips-photo.model';
 import domtoimage from 'dom-to-image';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FitTextComponent } from './fit-text.component';
+import { ClipRenderService } from './clip-render.service';
+
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'clip',
@@ -48,6 +53,7 @@ export class ClipComponent implements OnChanges {
 
   @ViewChild('clip') private clip;
   @ViewChild('textContainer') private textContainer;
+  @ViewChildren(FitTextComponent) private textLinesComponents;
 
   @Input()
   set textFill(textFill: string) {
@@ -65,19 +71,24 @@ export class ClipComponent implements OnChanges {
   private _loadPromiseRejector: Function;
   private loaded: boolean = false;
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer,
+              private el: ElementRef,
+              private renderService: ClipRenderService) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
     const refitOnChangeProps = ['font', 'config', 'lines', 'textFill', 'textFit'];
 
     if ('config' in changes) {
-      this.resizerSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
-        `data:image/svg+xml;utf8,<svg
-          height="${this.config.height}"
-          width="${this.config.width}"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          version="1.1"></svg>`);
+      this.resizerSrc = undefined;
+      setTimeout(() => {
+        this.resizerSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
+          `data:image/svg+xml;utf8,<svg
+            height="${this.config.height}"
+            width="${this.config.width}"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"></svg>`);
+      }, 10);
     }
     const shouldRefit = refitOnChangeProps.some((prop) => prop in changes);
     if ('photo' in changes || 'config' in changes) {
@@ -106,15 +117,67 @@ export class ClipComponent implements OnChanges {
       return new Promise((resolve) => {
         setTimeout(() => resolve(), waitTime);
       }).then(() => {
-        return domtoimage.toBlob(this.clip.nativeElement)
-          .then((blob) => {
-            return blob;
-          })
-          .catch((error) => {
-              console.error('oops, something went wrong!', error);
-          });
+        const isIOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+        const isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+        if (isChrome && !isIOS) {
+          return domtoimage.toBlob(this.clip.nativeElement)
+            .then((blob) => {
+              return blob;
+            })
+            // renderOnServer is faster than renderOnServerWithChrome - the only problem
+            // is that it is inconsistent sometimes with characters spacing and
+            // does not render english or emoji characters.
+            // Let's just let it fallback to renderOnServerWithChrome for now.
+            .catch((error) => {
+              return this.renderOnServer().toPromise().then((blob) => {
+                return blob;
+              });
+            });
+          } else {
+            return this.renderOnServer().toPromise().then((blob) => {
+              return blob;
+            });
+            // throw 'Render on Server using Chrome';
+          }
         });
       });
+  }
+
+  public renderOnServer() {
+    const linesConfig = [];
+    this.textLinesComponents.forEach((textLine, index) => {
+      if (textLine === this.textContainer) {
+        return;
+      }
+
+      const dimensions = textLine.getDimensionsRelativeTo(this.el.nativeElement);
+      linesConfig.push({
+        text: this.lines[index - 1],
+        font: {
+          name: dimensions.fontFamily,
+          size: parseFloat(dimensions.fontSize),
+          color: dimensions.color,
+        },
+        position: {
+          x: dimensions.left,
+          y: dimensions.top,
+        }
+      });
+    });
+
+    const serverRenderConfig = {
+      uid: 'someuid',
+      templateName: 'qosasa',
+      output: {
+        width: this.config.width,
+        height: this.config.height,
+      },
+      background: {
+        imageUrl: this.getResizeUrl(this.photo),
+      },
+      texts: linesConfig,
+    };
+    return this.renderService.render(serverRenderConfig);
   }
 
   private getResizeUrl(photo): string {

@@ -15,6 +15,7 @@
   height: 100vh;
   transition: height .3s;
   will-change: height;
+  overflow: hidden;
 }
 
 .controls-visible .preview clip {
@@ -147,6 +148,7 @@ clip >>> .text-wrapper {
   color: #cecece;
   position: absolute;
   top: 0;
+  left: 50%;
   background: rgba(0,0,0,.2);
   padding: 0 1em;
   font-size: 0.8em;

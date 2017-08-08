@@ -19,7 +19,13 @@
 
   <%= htmlWebpackPlugin.files.webpackManifest %>
 
-  <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=dubai"/>
+  <style>
+    @font-face{
+      font-family:'dubai';
+      src: url('https://fonts.carbon.tools/dubai.eot?#iefix');
+      src: local('دبي'), local('dubai'), url('https://fonts.carbon.tools/dubai.woff') format('woff');
+    }
+  </style>
 
   <style>
     body {margin: 0;}

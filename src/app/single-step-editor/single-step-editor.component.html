@@ -92,9 +92,7 @@
       </div>
     </header>
 
-    <clips-tabs (tabclicked)="showControls()"
-      (swipeup)="swipeUpControls$.next($event)" (swipedown)="swipeDownControls$.next($event)"
-      (panup)="swipeUpControls$.next($event)" (pandown)="swipeDownControls$.next($event)">
+    <clips-tabs (tabclicked)="showControls()">
       <clips-tab title="صور" (scrolled)="photosReachedEnd$.next()">
         <clips-photos-selector (change)="updatePhoto($event)"></clips-photos-selector>
       </clips-tab>
