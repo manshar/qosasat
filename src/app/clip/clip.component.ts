@@ -77,10 +77,8 @@ export class ClipComponent implements OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     const refitOnChangeProps = ['font', 'config', 'lines', 'textFill', 'textFit'];
-
     if ('config' in changes) {
-      this.resizerSrc = undefined;
-      setTimeout(() => {
+      if (changes['config'].firstChange) {
         this.resizerSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
           `data:image/svg+xml;utf8,<svg
             height="${this.config.height}"
@@ -88,7 +86,18 @@ export class ClipComponent implements OnChanges {
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
             version="1.1"></svg>`);
-      }, 10);
+      } else {
+        this.resizerSrc = undefined;
+        setTimeout(() => {
+          this.resizerSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
+            `data:image/svg+xml;utf8,<svg
+              height="${this.config.height}"
+              width="${this.config.width}"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              version="1.1"></svg>`);
+        }, 10);
+      }
     }
     const shouldRefit = refitOnChangeProps.some((prop) => prop in changes);
     if ('photo' in changes || 'config' in changes) {

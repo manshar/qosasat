@@ -157,18 +157,8 @@ export class SingleStepEditorComponent implements OnInit {
   }
 
   public updateQuote(event) {
-    const MAX_WORDS_PER_LINE = 8;
     this.lines = event.quote.quote.split(/[,.\n!:،]/);
-    this.lines = this.lines.filter((line) => line.trim().length > 0);
-    if (this.lines.length < 2) {
-      const words = this.lines[0].split(/\s/);
-      const newLines = [];
-      while (words.length > 0) {
-        newLines.push(
-          words.splice(0, Math.floor(Math.random() * MAX_WORDS_PER_LINE) + 2).join(' '));
-      }
-      this.lines = newLines;
-    }
+    this.lines = this._betterLines(this.lines);
     this.text = this.lines.join('\n');
     this.lines = this._calcLines(this.text);
   }
@@ -195,8 +185,12 @@ export class SingleStepEditorComponent implements OnInit {
 
   public random() {
     this.imageFailedToLoad = false;
-    this.photosSelector.random();
-    this.fontsSelector.random();
+    if (!this.photo) {
+      this.photosSelector.random();
+    }
+    if (!this.font) {
+      this.fontsSelector.random();
+    }
     if (this.newTabMode && this.viewMode) {
       // this.sizesSelector.select(1);
       this.formatsSelector.random();
@@ -205,7 +199,9 @@ export class SingleStepEditorComponent implements OnInit {
       this.formatsSelector.selectFill(0);
       this.sizesSelector.random();
     }
-    this.quotesSelector.random();
+    if (!this.text) {
+      this.quotesSelector.random();
+    }
     // this.colorsSelector.random();
   }
 
@@ -224,11 +220,17 @@ export class SingleStepEditorComponent implements OnInit {
 
       if (params['config']) {
         const config = JSON.parse(decodeURIComponent(params['config']));
-        for (let key of config) {
-          if (key === 'photo') {
-            this[key] = new Photo(config[key]);
-          } else {
-            this[key] = config[key];
+        console.log(params['config']);
+        for (let key in config) {
+          if (config.hasOwnProperty(key)) {
+            if (key === 'photo') {
+              this[key] = new Photo(config[key]);
+            } else if (key === 'text') {
+              this[key] = config[key];
+              this.lines = this._betterLines(this._calcLines(this[key]));
+            } else {
+              this[key] = config[key];
+            }
           }
         }
       }
@@ -312,6 +314,21 @@ export class SingleStepEditorComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  private _betterLines(lines) {
+    const MAX_WORDS_PER_LINE = 8;
+    const filteredLines = lines.filter((line) => line.trim().length > 0);
+    const newLines = [];
+    if (filteredLines.length < 2) {
+      const words = filteredLines[0].split(/\s/);
+      while (words.length > 0) {
+        newLines.push(
+          words.splice(0, Math.floor(Math.random() * MAX_WORDS_PER_LINE) + 2).join(' '));
+      }
+      return newLines;
+    }
+    return filteredLines;
   }
 
   private _calcLines(text) {

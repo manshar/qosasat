@@ -179,12 +179,12 @@ export class FitTextComponent {
     return this._fitPromise = new Promise((resolve, reject) => {
       setTimeout(() => {
         requestAnimationFrame(() => {
-          let expectedWidth = (
-              this.el.nativeElement.offsetWidth ||
-              this.expectedWidth);
-          let expectedHeight = (
-              this.el.nativeElement.offsetHeight ||
-              this.expectedHeight);
+          let expectedWidth = Math.min(
+            this.el.nativeElement.offsetWidth || Infinity,
+            this.expectedWidth || Infinity);
+          let expectedHeight = Math.min(
+              this.el.nativeElement.offsetHeight || Infinity,
+              this.expectedHeight || Infinity);
           if ((expectedHeight === 0 || expectedWidth === 0) &&
               this.retryCount++ < this.maxRetryCount) {
             console.log('expectedHeight or width are 0:', this.retryCount);
@@ -221,11 +221,15 @@ export class FitTextComponent {
           }
 
           console.log('fitHeight:', this.fitHeight);
+          console.log('fitHeightRatio:', this.fitHeightRatio);
+          console.log('expectedHeight:', expectedHeight);
+          console.log('fitWidthRatio:', this.fitWidthRatio);
+          console.log('expectedWidth:', expectedWidth);
           const fontSize = calculateFontSize_(
               measurer,
               this.fitHeight ? expectedHeight * this.fitHeightRatio : undefined,
               this.fitWidth ? expectedWidth * this.fitWidthRatio : undefined,
-              0.1, 13);
+              0.1, 50);
           requestAnimationFrame(() => {
             updateFontSize_(this.content.nativeElement, fontSize);
             this.renderer.invokeElementMethod(
@@ -252,13 +256,12 @@ function calculateFontSize_(measurer, expectedHeight, expectedWidth,
     measurer.style.fontSize = mid + 'em';
     const height = measurer.offsetHeight;
     const width = measurer.offsetWidth;
-    // console.log(
-    //   measurer,
-    //   'measured height:', height,
-    //   'measured width:',  width,
-    //   'expectedHeight, expectedWidth',
-    //   expectedHeight, expectedWidth
-    // )
+    console.log(
+      'measured height:', height,
+      'measured width:',  width,
+      'expectedHeight, expectedWidth',
+      expectedHeight, expectedWidth
+    )
     if ((expectedHeight && height > expectedHeight) ||
         (expectedWidth && width > expectedWidth)) {
       maxFontSize = mid;

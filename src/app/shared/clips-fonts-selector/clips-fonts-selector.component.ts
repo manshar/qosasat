@@ -11,10 +11,16 @@ export class ClipsFontsSelectorComponent implements OnInit {
   public fonts: Object[] = [];
   @Output() public change = new EventEmitter<any>()
 
+  private _resolveEnoughFontsLoaded: (value?: {} | PromiseLike<{}>) => void;
+  private _enoughFontsLoadedPromise: Promise<{}>;
   private loadedFonts: Object = {};
   @ViewChild(ClipsSelectorComponent) private selector;
 
-  constructor(private fontsService: ClipsFontsService) { }
+  constructor(private fontsService: ClipsFontsService) {
+    this._enoughFontsLoadedPromise = new Promise((resolve) => {
+      this._resolveEnoughFontsLoaded = resolve;
+    });
+  }
 
   public handleChange(event) {
     this.change.next({
@@ -23,7 +29,10 @@ export class ClipsFontsSelectorComponent implements OnInit {
   }
 
   public whenReady() {
-    return this.selector.whenReady();
+    return Promise.all([
+      this.selector.whenReady(),
+      this._enoughFontsLoadedPromise,
+    ]);
   }
 
   public ngOnInit() {
@@ -31,6 +40,10 @@ export class ClipsFontsSelectorComponent implements OnInit {
       if (!this.loadedFonts[data.font]) {
         this.fonts.push(data.font);
         this.loadedFonts[data.font] = true;
+      }
+      if (this.fonts.length > 5 && this._resolveEnoughFontsLoaded) {
+        this._resolveEnoughFontsLoaded();
+        this._resolveEnoughFontsLoaded = null;
       }
     });
     this.fontsService.loadConfig('ar-fonts.json');
