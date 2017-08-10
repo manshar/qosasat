@@ -183,12 +183,12 @@ export class SingleStepEditorComponent implements OnInit {
     this.queuedExportsCount++;
   }
 
-  public random() {
+  public random(firstTime = false) {
     this.imageFailedToLoad = false;
-    if (!this.photo) {
+    if (!this.photo || !firstTime) {
       this.photosSelector.random();
     }
-    if (!this.font) {
+    if (!this.font || !firstTime) {
       this.fontsSelector.random();
     }
     if (this.newTabMode && this.viewMode) {
@@ -199,7 +199,7 @@ export class SingleStepEditorComponent implements OnInit {
       this.formatsSelector.selectFill(0);
       this.sizesSelector.random();
     }
-    if (!this.text) {
+    if (!this.text || !firstTime) {
       this.quotesSelector.random();
     }
     // this.colorsSelector.random();
@@ -220,7 +220,6 @@ export class SingleStepEditorComponent implements OnInit {
 
       if (params['config']) {
         const config = JSON.parse(decodeURIComponent(params['config']));
-        console.log(params['config']);
         for (let key in config) {
           if (config.hasOwnProperty(key)) {
             if (key === 'photo') {
@@ -242,7 +241,7 @@ export class SingleStepEditorComponent implements OnInit {
       this.photosSelector.whenReady().then(() => console.log('photosSelector ready')),
       this.quotesSelector.whenReady().then(() => console.log('quotesSelector ready')),
       this.sizesSelector.whenReady().then(() => console.log('sizesSelector ready')),
-    ]).then(() => this.random());
+    ]).then(() => this.random(true));
   }
 
   public handleExportComplete(event) {
