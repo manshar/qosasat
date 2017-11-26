@@ -9,7 +9,8 @@ import { YorwaEncoder } from './yorwa-encoder.service';
 import { YorwaDecoder } from './yorwa-decoder.service';
 
 const PER_PAGE = 50;
-const YORWA_QUOTES_SEARCH_ENDPOINT = 'http://manshar.yorwa.com';
+const YORWA_QUOTES_SEARCH_ENDPOINT = (
+    'https://yorwa.cloudant.com/detayorwa2/_design/searchii/_search/ser1/');
 // ?q=light:(<query>)&sort=%22-date%22&limit=<n>
 
 export interface YorwaQuotesServiceSearchParams {
@@ -57,9 +58,10 @@ export class YorwaQuotesService {
       sort: params.sort || '"-date"',
     };
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const url = `${proxyUrl}${YORWA_QUOTES_SEARCH_ENDPOINT}}`;
+    const url = `${proxyUrl}${YORWA_QUOTES_SEARCH_ENDPOINT}`;
     return this.http.get(url, {
       params: actualParams,
+      // headers:
     }).map((res) => res.json())
       .map((response) => {
           this.nextBookmark = response.bookmark;
