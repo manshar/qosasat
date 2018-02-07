@@ -29,7 +29,10 @@ export class Photo {
   public getSrc(width: number, height: number, crop: boolean = true) {
     switch (this.sourceName) {
       case 'Unsplash':
-        return `${this.servingUrl}?w=${width}&h=${height}&fit=crop`;
+        if (this.servingUrl.indexOf('?') === -1) {
+          return `${this.servingUrl}?w=${width}&h=${height}&fit=crop`;
+        }
+        return `${this.servingUrl}&w=${width}&h=${height}&fit=crop`;
       case 'CarbonUpUp':
         return `${this.servingUrl}=w${width}-h${height}-c`;
       default:
