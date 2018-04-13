@@ -10,7 +10,8 @@ import { YorwaDecoder } from './yorwa-decoder.service';
 
 const PER_PAGE = 50;
 const YORWA_QUOTES_SEARCH_ENDPOINT = (
-    'https://yorwa.cloudant.com/detayorwa2/_design/searchii/_search/ser1/');
+  'https://1aabf3b9-2111-44bb-8d04-5f1b9c9045f1-bluemix.cloudant.com/detayorwa2/_design/searchii/_search/ser1/');
+    // 'https://yorwa.cloudant.com/detayorwa2/_design/searchii/_search/ser1/');
 // ?q=light:(<query>)&sort=%22-date%22&limit=<n>
 
 export interface YorwaQuotesServiceSearchParams {

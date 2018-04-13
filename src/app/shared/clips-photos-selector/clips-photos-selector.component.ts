@@ -105,6 +105,10 @@ export class ClipsPhotosSelectorComponent implements OnInit {
     if (!event.item) {
       return;
     }
+    this.photosService.downloaded(event.item.sourceId)
+      .subscribe((photos) => {
+        console.log('Sent download signal to Unsplash:', photos);
+      });
     this.change.next({
       photo: event.item,
     });

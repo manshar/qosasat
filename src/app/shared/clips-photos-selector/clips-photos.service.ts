@@ -7,6 +7,7 @@ import 'rxjs/add/observable/empty';
 import { Photo } from './clips-photo.model';
 
 const PER_PAGE = 50;
+const CARBON_SRCSRC_DOWNLOADED_ENDPOINT = 'https://srcsrc.carbon.tools/api/v1/photo/downloaded/';
 const CARBON_SRCSRC_ENDPOINT = 'https://srcsrc.carbon.tools/api/v1/photo/';
 const CARBON_SRCSRC_SEARCH_ENDPOINT = 'https://srcsrc.carbon.tools/api/v1/photo/search';
 
@@ -70,6 +71,17 @@ export class ClipsPhotosService {
     }).map((res) => {
       const response = res.json();
       this.nextListUrl = response.next_url;
+      return response.result.map((item) => new Photo(item));
+    });
+  }
+
+  public downloaded(sourceId:string) {
+    return this.http.get(CARBON_SRCSRC_DOWNLOADED_ENDPOINT, {
+      params: {
+        source_id: sourceId,
+      },
+    }).map((res) => {
+      const response = res.json();
       return response.result.map((item) => new Photo(item));
     });
   }
